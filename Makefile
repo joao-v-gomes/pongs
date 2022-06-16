@@ -1,9 +1,15 @@
 LIBS=`pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 allegro_color-5 allegro_font-5 allegro_image-5 allegro_main-5 allegro_memfile-5 allegro_physfs-5 allegro_primitives-5 allegro_ttf-5` -lm
 
-INCLUDES=-I/home/pi/allegro5/
+# INCLUDES=-I/home/pi/allegro5/
 
-all: bola circles passaro_andante teclado bouncer louco frogger pong passaro_raivoso allegro_base
+all: allegro_base
 
+teste-allegro-lab: teste-allegro-lab.o
+	gcc -o teste-allegro-lab teste-allegro-lab.o $(LIBS)
+
+allegro_base: allegro_base.o
+	gcc -o allegro_base allegro_base.o $(LIBS)
+	
 bola: bola.o
 	gcc $(INCLUDES) -o bola bola.o $(LIBS)
 
@@ -57,9 +63,6 @@ pong: pong.o
 
 pong.o: pong.c
 	gcc  -c pong.c $(LIBS)
-
-allegro_base: allegro_base.o
-	gcc -o allegro_base allegro_base.o $(LIBS)
 
 ghero-0.o: ghero-0.c
 	gcc -c allegro_base.c $(LIBS)

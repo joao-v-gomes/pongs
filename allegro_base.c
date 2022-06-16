@@ -1,18 +1,93 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include <math.h>
 
 
-const float FPS = 100;  
+const float FPS = 50;  
 
 const int SCREEN_W = 960;
 const int SCREEN_H = 540;
- 
+
+//JOGADOR:
+int DIST_FUNDO = 50;
+int ALTURA_JOGADOR = 30;
+int LARGURA_JOGADOR = 100;
+float VEL_JOGADOR = 3.5;
+
+
+// ALLEGRO_FONT *FONT_32;
+
+
+typedef struct Jogador {
+	float x, y, h, w, vel;
+	int dir, esq, cima, baixo;
+	ALLEGRO_COLOR cor;
+	int id;
+} Jogador;
+
+
+void verifica_posicao(Jogador *p){
+	if((p->y) <= SCREEN_H/2 + 2){
+		//tudo certo
+	}
+	else{
+		printf("deu merda\r\n");
+	}
+}
+
+void desenhaQuadra() {
+	
+	al_clear_to_color(al_map_rgb(0, 155, 0));
+	al_draw_line(0, SCREEN_H/2, SCREEN_W, SCREEN_H/2, al_map_rgb(255,255,255), 4);
+	
+}
+
+void desenhaJogador(Jogador p) {
+
+	al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, p.cor );
+
+}
+
+
+void initJogador(Jogador *p) {
+	p->h = ALTURA_JOGADOR;
+	p->w = LARGURA_JOGADOR;
+	p->x = SCREEN_W/2 - p->w/2;
+	p->dir = 0;
+	p->esq = 0;
+	p->cima = 0;
+	p->baixo = 0;
+	p->vel = VEL_JOGADOR;
+
+}
+
+void initJogador1(Jogador *p1) {
+	initJogador(p1);
+	p1->y = SCREEN_H - DIST_FUNDO - p1->h;
+	p1->cor = al_map_rgb(155, 0, 0);
+	p1->id = 1;
+
+}
+
+
+void atualizaJogador(Jogador *p) {
+
+	p->x = p->x + p->dir*p->vel - p->esq*p->vel;
+	p->y = p->y + p->baixo*p->vel - p->cima*p->vel;
+
+}
+
+
+
 int main(int argc, char **argv){
 	
+	int i, j;
+
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
@@ -95,13 +170,20 @@ int main(int argc, char **argv){
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	//registra na fila os eventos de teclado (ex: pressionar uma tecla)
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
-	//registra na fila os eventos de mouse (ex: clicar em um botao do mouse)
-	al_register_event_source(event_queue, al_get_mouse_event_source());  	
+	// //registra na fila os eventos de mouse (ex: clicar em um botao do mouse)
+	// al_register_event_source(event_queue, al_get_mouse_event_source());  	
 
 
 	//inicia o temporizador
 	al_start_timer(timer);
 	
+
+	Jogador p1;
+	initJogador1(&p1);
+
+
+	// FONT_32 = al_load_font("arial.ttf", 32, 1);
+
 	int playing = 1;
 	while(playing) {
 		ALLEGRO_EVENT ev;
@@ -110,6 +192,11 @@ int main(int argc, char **argv){
 
 		//se o tipo de evento for um evento do temporizador, ou seja, se o tempo passou de t para t+1
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
+
+
+			desenhaQuadra();
+			atualizaJogador(&p1);
+			desenhaJogador(p1);
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
@@ -128,18 +215,69 @@ int main(int argc, char **argv){
 		//se o tipo de evento for um pressionar de uma tecla
 		else if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			//imprime qual tecla foi
+			// printf("\ncodigo tecla: %d", ev.keyboard.keycode);
+
+			if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
+				playing = 0;
+			}
+
+			switch(ev.keyboard.keycode) {
+			//se a tecla for o W
+				case ALLEGRO_KEY_W:
+					p1.cima = 1;
+				break;
+		
+				case ALLEGRO_KEY_S:
+					p1.baixo = 1;
+				break;
+		
+				case ALLEGRO_KEY_A:
+					p1.esq = 1;
+				break;
+		
+				case ALLEGRO_KEY_D:
+					p1.dir = 1;
+				break;
+			
+			}
+
+
+			//imprime qual tecla foi
 			printf("\ncodigo tecla: %d", ev.keyboard.keycode);
 		}
+		else if(ev.type == ALLEGRO_EVENT_KEY_UP) {
+
+			switch(ev.keyboard.keycode) {
+			//se a tecla for o W
+				case ALLEGRO_KEY_W:
+					p1.cima = 0;
+				break;
+		
+				case ALLEGRO_KEY_S:
+					p1.baixo = 0;
+				break;
+		
+				case ALLEGRO_KEY_A:
+					p1.esq = 0;
+				break;
+		
+				case ALLEGRO_KEY_D:
+					p1.dir = 0;
+				break;
+
+
+			}
+		}		
+			
 
 	} //fim do while
-     
+    
 	//procedimentos de fim de jogo (fecha a tela, limpa a memoria, etc)
 	
- 
+
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);
-   
- 
+
 	return 0;
 }
