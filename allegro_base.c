@@ -11,13 +11,23 @@
 
 bool initApp = 1;
 
-
-void verifica_posicao(Jogador *p){
-	if((p->y) <= SCREEN_H/2 + 2){
+void verifica_posicao(Jogador *p1, Jogador *p2){
+	if((p1->y) > SCREEN_H/2 + 4){
 		//tudo certo
+		// p->cima = 0;
 	}
 	else{
-		printf("deu merda\r\n");
+		// printf("deu merda\r\n");
+		p1->cima = 0;
+	}
+
+	if((p2->y) <= SCREEN_H/2 - ALTURA_JOGADOR - 5){
+		//tudo certo
+		// p->cima = 0;
+	}
+	else{
+		// printf("deu merda\r\n");
+		p2->baixo = 0;
 	}
 }
 
