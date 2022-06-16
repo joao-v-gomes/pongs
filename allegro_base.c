@@ -42,6 +42,10 @@ void desenhaJogador(Jogador p) {
 
 	al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, p.cor );
 
+	if(p.id == 2){
+		printf("pos x: %.1f \n pos y: %.1f",p.x,p.y);
+	}
+
 }
 
 
