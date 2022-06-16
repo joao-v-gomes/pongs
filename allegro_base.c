@@ -81,6 +81,11 @@ void atualizaJogador(Jogador *p) {
 
 }
 
+void verifica_esc(int *playing, ALLEGRO_EVENT ev){
+	if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
+		*playing = 0;
+	}
+}
 
 
 	
