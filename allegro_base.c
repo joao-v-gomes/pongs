@@ -65,6 +65,14 @@ void initJogador1(Jogador *p1) {
 
 }
 
+void initJogador2(Jogador *p2) {
+	initJogador(p2);
+	p2->y = 0 + DIST_FUNDO + p2->h;
+	p2->cor = al_map_rgb(0, 0, 155);
+	p2->id = 2;
+
+}
+
 
 void atualizaJogador(Jogador *p) {
 
@@ -174,8 +182,10 @@ int main(int argc, char **argv){
 		//inicia o temporizador
 		al_start_timer(timer);
 	}
+	
+	Jogador p1,p2;
 	initJogador1(&p1);
-
+	initJogador2(&p2);
 
 	// FONT_32 = al_load_font("arial.ttf", 32, 1);
 
@@ -190,8 +200,11 @@ int main(int argc, char **argv){
 
 
 			desenhaQuadra();
+			verifica_posicao(&p1,&p2);
 			atualizaJogador(&p1);
+			atualizaJogador(&p2);
 			desenhaJogador(p1);
+			desenhaJogador(p2);
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
