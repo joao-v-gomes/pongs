@@ -17,7 +17,7 @@ const int SCREEN_H = 540;
 int DIST_FUNDO = 50;
 int ALTURA_JOGADOR = 30;
 int LARGURA_JOGADOR = 100;
-float VEL_JOGADOR = 3.5;
+float VEL_JOGADOR = 3;
 
 
 // ALLEGRO_FONT *FONT_32;
