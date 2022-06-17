@@ -10,8 +10,6 @@
 
 #include "pongs.h"
 
-bool initApp = 1;
-
 void verifica_posicao(Jogador *p1, Jogador *p2){
 	if((p1->y) > SCREEN_H/2 + 4){
 		//tudo certo
@@ -36,6 +34,15 @@ void desenhaQuadra() {
 	
 	al_clear_to_color(al_map_rgb(0, 155, 0));
 	al_draw_line(0, SCREEN_H/2, SCREEN_W, SCREEN_H/2, al_map_rgb(255,255,255), 4);
+	
+}
+
+void desenhaMenu(ALLEGRO_FONT *size_32) {
+	char text[10];
+	al_clear_to_color(al_map_rgb(0, 0, 50));
+	sprintf(text,"teste");
+	al_draw_text(size_32, al_map_rgb(255, 255, 255), 50, 10, 0,text);
+	// al_draw_line(0, SCREEN_H/2, SCREEN_W, SCREEN_H/2, al_map_rgb(255,255,255), 4);
 	
 }
 
@@ -177,95 +184,100 @@ int main(int argc, char **argv){
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 
-	if(initApp){
-		//----------------------- rotinas de inicializacao ---------------------------------------
-		
-		//inicializa o Allegro
-		if(!al_init()) {
-			fprintf(stderr, "failed to initialize allegro!\n");
-			return -1;
-		}
-		
-		//inicializa o módulo de primitivas do Allegro
-		if(!al_init_primitives_addon()){
-			fprintf(stderr, "failed to initialize primitives!\n");
-			return -1;
-		}	
-		
-		//inicializa o modulo que permite carregar imagens no jogo
-		if(!al_init_image_addon()){
-			fprintf(stderr, "failed to initialize image module!\n");
-			return -1;
-		}
+	//----------------------- rotinas de inicializacao ---------------------------------------
 	
-		//cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos
-		timer = al_create_timer(1.0 / FPS);
-		if(!timer) {
-			fprintf(stderr, "failed to create timer!\n");
-			return -1;
-		}
-	
-		//cria uma tela com dimensoes de SCREEN_W, SCREEN_H pixels
-		display = al_create_display(SCREEN_W, SCREEN_H);
-		if(!display) {
-			fprintf(stderr, "failed to create display!\n");
-			al_destroy_timer(timer);
-			return -1;
-		}
-
-		//instala o teclado
-		if(!al_install_keyboard()) {
-			fprintf(stderr, "failed to install keyboard!\n");
-			return -1;
-		}
-		
-		//instala o mouse
-		if(!al_install_mouse()) {
-			fprintf(stderr, "failed to initialize mouse!\n");
-			return -1;
-		}
-
-		//inicializa o modulo allegro que carrega as fontes
-		al_init_font_addon();
-
-		//inicializa o modulo allegro que entende arquivos tff de fontes
-		if(!al_init_ttf_addon()) {
-			fprintf(stderr, "failed to load tff font module!\n");
-			return -1;
-		}
-		
-		//carrega o arquivo arial.ttf da fonte Arial e define que sera usado o tamanho 32 (segundo parametro)
-		ALLEGRO_FONT *size_32 = al_load_font("arial.ttf", 32, 1);   
-		if(size_32 == NULL) {
-			fprintf(stderr, "font file does not exist or cannot be accessed!\n");
-		}
-
-		//cria a fila de eventos
-		event_queue = al_create_event_queue();
-		if(!event_queue) {
-			fprintf(stderr, "failed to create event_queue!\n");
-			al_destroy_display(display);
-			return -1;
-		}
-	
-		//registra na fila os eventos de tela (ex: clicar no X na janela)
-		al_register_event_source(event_queue, al_get_display_event_source(display));
-		//registra na fila os eventos de tempo: quando o tempo altera de t para t+1
-		al_register_event_source(event_queue, al_get_timer_event_source(timer));
-		//registra na fila os eventos de teclado (ex: pressionar uma tecla)
-		al_register_event_source(event_queue, al_get_keyboard_event_source());
-		// //registra na fila os eventos de mouse (ex: clicar em um botao do mouse)
-		// al_register_event_source(event_queue, al_get_mouse_event_source());  	
-
-		//inicia o temporizador
-		al_start_timer(timer);
+	//inicializa o Allegro
+	if(!al_init()) {
+		fprintf(stderr, "failed to initialize allegro!\n");
+		return -1;
 	}
+	
+	//inicializa o módulo de primitivas do Allegro
+	if(!al_init_primitives_addon()){
+		fprintf(stderr, "failed to initialize primitives!\n");
+		return -1;
+	}	
+	
+	//inicializa o modulo que permite carregar imagens no jogo
+	if(!al_init_image_addon()){
+		fprintf(stderr, "failed to initialize image module!\n");
+		return -1;
+	}
+
+	//cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos
+	timer = al_create_timer(1.0 / FPS);
+	if(!timer) {
+		fprintf(stderr, "failed to create timer!\n");
+		return -1;
+	}
+
+	//cria uma tela com dimensoes de SCREEN_W, SCREEN_H pixels
+	display = al_create_display(SCREEN_W, SCREEN_H);
+	if(!display) {
+		fprintf(stderr, "failed to create display!\n");
+		al_destroy_timer(timer);
+		return -1;
+	}
+
+	//instala o teclado
+	if(!al_install_keyboard()) {
+		fprintf(stderr, "failed to install keyboard!\n");
+		return -1;
+	}
+	
+	//instala o mouse
+	if(!al_install_mouse()) {
+		fprintf(stderr, "failed to initialize mouse!\n");
+		return -1;
+	}
+
+	//inicializa o modulo allegro que carrega as fontes
+	al_init_font_addon();
+
+	//inicializa o modulo allegro que entende arquivos tff de fontes
+	if(!al_init_ttf_addon()) {
+		fprintf(stderr, "failed to load tff font module!\n");
+		return -1;
+	}
+	
+	//carrega o arquivo arial.ttf da fonte Arial e define que sera usado o tamanho 32 (segundo parametro)
+	ALLEGRO_FONT *fonte_texto = al_load_font("comic.ttf", 32, 1);   
+	if(fonte_texto == NULL) {
+		fprintf(stderr, "font file does not exist or cannot be accessed!\n");
+	}
+
+	//cria a fila de eventos
+	event_queue = al_create_event_queue();
+	if(!event_queue) {
+		fprintf(stderr, "failed to create event_queue!\n");
+		al_destroy_display(display);
+		return -1;
+	}
+
+	//registra na fila os eventos de tela (ex: clicar no X na janela)
+	al_register_event_source(event_queue, al_get_display_event_source(display));
+	//registra na fila os eventos de tempo: quando o tempo altera de t para t+1
+	al_register_event_source(event_queue, al_get_timer_event_source(timer));
+	//registra na fila os eventos de teclado (ex: pressionar uma tecla)
+	al_register_event_source(event_queue, al_get_keyboard_event_source());
+	// //registra na fila os eventos de mouse (ex: clicar em um botao do mouse)
+	// al_register_event_source(event_queue, al_get_mouse_event_source());  	
+
+	//inicia o temporizador
+	al_start_timer(timer);
 	
 	Jogador p1,p2;
 	initJogador1(&p1);
 	initJogador2(&p2);
 
-	// FONT_32 = al_load_font("arial.ttf", 32, 1);
+	// FONT_32 = al_load_font("comic.ttf", 32, 1);
+
+	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("pong2.bmp");
+
+
+	al_set_window_title(display,"Pongs");
+	al_set_display_icon(display,icone_pong);
+
 
 	int playing = 1;
 
@@ -278,12 +290,13 @@ int main(int argc, char **argv){
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 
 
-			desenhaQuadra();
-			verifica_posicao(&p1,&p2);
-			atualizaJogador(&p1);
-			atualizaJogador(&p2);
-			desenhaJogador(p1);
-			desenhaJogador(p2);
+			desenhaMenu(fonte_texto);
+			// desenhaQuadra();
+			// verifica_posicao(&p1,&p2);
+			// atualizaJogador(&p1);
+			// atualizaJogador(&p2);
+			// desenhaJogador(p1);
+			// desenhaJogador(p2);
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();

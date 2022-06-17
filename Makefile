@@ -8,9 +8,9 @@ teste-allegro-lab: teste-allegro-lab.o
 	gcc -o teste-allegro-lab teste-allegro-lab.o $(LIBS)
 
 pongs: pongs.o
-	gcc -o pongs pongs.o $(LIBS)
+	gcc -o Pongs pongs.o $(LIBS)
 	
 clean:
 	rm -f pongs.o
-	rm -f pongs
+	rm -f Pongs
 
