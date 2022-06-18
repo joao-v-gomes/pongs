@@ -11,7 +11,7 @@
 const float FPS = 50;  
 
 const int SCREEN_H = 960;
-const int SCREEN_W = 443;
+const int SCREEN_W = 441;
 
 
 //JOGADOR:
