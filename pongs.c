@@ -10,32 +10,115 @@
 
 #include "pongs.h"
 
-void verifica_posicao(Jogador *p1, Jogador *p2){
-	if((p1->y) > SCREEN_H/2 + 4){
-		//tudo certo
-		// p->cima = 0;
-	}
-	else{
-		// printf("deu merda\r\n");
-		p1->cima = 0;
-	}
+void verifica_posicao(Jogador *p){
 
-	if((p2->y) <= SCREEN_H/2 - ALTURA_JOGADOR - 5){
-		//tudo certo
-		// p->cima = 0;
+	if(p->id == 1){
+		//Verifica meio
+		if((p->y) > SCREEN_H/2 + 4){
+			//tudo certo
+			// p->cima = 0;
+		}
+		else{
+			// printf("deu merda\r\n");
+			p->cima = 0;
+		}
+
+		//Verifica fundo
+		if((p->y) < SCREEN_H-ALTURA_JOGADOR-7){
+
+		}
+		else{
+			p->baixo = 0;
+		}
+
+		//Verifica esq
+		if((p->x) > 0+6){
+
+		}
+		else{
+			p->esq = 0;
+		}
+
+		//Verifica dir
+		if((p->x) < SCREEN_W-LARGURA_JOGADOR-7){
+
+		}
+		else{
+			p->dir = 0;
+		}
 	}
 	else{
-		// printf("deu merda\r\n");
-		p2->baixo = 0;
+		//Verifica meio
+		if((p->y) <= SCREEN_H/2 - ALTURA_JOGADOR - 5){
+			//tudo certo
+			// p->cima = 0;
+		}
+		else{
+			// printf("deu merda\r\n");
+			p->baixo = 0;
+		}
+
+		//Verifica topo
+		if((p->y) > 0+5){
+
+		}
+		else{
+			p->cima = 0;
+		}
+
+		//Verifica esq
+		if((p->x) > 0+6){
+
+		}
+		else{
+			p->esq = 0;
+		}
+
+		//Verifica dir
+		if((p->x) < SCREEN_W-LARGURA_JOGADOR-7){
+
+		}
+		else{
+			p->dir = 0;
+		}
 	}
 }
 
 void desenhaQuadra() {
-	
+	uint8_t linha = 3;
+
 	al_clear_to_color(al_map_rgb(0, 155, 0));
-	al_draw_line(0, SCREEN_H/2, SCREEN_W, SCREEN_H/2, al_map_rgb(255,255,255), 4);
+	//Linha meio principal
+	al_draw_line(linha, SCREEN_H/2, SCREEN_W-linha, SCREEN_H/2, al_map_rgb(255,255,255), linha+linha);
+
+	//Linha baixo principal
+	al_draw_line(0, SCREEN_H-linha, SCREEN_W-linha, SCREEN_H-linha, al_map_rgb(255,255,255), linha);
+
+	//Linha alto principal
+	al_draw_line(0, linha, SCREEN_W-linha, linha, al_map_rgb(255,255,255), linha);
+
+	//Linha esq principal
+	al_draw_line(3,linha,3,SCREEN_H-linha,al_map_rgb(255,255,255), linha);
+
+	//Linha dir principal
+	al_draw_line(SCREEN_W-linha,linha-1,SCREEN_W-linha,SCREEN_H-linha+2,al_map_rgb(255,255,255), linha);
+
+	//Linha esq secundaria
+	al_draw_line(55,linha,55,SCREEN_H-linha,al_map_rgb(255,255,255), linha);
+
+	//Linha dir secundaria
+	al_draw_line(SCREEN_W-55,linha,SCREEN_W-55,SCREEN_H-linha,al_map_rgb(255,255,255), linha);
 	
+	//Linha meio secundaria baixo
+	al_draw_line(55, SCREEN_H-222, SCREEN_W-55, SCREEN_H-222, al_map_rgb(255,255,255), linha);
+
+	//Linha meio secundaria alto
+	al_draw_line(55, 222, SCREEN_W-55, 222, al_map_rgb(255,255,255), linha);
+
+	//Linha centro
+	al_draw_line(SCREEN_W/2-2, 222, SCREEN_W/2-2, 222+(258+258), al_map_rgb(255,255,255), linha);
 }
+
 
 void desenhaMenu(ALLEGRO_FONT *size_32) {
 	char text[10];
@@ -79,7 +162,7 @@ void initJogador1(Jogador *p1) {
 
 void initJogador2(Jogador *p2) {
 	initJogador(p2);
-	p2->y = 0 + DIST_FUNDO + p2->h;
+	p2->y = 0 + DIST_FUNDO;
 	p2->cor = al_map_rgb(0, 0, 155);
 	p2->id = 2;
 
@@ -280,7 +363,6 @@ int main(int argc, char **argv){
 
 
 	int playing = 1;
-
 	while(playing) {
 		ALLEGRO_EVENT ev;
 		//espera por um evento e o armazena na variavel de evento ev
@@ -290,13 +372,14 @@ int main(int argc, char **argv){
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 
 
-			desenhaMenu(fonte_texto);
-			// desenhaQuadra();
-			// verifica_posicao(&p1,&p2);
-			// atualizaJogador(&p1);
-			// atualizaJogador(&p2);
-			// desenhaJogador(p1);
-			// desenhaJogador(p2);
+			// desenhaMenu(fonte_texto);
+			desenhaQuadra();
+			verifica_posicao(&p1);
+			verifica_posicao(&p2);
+			atualizaJogador(&p1);
+			atualizaJogador(&p2);
+			desenhaJogador(p1);
+			desenhaJogador(p2);
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();

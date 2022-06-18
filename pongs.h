@@ -10,8 +10,9 @@
 
 const float FPS = 50;  
 
-const int SCREEN_W = 960;
-const int SCREEN_H = 540;
+const int SCREEN_H = 960;
+const int SCREEN_W = 443;
+
 
 //JOGADOR:
 int DIST_FUNDO = 50;

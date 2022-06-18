@@ -7,7 +7,7 @@ all: clean pongs
 teste-allegro-lab: teste-allegro-lab.o
 	gcc -o teste-allegro-lab teste-allegro-lab.o $(LIBS)
 
-pongs: pongs.o
+pongs: clean pongs.o
 	gcc -o Pongs pongs.o $(LIBS)
 	
 clean:
