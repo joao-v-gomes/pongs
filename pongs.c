@@ -7,10 +7,16 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include "allegro5/allegro_audio.h"
+#include "allegro5/allegro_acodec.h"
+#include "allegro5/allegro_image.h"
+
 
 #include "pongs.h"
 
-void verifica_posicoes(Jogador *p1, Jogador *p2){
+
+
+void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2){
 	verifica_posicao(p1);
 	verifica_posicao(p2);
 }
@@ -89,7 +95,7 @@ void verifica_posicao(Jogador *p){
 	}
 }
 
-void desenhaQuadra() {
+void desenha_quadra() {
 	uint8_t linha = 3;
 
 	al_clear_to_color(al_map_rgb(0, 155, 0));
@@ -124,8 +130,7 @@ void desenhaQuadra() {
 	al_draw_line(SCREEN_W/2-2, 222, SCREEN_W/2-2, 222+(258+258), al_map_rgb(255,255,255), linha);
 }
 
-
-void desenhaMenu(ALLEGRO_FONT *size_32) {
+void desenha_menu(ALLEGRO_FONT *size_32) {
 	char text[10];
 	al_clear_to_color(al_map_rgb(0, 0, 50));
 	sprintf(text,"teste");
@@ -135,11 +140,11 @@ void desenhaMenu(ALLEGRO_FONT *size_32) {
 }
 
 void desenha_jogadores(Jogador p1, Jogador p2){
-	desenhaJogador(p1);
-	desenhaJogador(p2);
+	desenha_jogador(p1);
+	desenha_jogador(p2);
 }
 
-void desenhaJogador(Jogador p){
+void desenha_jogador(Jogador p){
 
 	al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, p.cor );
 
@@ -149,8 +154,7 @@ void desenhaJogador(Jogador p){
 
 }
 
-
-void initJogador(Jogador *p) {
+void init_jogador(Jogador *p) {
 	p->h = ALTURA_JOGADOR;
 	p->w = LARGURA_JOGADOR;
 	p->x = SCREEN_W/2 - p->w/2;
@@ -162,16 +166,16 @@ void initJogador(Jogador *p) {
 
 }
 
-void initJogador1(Jogador *p1) {
-	initJogador(p1);
+void init_jogador1(Jogador *p1) {
+	init_jogador(p1);
 	p1->y = SCREEN_H - DIST_FUNDO - p1->h;
 	p1->cor = al_map_rgb(155, 0, 0);
 	p1->id = 1;
 
 }
 
-void initJogador2(Jogador *p2) {
-	initJogador(p2);
+void init_jogador2(Jogador *p2) {
+	init_jogador(p2);
 	p2->y = 0 + DIST_FUNDO;
 	p2->cor = al_map_rgb(0, 0, 155);
 	p2->id = 2;
@@ -274,10 +278,11 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2){
 }
 
 int main(int argc, char **argv){
-	
+
 	int i, j;
 
 	ALLEGRO_DISPLAY *display = NULL;
+	ALLEGRO_DISPLAY *display2 = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 
@@ -309,14 +314,14 @@ int main(int argc, char **argv){
 	}
 
 	//cria uma tela com dimensoes de SCREEN_W, SCREEN_H pixels
-	display = al_create_display(SCREEN_W, SCREEN_H);
+	display = al_create_display(SCREEN_W_MENU, SCREEN_H_MENU);
 	if(!display) {
 		fprintf(stderr, "failed to create display!\n");
 		al_destroy_timer(timer);
 		return -1;
 	}
 
-	//instala o teclado
+		//instala o teclado
 	if(!al_install_keyboard()) {
 		fprintf(stderr, "failed to install keyboard!\n");
 		return -1;
@@ -364,17 +369,43 @@ int main(int argc, char **argv){
 	al_start_timer(timer);
 	
 	Jogador p1,p2;
-	initJogador1(&p1);
-	initJogador2(&p2);
+	init_jogador1(&p1);
+	init_jogador2(&p2);
 
 	// FONT_32 = al_load_font("comic.ttf", 32, 1);
 
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("pong2.bmp");
 
 
-	al_set_window_title(display,"Pongs");
+	al_set_window_title(display,"PongS");
 	al_set_display_icon(display,icone_pong);
 
+	ALLEGRO_SAMPLE *sample = NULL;
+	ALLEGRO_SAMPLE *sample2 = NULL;
+
+	al_install_audio();
+	al_init_acodec_addon();
+
+	al_reserve_samples(2);
+
+	// sample = al_load_sample("words_of_a_madman.wav");
+	sample = al_load_sample("top-gear-3.wav");
+	sample2 = al_load_sample("menu-navigate-03.wav");
+
+	al_play_sample(sample,0.5,0,1,ALLEGRO_PLAYMODE_LOOP,NULL);
+
+	bool foi_menu =false;
+	bool abre_jogo =false;
+
+	int imageH = 0;
+	int imageW = 0;
+
+	ALLEGRO_BITMAP *bg_menu = NULL;
+
+	bg_menu = al_load_bitmap("pongs-menu.bmp");
+
+	imageH = al_get_bitmap_height(bg_menu);
+	imageW = al_get_bitmap_width(bg_menu);
 
 	int playing = 1;
 	while(playing) {
@@ -385,12 +416,23 @@ int main(int argc, char **argv){
 		//se o tipo de evento for um evento do temporizador, ou seja, se o tempo passou de t para t+1
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 
+			if (foi_menu == false){
+				// desenha_menu(fonte_texto);
+				al_draw_bitmap(bg_menu,0,0,0);
+				abre_jogo = true;
+			}
+			else {
+				if (abre_jogo == true){
+					al_resize_display(display,SCREEN_W,SCREEN_H);
+				}
 
-			// desenhaMenu(fonte_texto);
-			desenhaQuadra();
-			verifica_posicoes(&p1,&p2);
-			atualiza_jogadores(&p1,&p2);
-			desenha_jogadores(p1,p2);
+				desenha_quadra();
+				verifica_posicoes_jogadores(&p1,&p2);
+				atualiza_jogadores(&p1,&p2);
+				desenha_jogadores(p1,p2);
+			}
+
+			
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
@@ -412,6 +454,11 @@ int main(int argc, char **argv){
 
 			verifica_tecla_movimentacao(ev,&p1,&p2);
 
+			if (ev.keyboard.keycode == ALLEGRO_KEY_H){
+				al_play_sample(sample2,1,0,1,ALLEGRO_PLAYMODE_ONCE,NULL);
+				foi_menu = true;
+			}
+
 			//imprime qual tecla foi
 			// printf("\ncodigo tecla: %d", ev.keyboard.keycode);
 		}
@@ -420,7 +467,9 @@ int main(int argc, char **argv){
     
 	//procedimentos de fim de jogo (fecha a tela, limpa a memoria, etc)
 	
-
+	al_destroy_bitmap(bg_menu);
+	al_destroy_bitmap(icone_pong);
+	al_destroy_sample(sample);
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);

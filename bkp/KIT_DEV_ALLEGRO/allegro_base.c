@@ -14,6 +14,7 @@ const int SCREEN_H = 540;
 int main(int argc, char **argv){
 	
 	ALLEGRO_DISPLAY *display = NULL;
+	ALLEGRO_DISPLAY *display2 = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
    
@@ -49,6 +50,13 @@ int main(int argc, char **argv){
 	if(!display) {
 		fprintf(stderr, "failed to create display!\n");
 		al_destroy_timer(timer);
+		return -1;
+	}
+
+	//cria uma tela com dimensoes de SCREEN_W, SCREEN_H pixels
+	display2 = al_create_display(SCREEN_W_MENU, SCREEN_H_MENU);
+	if(!display2) {
+		fprintf(stderr, "failed to create display2!\n");
 		return -1;
 	}
 

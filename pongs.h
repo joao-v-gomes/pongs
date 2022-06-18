@@ -13,15 +13,15 @@ const float FPS = 50;
 const int SCREEN_H = 960;
 const int SCREEN_W = 441;
 
+const int SCREEN_H_MENU = 675;
+const int SCREEN_W_MENU = 1200;
+
 
 //JOGADOR:
 int DIST_FUNDO = 50;
 int ALTURA_JOGADOR = 30;
 int LARGURA_JOGADOR = 100;
 float VEL_JOGADOR = 3;
-
-
-// ALLEGRO_FONT *FONT_32;
 
 
 typedef struct Jogador {
@@ -36,3 +36,4 @@ typedef struct Jogador {
 void verifica_posicao(Jogador *p);
 void desenhaJogador(Jogador p);
 void atualiza_jogador(Jogador *p);
+void desenha_jogador(Jogador p);
