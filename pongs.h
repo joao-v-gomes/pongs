@@ -30,3 +30,9 @@ typedef struct Jogador {
 	ALLEGRO_COLOR cor;
 	int id;
 } Jogador;
+
+
+
+void verifica_posicao(Jogador *p);
+void desenhaJogador(Jogador p);
+void atualiza_jogador(Jogador *p);

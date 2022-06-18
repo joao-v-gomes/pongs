@@ -10,6 +10,11 @@
 
 #include "pongs.h"
 
+void verifica_posicoes(Jogador *p1, Jogador *p2){
+	verifica_posicao(p1);
+	verifica_posicao(p2);
+}
+
 void verifica_posicao(Jogador *p){
 
 	if(p->id == 1){
@@ -129,7 +134,12 @@ void desenhaMenu(ALLEGRO_FONT *size_32) {
 	
 }
 
-void desenhaJogador(Jogador p) {
+void desenha_jogadores(Jogador p1, Jogador p2){
+	desenhaJogador(p1);
+	desenhaJogador(p2);
+}
+
+void desenhaJogador(Jogador p){
 
 	al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, p.cor );
 
@@ -168,8 +178,12 @@ void initJogador2(Jogador *p2) {
 
 }
 
+void atualiza_jogadores(Jogador *p1, Jogador *p2){
+	atualiza_jogador(p1);
+	atualiza_jogador(p2);
+}
 
-void atualizaJogador(Jogador *p) {
+void atualiza_jogador(Jogador *p) {
 
 	p->x = p->x + p->dir*p->vel - p->esq*p->vel;
 	p->y = p->y + p->baixo*p->vel - p->cima*p->vel;
@@ -374,12 +388,9 @@ int main(int argc, char **argv){
 
 			// desenhaMenu(fonte_texto);
 			desenhaQuadra();
-			verifica_posicao(&p1);
-			verifica_posicao(&p2);
-			atualizaJogador(&p1);
-			atualizaJogador(&p2);
-			desenhaJogador(p1);
-			desenhaJogador(p2);
+			verifica_posicoes(&p1,&p2);
+			atualiza_jogadores(&p1,&p2);
+			desenha_jogadores(p1,p2);
 
 			//atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
