@@ -1,16 +1,19 @@
-LIBS=`pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 allegro_color-5 allegro_font-5 allegro_image-5 allegro_main-5 allegro_memfile-5 allegro_physfs-5 allegro_primitives-5 allegro_ttf-5  -lm
+CC = gcc
+CFLAGS = 
+LDLAGS = -lm
+TARGET = Pongs
+OBJFILES = main.o pongs.o jogadores.o
+LIBS = `pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 allegro_color-5 allegro_font-5 allegro_image-5 allegro_main-5 allegro_memfile-5 allegro_physfs-5 allegro_primitives-5 allegro_ttf-5`
 
-# INCLUDES=-I/home/pi/allegro5/
-
-all: clean pongs
+all: clean $(TARGET)
 
 teste-allegro-lab: teste-allegro-lab.o
-	gcc -o teste-allegro-lab teste-allegro-lab.o $(LIBS)
+	$(CC) -o teste-allegro-lab teste-allegro-lab.o $(LIBS) $(LDLAGS)
 
-pongs: clean pongs.o
-	gcc -o Pongs pongs.o $(LIBS) 
+$(TARGET): $(OBJFILES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
 	
 clean:
-	rm -f pongs.o
-	rm -f Pongs
+	rm -f $(OBJFILES)
+	rm -f $(TARGET)
 

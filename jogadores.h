@@ -11,7 +11,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 
-#include "pongs.h"
+// #include "pongs.h"
 
 //JOGADOR:
 int DIST_FUNDO = 50;
@@ -19,15 +19,12 @@ int ALTURA_JOGADOR = 30;
 int LARGURA_JOGADOR = 100;
 float VEL_JOGADOR = 3;
 
-
 typedef struct Jogador {
 	float x, y, h, w, vel;
 	int dir, esq, cima, baixo;
 	ALLEGRO_COLOR cor;
 	int id;
 } Jogador;
-
-
 
 void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
 void verifica_posicao(Jogador *p);

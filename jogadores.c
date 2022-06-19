@@ -90,7 +90,6 @@ void verifica_posicao(Jogador *p){
 	}
 }
 
-
 void desenha_jogadores(Jogador p1, Jogador p2){
 	desenha_jogador(p1);
 	desenha_jogador(p2);
