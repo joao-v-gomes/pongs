@@ -11,7 +11,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 
-// #include "pongs.h"
+#include "pongs.h"
 
 //JOGADOR:
 int DIST_FUNDO = 50;
