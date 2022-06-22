@@ -14,6 +14,15 @@
 #include "pongs.h"
 #include "jogadores.h"
 
+const float FPS = 50;  
+
+const int SCREEN_H = 960;
+const int SCREEN_W = 441;
+
+const int SCREEN_H_MENU = 675;
+const int SCREEN_W_MENU = 1200;
+
+
 int main(int argc, char **argv){
 
 	int i, j;

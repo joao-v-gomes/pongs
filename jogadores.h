@@ -13,12 +13,6 @@
 
 #include "pongs.h"
 
-//JOGADOR:
-int DIST_FUNDO = 50;
-int ALTURA_JOGADOR = 30;
-int LARGURA_JOGADOR = 100;
-float VEL_JOGADOR = 3;
-
 typedef struct Jogador {
 	float x, y, h, w, vel;
 	int dir, esq, cima, baixo;

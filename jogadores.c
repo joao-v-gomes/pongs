@@ -11,6 +11,16 @@
 #include "pongs.h"
 #include "jogadores.h"
 
+extern const int SCREEN_H;
+extern const int SCREEN_W;
+
+//JOGADOR:
+int DIST_FUNDO = 50;
+int ALTURA_JOGADOR = 30;
+int LARGURA_JOGADOR = 100;
+float VEL_JOGADOR = 3;
+
+
 void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2){
 	verifica_posicao(p1);
 	verifica_posicao(p2);

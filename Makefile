@@ -10,14 +10,14 @@ all: clean $(TARGET)
 teste-allegro-lab: teste-allegro-lab.o
 	$(CC) -o teste-allegro-lab teste-allegro-lab.o $(LIBS) $(LDLAGS)
 
-$(TARGET):
-# $(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
-	$(CC) $(CFLAGS) -c -o main.o main.c
-	$(CC) $(CFLAGS) -c -o jogadores.o jogadores.c
-	$(CC) $(CFLAGS) -c -o pongs.o pongs.c
-	ar cr libpongs.a pongs.o
-	ar cr libjogadores.a jogadores.o
-	$(CC) libpongs.a libjogadores.a main.o -o Pongs $(LIBS) $(LDLAGS)
+$(TARGET): $(OBJFILES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
+# $(CC) $(CFLAGS) -c -o main.o main.c
+# $(CC) $(CFLAGS) -c -o jogadores.o jogadores.c
+# $(CC) $(CFLAGS) -c -o pongs.o pongs.c
+# ar cr libpongs.a pongs.o
+# ar cr libjogadores.a jogadores.o
+# $(CC) libpongs.a libjogadores.a main.o -o Pongs $(LIBS) $(LDLAGS)
 
 	
 clean:

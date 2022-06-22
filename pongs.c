@@ -14,6 +14,10 @@
 #include "pongs.h"
 #include "jogadores.h"
 
+extern const int SCREEN_H;
+extern const int SCREEN_W;
+
+
 void desenha_quadra() {
 	uint8_t linha = 3;
 
