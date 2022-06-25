@@ -11,9 +11,6 @@
 //
 #include "jogadores.h"
 
-// extern const int SCREEN_H;
-// extern const int SCREEN_W;
-
 void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2) {
 	verifica_posicao(p1);
 	verifica_posicao(p2);

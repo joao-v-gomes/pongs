@@ -20,7 +20,6 @@ int main(int argc, char **argv) {
 	int i, j;
 
 	ALLEGRO_DISPLAY *display = NULL;
-	ALLEGRO_DISPLAY *display2 = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 
@@ -133,12 +132,11 @@ int main(int argc, char **argv) {
 	bool foi_menu = false;
 	bool abre_jogo = false;
 
-	int imageH = 0;
-	int imageW = 0;
-
+	// Prepara o desenho do menu
 	ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu2.bmp");
 
-	ALLEGRO_BITMAP *seta_menu = al_load_bitmap("data/img/seta.bmp");
+	int imageH = 0;
+	int imageW = 0;
 
 	imageH = al_get_bitmap_height(bg_menu);
 	imageW = al_get_bitmap_width(bg_menu);
@@ -165,14 +163,16 @@ int main(int argc, char **argv) {
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
-					desenha_menu(fonte_texto, bg_menu, seta_menu, counter);
+					desenha_menu(display, fonte_texto, bg_menu, counter);
 
 					switch (opcao) {
 						case UM_JOGADOR:
-							state = UM_JOGADOR;
+							state = ESCOLHE_UM_JOGADOR;
+							printf("Foi um jogador\r\n");
 							break;
 						case DOIS_JOGADORES:
-							state = DOIS_JOGADORES;
+							state = ESCOLHE_DOIS_JOGADORES;
+							printf("Foi dois jogadores\r\n");
 							break;
 						case SAIR:
 							state = SAIR;
@@ -181,12 +181,6 @@ int main(int argc, char **argv) {
 						default:
 							break;
 					}
-					break;
-				case UM_JOGADOR:
-					printf("Foi um jogador\r\n");
-					break;
-				case DOIS_JOGADORES:
-					printf("Foi dois jogadores\r\n");
 					break;
 				case ESCOLHE_UM_JOGADOR:
 					break;
@@ -198,6 +192,7 @@ int main(int argc, char **argv) {
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");
+					limpa_variaveis_menu(bg_menu);
 					playing = 0;
 					break;
 
@@ -292,8 +287,9 @@ int main(int argc, char **argv) {
 
 	// procedimentos de fim de jogo (fecha a tela, limpa a memoria, etc)
 
-	al_destroy_bitmap(bg_menu);
+	// al_destroy_bitmap(bg_menu);
 	al_destroy_bitmap(icone_pong);
+	al_destroy_font(fonte_texto);
 	al_destroy_sample(intro);
 	al_destroy_sample(move_menu);
 	al_destroy_timer(timer);

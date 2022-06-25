@@ -13,9 +13,6 @@
 //
 #include "jogadores.h"
 
-// extern const int SCREEN_H;
-// extern const int SCREEN_W;
-
 void desenha_quadra() {
 	uint8_t linha = 3;
 
@@ -51,41 +48,77 @@ void desenha_quadra() {
 	al_draw_line(SCREEN_W / 2 - 2, 222, SCREEN_W / 2 - 2, 222 + (258 + 258), al_map_rgb(255, 255, 255), linha);
 }
 
-void desenha_menu(ALLEGRO_FONT *size_32, ALLEGRO_BITMAP *bg_menu, ALLEGRO_BITMAP *seta_menu, uint8_t counter) {
-	char text[30];
+void desenha_menu(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *size_32, ALLEGRO_BITMAP *bg_menu, uint8_t counter) {
+
+	ALLEGRO_BITMAP *seletor = al_load_bitmap("data/img/barra-menu.bmp");
+
+	char um_jog[10] = "1 Jogador";
+	char dois_jog[12] = "2 Jogadores";
+	char sair[5] = "Sair";
+
+	int screen_w = al_get_display_width(display);
+	int screen_h = al_get_display_height(display);
+
+	int text_w = 0;
+
+	int posicao_w_texto = 0;
+	int posicao_h_texto = 280;
 
 	al_draw_bitmap(bg_menu, 0, 0, 0);
 
-	// al_clear_to_color(al_map_rgb(0, 0, 50));
-	sprintf(text, "1 Jogador");
-	al_draw_text(size_32, al_map_rgb(255, 255, 255), 150, 280, 0, text);
+	text_w = al_get_text_width(size_32, um_jog);
+	posicao_w_texto = (screen_w / 2) - (text_w / 2);
 
-	sprintf(text, "2 Jogadores");
-	al_draw_text(size_32, al_map_rgb(255, 255, 255), 130, 350, 0, text);
+	al_draw_text(size_32, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, um_jog);
 
-	sprintf(text, "Sair");
-	al_draw_text(size_32, al_map_rgb(255, 255, 255), 210, 412, 0, text);
-	// al_draw_line(0, SCREEN_H/2, SCREEN_W, SCREEN_H/2, al_map_rgb(255,255,255), 4);
+	text_w = al_get_text_width(size_32, dois_jog);
+	posicao_w_texto = (screen_w / 2) - (text_w / 2);
+	posicao_h_texto = posicao_h_texto + 70;
 
-	// Posicoes menu para bmp de 30x30
-	// 1 j -> 110 , 280
-	// 2 j -> 90 , 350
-	// sair -> 170 , 412
+	al_draw_text(size_32, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, dois_jog);
+
+	text_w = al_get_text_width(size_32, sair);
+	posicao_w_texto = (screen_w / 2) - (text_w / 2);
+	posicao_h_texto = posicao_h_texto + 70;
+
+	al_draw_text(size_32, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, sair);
 
 	switch (counter) {
 		case 0:
-			al_draw_bitmap(seta_menu, 110, 280, 0);
+			text_w = al_get_text_width(size_32, um_jog);
+			posicao_w_texto = (screen_w / 2) - (text_w / 2);
+			posicao_w_texto = posicao_w_texto - 30;
+
+			posicao_h_texto = posicao_h_texto - (2 * 70) - 7;
+
+			al_draw_bitmap(seletor, posicao_w_texto, posicao_h_texto, 0);
 			break;
 		case 1:
-			al_draw_bitmap(seta_menu, 90, 350, 0);
+			text_w = al_get_text_width(size_32, dois_jog);
+			posicao_w_texto = (screen_w / 2) - (text_w / 2);
+			posicao_w_texto = posicao_w_texto - 30;
+
+			posicao_h_texto = posicao_h_texto - (1 * 70) - 7;
+
+			al_draw_bitmap(seletor, posicao_w_texto, posicao_h_texto, 0);
 			break;
 		case 2:
-			al_draw_bitmap(seta_menu, 170, 412, 0);
+			text_w = al_get_text_width(size_32, sair);
+			posicao_w_texto = (screen_w / 2) - (text_w / 2);
+			posicao_w_texto = posicao_w_texto - 30;
+
+			posicao_h_texto = posicao_h_texto - 7;
+
+			al_draw_bitmap(seletor, posicao_w_texto, posicao_h_texto, 0);
 			break;
 
 		default:
 			break;
 	}
+}
+
+void limpa_variaveis_menu(ALLEGRO_BITMAP *bg_menu) {
+	al_destroy_bitmap(bg_menu);
 }
 
 void verifica_esc(int *playing, ALLEGRO_EVENT ev) {

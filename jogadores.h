@@ -12,11 +12,23 @@
 //
 #include "pongs.h"
 
-// JOGADOR:
-#define DIST_FUNDO		50
-#define ALTURA_JOGADOR	30
-#define LARGURA_JOGADOR 100
-#define VEL_JOGADOR		3
+// JOGADORES:
+// Jogador 1 -> Jogador padrao
+// Jogador 2 -> Jogador pequeno e rapido
+// Jogador 2 -> Jogador grande e lento
+#define DIST_FUNDO 50
+//
+#define ALTURA_JOGADOR_1  30
+#define LARGURA_JOGADOR_1 100
+#define VEL_JOGADOR_1	  3
+//
+#define ALTURA_JOGADOR_2  25
+#define LARGURA_JOGADOR_2 70
+#define VEL_JOGADOR_2	  5
+//
+#define ALTURA_JOGADOR_3  35
+#define LARGURA_JOGADOR_3 130
+#define VEL_JOGADOR_3	  2
 
 typedef struct Jogador {
 	float x, y, h, w, vel;
@@ -25,14 +37,14 @@ typedef struct Jogador {
 	int id;
 } Jogador;
 
-void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
-void verifica_posicao(Jogador *p);
-void desenha_jogadores(Jogador p1, Jogador p2);
-void desenha_jogador(Jogador p);
-void init_jogador(Jogador *p);
-void init_jogador1(Jogador *p1);
-void init_jogador2(Jogador *p2);
-void atualiza_jogadores(Jogador *p1, Jogador *p2);
-void atualiza_jogador(Jogador *p);
+// void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
+// void verifica_posicao(Jogador *p);
+// void desenha_jogadores(Jogador p1, Jogador p2);
+// void desenha_jogador(Jogador p);
+// void init_jogador(Jogador *p);
+// void init_jogador1(Jogador *p1);
+// void init_jogador2(Jogador *p2);
+// void atualiza_jogadores(Jogador *p1, Jogador *p2);
+// void atualiza_jogador(Jogador *p);
 
 #endif
