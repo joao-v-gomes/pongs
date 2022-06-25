@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 //
+#include "graficos.h"
+//
 #include "pongs.h"
 //
 #include "jogadores.h"
@@ -192,7 +194,7 @@ int main(int argc, char **argv) {
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");
-					limpa_variaveis_menu(bg_menu);
+					limpa_menu(bg_menu);
 					playing = 0;
 					break;
 
