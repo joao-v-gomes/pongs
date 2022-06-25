@@ -1,17 +1,22 @@
 #ifndef JOGADORES_H
 #define JOGADORES_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
-#include <allegro5/allegro_ttf.h>
-#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
-
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_ttf.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+//
 #include "pongs.h"
+
+// JOGADOR:
+#define DIST_FUNDO		50
+#define ALTURA_JOGADOR	30
+#define LARGURA_JOGADOR 100
+#define VEL_JOGADOR		3
 
 typedef struct Jogador {
 	float x, y, h, w, vel;
