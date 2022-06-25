@@ -129,13 +129,13 @@ int main(int argc, char **argv) {
 	intro = al_load_sample("data/audio/top-gear-3.wav");
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
 
-	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 
 	bool foi_menu = false;
 	bool abre_jogo = false;
 
 	// Prepara o desenho do menu
-	ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu2.bmp");
+	ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
 
 	int imageH = 0;
 	int imageW = 0;
