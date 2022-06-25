@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
 	ALLEGRO_SAMPLE *intro = NULL;
 	ALLEGRO_SAMPLE *move_menu = NULL;
 
-	// sample = al_load_sample("words_of_a_madman.wav");
+	// intro = al_load_sample("data/audio/words_of_a_madman.wav");
 	intro = al_load_sample("data/audio/top-gear-3.wav");
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
 
