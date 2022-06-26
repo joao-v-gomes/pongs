@@ -30,7 +30,7 @@ typedef enum {
 	POSICAO_JOGADOR3
 } fsm_escolha_jogadores;
 
-// void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2);
-// void verifica_esc(int *playing, ALLEGRO_EVENT ev);
+void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2);
+void verifica_esc(ALLEGRO_EVENT ev, int *playing);
 
 #endif
