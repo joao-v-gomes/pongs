@@ -25,29 +25,32 @@ void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
 	}
 }
 
-void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, fsm_menu *state, fsm_menu *opcao) {
+void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, fsm_menu *state, fsm_menu *opcao_menu) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 			if (*state == MENU) {
 				switch (*counter) {
 					case 0:
-						*opcao = UM_JOGADOR;
+						*opcao_menu = UM_JOGADOR;
 						break;
 					case 1:
-						*opcao = DOIS_JOGADORES;
+						*opcao_menu = DOIS_JOGADORES;
 						break;
 					case 2:
-						*opcao = SAIR;
+						*opcao_menu = SAIR;
 						break;
 
 					default:
 						break;
 				}
-				// opcao = counter;
+				// opcao_menu = counter;
 			}
 		}
 	}
+}
+
+void verifica_selecao_jogador() {
 }
 
 void verifica_som_menu(ALLEGRO_EVENT ev, int *counter) {
@@ -56,9 +59,8 @@ void verifica_som_menu(ALLEGRO_EVENT ev, int *counter) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_UP) {
 			al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 
-			// printf("Valor counter1: %d\r\n", *counter);
+			// *counter-- não funciona. Estranho...
 			*counter = *counter - 1;
-			// printf("Valor counter2: %d\r\n", *counter);
 
 			if (*counter < 0) {
 				*counter = 2;
@@ -67,9 +69,9 @@ void verifica_som_menu(ALLEGRO_EVENT ev, int *counter) {
 
 		if (ev.keyboard.keycode == ALLEGRO_KEY_DOWN) {
 			al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-			// printf("Valor counter3: %d\r\n", *counter);
+
+			// *counter++ não funciona. Estranho...
 			*counter = *counter + 1;
-			// printf("Valor counter4: %d\r\n", *counter);
 
 			if (*counter > 2) {
 				*counter = 0;
@@ -82,7 +84,6 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		switch (ev.keyboard.keycode) {
-				// se a tecla for o W
 			case ALLEGRO_KEY_W:
 				p1->cima = 1;
 				break;
@@ -118,7 +119,6 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2) {
 	} else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
 
 		switch (ev.keyboard.keycode) {
-				// se a tecla for o W
 			case ALLEGRO_KEY_W:
 				p1->cima = 0;
 				break;

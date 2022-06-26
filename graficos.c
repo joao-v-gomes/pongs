@@ -129,7 +129,15 @@ void desenha_menu(ALLEGRO_DISPLAY *display, ALLEGRO_BITMAP *bg_menu, int *counte
 	}
 }
 
-void desenha_escolha_jogador(ALLEGRO_DISPLAY *display) {
+void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, fsm_menu state) {
+	int num_jogador = 0;
+
+	if (state == ESCOLHE_UM_JOGADOR) {
+		num_jogador = 1;
+	} else if (state == ESCOLHE_DOIS_JOGADORES) {
+		num_jogador = 2;
+	}
+
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	int text_w = 0;

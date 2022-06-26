@@ -9,7 +9,7 @@
 #define SCREEN_W	441
 
 typedef enum {
-	INIT,
+	INIT_MENU,
 	MENU,
 	UM_JOGADOR,
 	DOIS_JOGADORES,
@@ -21,6 +21,14 @@ typedef enum {
 	JOGO_UM_JOGADOR,
 	JOGO_DOIS_JOGADORES,
 } fsm_menu;
+
+typedef enum {
+	INIT_ESCOLHA_JOGADOR,
+
+	POSICAO_JOGADOR1,
+	POSICAO_JOGADOR2,
+	POSICAO_JOGADOR3
+} fsm_escolha_jogadores;
 
 // void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2);
 // void verifica_esc(int *playing, ALLEGRO_EVENT ev);

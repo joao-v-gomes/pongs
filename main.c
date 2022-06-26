@@ -146,8 +146,10 @@ int main(int argc, char **argv) {
 
 	volatile int counter = 0;
 
-	fsm_menu state = INIT;
-	fsm_menu opcao = INIT;
+	fsm_menu state = INIT_MENU;
+	fsm_menu opcao_menu = INIT_MENU;
+	fsm_escolha_jogadores opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
+	fsm_escolha_jogadores opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
 
 	int playing = 1;
 
@@ -165,14 +167,14 @@ int main(int argc, char **argv) {
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
 
 			switch (state) {
-				case INIT:
+				case INIT_MENU:
 					state = MENU;
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
 					desenha_menu(display, bg_menu, &counter);
 
-					switch (opcao) {
+					switch (opcao_menu) {
 						case UM_JOGADOR:
 							state = ESCOLHE_UM_JOGADOR;
 							printf("Foi um jogador\r\n");
@@ -190,7 +192,7 @@ int main(int argc, char **argv) {
 					}
 					break;
 				case ESCOLHE_UM_JOGADOR:
-					desenha_escolha_jogador(display);
+					desenha_escolha_jogador(display, &opcao_jogador1, &opcao_jogador2, state);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					break;
@@ -240,8 +242,14 @@ int main(int argc, char **argv) {
 
 			verifica_tecla_movimentacao(ev, &p1, &p2);
 
-			verifica_selecao_menu(ev, &counter, &state, &opcao);
-			verifica_som_menu(ev, &counter);
+			if (state == MENU) {
+				verifica_selecao_menu(ev, &counter, &state, &opcao_menu);
+				verifica_som_menu(ev, &counter);
+			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
+				verifica_selecao_jogador(ev, &counter);
+				verifica_som_menu(ev, &counter);
+			}
+
 			verifica_esc(ev, &playing);
 
 			// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
