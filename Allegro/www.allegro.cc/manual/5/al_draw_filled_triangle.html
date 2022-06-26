@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_draw_filled_triangle by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_draw_filled_triangle - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="primitives.html">Primitives addon</a></h2>
+		<ul><li><span>General</span><ul><li><a href="al_get_allegro_primitives_version.html">al_get_allegro_primitives_version</a></li><li><a href="al_init_primitives_addon.html">al_init_primitives_addon</a></li><li><a href="al_shutdown_primitives_addon.html">al_shutdown_primitives_addon</a></li></ul></li><li><span>High level drawing routines</span><ul><li><span>Pixel-precise output</span></li><li><a href="al_draw_line.html">al_draw_line</a></li><li><a href="al_draw_triangle.html">al_draw_triangle</a></li><li><a href="al_draw_filled_triangle.html">al_draw_filled_triangle</a></li><li><a href="al_draw_rectangle.html">al_draw_rectangle</a></li><li><a href="al_draw_filled_rectangle.html">al_draw_filled_rectangle</a></li><li><a href="al_draw_rounded_rectangle.html">al_draw_rounded_rectangle</a></li><li><a href="al_draw_filled_rounded_rectangle.html">al_draw_filled_rounded_rectangle</a></li><li><a href="al_calculate_arc.html">al_calculate_arc</a></li><li><a href="al_draw_ellipse.html">al_draw_ellipse</a></li><li><a href="al_draw_filled_ellipse.html">al_draw_filled_ellipse</a></li><li><a href="al_draw_circle.html">al_draw_circle</a></li><li><a href="al_draw_filled_circle.html">al_draw_filled_circle</a></li><li><a href="al_draw_arc.html">al_draw_arc</a></li><li><a href="al_calculate_spline.html">al_calculate_spline</a></li><li><a href="al_draw_spline.html">al_draw_spline</a></li><li><a href="al_calculate_ribbon.html">al_calculate_ribbon</a></li><li><a href="al_draw_ribbon.html">al_draw_ribbon</a></li></ul></li><li><span>Low level drawing routines</span><ul><li><a href="al_draw_prim.html">al_draw_prim</a></li><li><a href="al_draw_indexed_prim.html">al_draw_indexed_prim</a></li><li><a href="al_create_vertex_decl.html">al_create_vertex_decl</a></li><li><a href="al_destroy_vertex_decl.html">al_destroy_vertex_decl</a></li><li><a href="al_draw_soft_triangle.html">al_draw_soft_triangle</a></li><li><a href="al_draw_soft_line.html">al_draw_soft_line</a></li></ul></li><li><span>Structures and types</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_vertex">ALLEGRO_VERTEX</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_vertex_decl">ALLEGRO_VERTEX_DECL</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_vertex_element">ALLEGRO_VERTEX_ELEMENT</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_prim_type">ALLEGRO_PRIM_TYPE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_prim_attr">ALLEGRO_PRIM_ATTR</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_prim_storage">ALLEGRO_PRIM_STORAGE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_vertex_cache_size">ALLEGRO_VERTEX_CACHE_SIZE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_prim_quality">ALLEGRO_PRIM_QUALITY</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_draw_filled_triangle</h1>
+<code><pre><span class="k1">void</span> <a href="https://www.allegro.cc/manual/al_draw_filled_triangle"><span class="a">al_draw_filled_triangle</span></a><span class="k2">(</span><span class="k1">float</span> x1, <span class="k1">float</span> y1, <span class="k1">float</span> x2, <span class="k1">float</span> y2,
+   <span class="k1">float</span> x3, <span class="k1">float</span> y3, <a href="https://www.allegro.cc/manual/ALLEGRO_COLOR"><span class="a">ALLEGRO_COLOR</span></a> color<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Draws a filled triangle.</p><p><em>Parameters:</em></p><ul><li>x1, y1, x2, y2, x3, y3 - Three points of the triangle</li><li>color - Color of the triangle</li></ul><p>See also: <a href="al_draw_triangle.html">al_draw_triangle</a></p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_prim</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618358">GUI Design and Implementation for Noobs</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618360">7Zip file of my game - Alien Cookbook</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618276">help: how to use al_calculate_arc()</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617894">Upgrade from Allegro 5.0.10 to Allegro 5.2.5</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617338">Install Allegro 5.2.4.1 on Win10</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617204">Drawing antialiased primitives to bitmaps?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616543">save display window as image(png,jpg)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613988">Having problems dont know what causes it.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613809">Seriously severe input delay on AL5.0.10</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613763">Generating random combination of obstacles:Problem</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613732">2D game has a little problem here</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613648">Detecting mouseover on isometric map</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613390">Program with al_set_target_bitmap does not run.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/612586">Help, First-chance exception at 0x5abeb70e in Game.exe: 0xC0000005: Access viola</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611825">Primitive equivalent to al_hold_bitmap_drawing?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610931">Soft corners</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610865">Allegro 5 Book</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610623">[A5] Ghost trail when moving primitives</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610382">Snake on wine</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/609316">POB Global Competition Thread [Joke Thread NOT SERIOUS!]</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_draw_filled_triangle by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+</html>

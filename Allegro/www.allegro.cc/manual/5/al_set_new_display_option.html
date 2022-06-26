@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_set_new_display_option by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_set_new_display_option - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="display.html">Display routines</a></h2>
+		<ul><li><span>Display creation</span><ul><li><a href="allegro_display-2.html">ALLEGRO_DISPLAY</a></li><li><a href="al_create_display.html">al_create_display</a></li><li><a href="al_destroy_display.html">al_destroy_display</a></li><li><a href="al_get_new_display_flags.html">al_get_new_display_flags</a></li><li><a href="al_get_new_display_refresh_rate.html">al_get_new_display_refresh_rate</a></li><li><a href="al_get_new_window_position.html">al_get_new_window_position</a></li><li><a href="al_set_new_display_option.html">al_set_new_display_option</a></li><li><a href="al_get_new_display_option.html">al_get_new_display_option</a></li><li><a href="al_reset_new_display_options.html">al_reset_new_display_options</a></li><li><a href="al_set_new_display_flags.html">al_set_new_display_flags</a></li><li><a href="al_set_new_display_refresh_rate.html">al_set_new_display_refresh_rate</a></li><li><a href="al_set_new_window_position.html">al_set_new_window_position</a></li></ul></li><li><span>Display operations</span><ul><li><a href="al_acknowledge_resize.html">al_acknowledge_resize</a></li><li><a href="al_flip_display.html">al_flip_display</a></li><li><a href="al_get_backbuffer.html">al_get_backbuffer</a></li><li><a href="al_get_display_flags.html">al_get_display_flags</a></li><li><a href="al_get_display_format.html">al_get_display_format</a></li><li><a href="al_get_display_height.html">al_get_display_height</a></li><li><a href="al_get_display_refresh_rate.html">al_get_display_refresh_rate</a></li><li><a href="al_get_display_width.html">al_get_display_width</a></li><li><a href="al_get_window_position.html">al_get_window_position</a></li><li><a href="al_inhibit_screensaver.html">al_inhibit_screensaver</a></li><li><a href="al_resize_display.html">al_resize_display</a></li><li><a href="al_set_display_icon.html">al_set_display_icon</a></li><li><a href="al_get_display_option.html">al_get_display_option</a></li><li><a href="al_set_window_position.html">al_set_window_position</a></li><li><a href="al_set_window_title.html">al_set_window_title</a></li><li><a href="al_toggle_display_flag.html">al_toggle_display_flag</a></li><li><a href="al_update_display_region.html">al_update_display_region</a></li><li><a href="al_wait_for_vsync.html">al_wait_for_vsync</a></li><li><a href="al_get_display_event_source.html">al_get_display_event_source</a></li></ul></li><li><span>Fullscreen display modes</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_display_mode">ALLEGRO_DISPLAY_MODE</a></li><li><a href="al_get_display_mode.html">al_get_display_mode</a></li><li><a href="al_get_num_display_modes.html">al_get_num_display_modes</a></li></ul></li><li><span>Monitors</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_monitor_info">ALLEGRO_MONITOR_INFO</a></li><li><a href="al_get_new_display_adapter.html">al_get_new_display_adapter</a></li><li><a href="al_set_new_display_adapter.html">al_set_new_display_adapter</a></li><li><a href="al_get_monitor_info.html">al_get_monitor_info</a></li><li><a href="al_get_num_video_adapters.html">al_get_num_video_adapters</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_set_new_display_option</h1>
+<code><pre><span class="k1">void</span> <a href="https://www.allegro.cc/manual/al_set_new_display_option"><span class="a">al_set_new_display_option</span></a><span class="k2">(</span><span class="k1">int</span> option, <span class="k1">int</span> value, <span class="k1">int</span> importance<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Set an extra display option, to be used when creating new displays on the calling thread. Display options differ from display flags, and specify some details of the context to be created within the window itself. These mainly have no effect on Allegro itself, but you may want to specify them, for example if you want to use multisampling.</p><p>The 'importance' parameter can be either:</p><ul><li>ALLEGRO_REQUIRE - The display will not be created if the setting can not be met.</li><li>ALLEGRO_SUGGEST - If the setting is not available, the display will be created anyway. FIXME: We need a way to query the settings back from a created display.</li><li>ALLEGRO_DONTCARE - If you added a display option with one of the above two settings before, it will be removed again. Else this does nothing.</li></ul><p>The supported options are:</p><ul><li>ALLEGRO_RED_SIZE</li><li>ALLEGRO_GREEN_SIZE</li><li>ALLEGRO_BLUE_SIZE</li><li>ALLEGRO_ALPHA_SIZE</li><li>ALLEGRO_COLOR_SIZE</li><li>ALLEGRO_RED_SHIFT</li><li>ALLEGRO_GREEN_SHIFT</li><li>ALLEGRO_BLUE_SHIFT</li><li>ALLEGRO_ALPHA_SHIFT: These settings can be used to specify the pixel layout the display should use.</li><li>ALLEGRO_ACC_RED_SIZE</li><li>ALLEGRO_ACC_GREEN_SIZE</li><li>ALLEGRO_ACC_BLUE_SIZE</li><li>ALLEGRO_ACC_ALPHA_SIZE: This and the preceding three settings can be used to define the required accumulation buffer size.</li><li>ALLEGRO_STEREO: Whether the display is a stereo display.</li><li>ALLEGRO_AUX_BUFFERS: Number of auxiliary buffers the display should have.</li><li>ALLEGRO_DEPTH_SIZE: How many depth buffer (z-buffer) bits to use.</li><li>ALLEGRO_STENCIL_SIZE: How many bits to use for the stencil buffer.</li><li>ALLEGRO_SAMPLE_BUFFERS: Whether to use multisampling (1) or not (0).</li><li>ALLEGRO_SAMPLES: If the above is 1, the number of samples to use per pixel. Else 0.</li><li>ALLEGRO_RENDER_METHOD: 0 if hardware acceleration is not used with this display.</li><li>ALLEGRO_FLOAT_COLOR: Whether to use floating point color components.</li><li>ALLEGRO_FLOAT_DEPTH: Whether to use a floating point depth buffer.</li><li>ALLEGRO_SINGLE_BUFFER: Whether the display uses a single buffer (1) or another update method (0).</li><li>ALLEGRO_SWAP_METHOD: If the above is 0, this is set to 1 to indicate the display is using a copying method to make the next buffer in the flip chain available, or to 2 to indicate a flipping or other method.</li><li>ALLEGRO_COMPATIBLE_DISPLAY: Indicates if Allegro's graphics functions can use this display. If you request a display not useable by Allegro, you can still use for example OpenGL to draw graphics.</li><li>ALLEGRO_UPDATE_DISPLAY_REGION: Set to 1 if the display is capable of updating just a region, and 0 if calling <a href="al_update_display_region.html">al_update_display_region</a> is equivalent to <a href="al_flip_display.html">al_flip_display</a>.</li><li>ALLEGRO_VSYNC: Set to 1 to tell the driver to wait for vsync in <a href="al_flip_display.html">al_flip_display</a>, or to 2 to force vsync off. The default of 0 means that Allegro does not try to modify the vsync behavior so it may be on or off. Note that even in the case of 1 or 2 it is possile to override the vsync behavior in the graphics driver so you should not rely on it.</li><li>ALLEGRO_MAX_BITMAP_SIZE: When queried this returns the maximum size (width as well as height) a bitmap can have for this display. Calls to <a href="al_create_bitmap.html">al_create_bitmap</a> or <a href="al_load_bitmap.html">al_load_bitmap</a> for bitmaps larger than this size will fail. It does not apply to memory bitmaps which always can have arbitrary size (but are slow for drawing).</li><li>ALLEGRO_SUPPORT_NPOT_BITMAP: Set to 1 if textures used for bitmaps on this display can have a size which is not a power of two. This is mostly useful if you use Allegro to load textures as otherwise only power-of-two textures will be used internally as bitmap storage.</li><li>ALLEGRO_CAN_DRAW_INTO_BITMAP: Set to 1 if you can use <a href="al_set_target_bitmap.html">al_set_target_bitmap</a> on bitmaps of this display to draw into them. If this is not the case software emulation will be used when drawing into display bitmaps (which can be very slow).</li><li>ALLEGRO_SUPPORT_SEPARATE_ALPHA: This is set to 1 if the <a href="al_set_separate_blender.html">al_set_separate_blender</a> function is supported. Otherwise the alpha parameters will be ignored.</li></ul><p>FIXME: document them all in detail</p><p>See also: <a href="al_set_new_display_flags.html">al_set_new_display_flags</a></p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_d3d</a>, <a href="#" onclick="return false;">ex_display_options</a>, <a href="#" onclick="return false;">ex_draw</a>, <a href="#" onclick="return false;">ex_expose</a>, <a href="#" onclick="return false;">ex_font</a>, <a href="#" onclick="return false;">ex_gldepth</a>, <a href="#" onclick="return false;">ex_glext</a>, <a href="#" onclick="return false;">ex_multisample</a>, <a href="#" onclick="return false;">ex_vsync</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/606420">A5 colour depth and colours in general</a>
+		(2)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617591">ALLEGRO_OPENGL_MAJOR_VERSION and ALLEGRO_OPENGL_MINOR_VERSION</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616639">Vsync-Dependent Game Loop</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610416">antialias</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/607143">Drawing primitives with antialiasing and multisampling  </a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/606098">alpha on back buffer</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618660">window icon</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618642">Need help calculating a frustum with a fixed centralized plane</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618443">Difficulty compiling on Windows</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618407">Screen is cleared and a new one appears Allegro5 in C?</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618409">Multiple windows open before main window opens</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618198">Display settings cause many windows to open and close upon display creation</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618167">Rendering A Hot Air Balloon</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618059">Selecting Direct3D antialiasing issues</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617989">Translucent Allegro Windows</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618003">Some allegro 5 functions not working on some laptops</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617906">[A5] Allegro display depth buffer?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617902">display problem using primitives (horizontal line glitch)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617860">Draw to bitmap failing</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617793">Quick Question about MSAA</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_set_new_display_option by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

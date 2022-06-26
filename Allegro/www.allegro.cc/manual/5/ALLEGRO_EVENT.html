@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/ALLEGRO_EVENT by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>ALLEGRO_EVENT - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="events.html">Event system and events</a></h2>
+		<ul><li><a href="allegro_event-2.html">ALLEGRO_EVENT</a><ul><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_axis">ALLEGRO_EVENT_JOYSTICK_AXIS</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_button_down">ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_button_up">ALLEGRO_EVENT_JOYSTICK_BUTTON_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_configuration">ALLEGRO_EVENT_JOYSTICK_CONFIGURATION</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_down">ALLEGRO_EVENT_KEY_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_up">ALLEGRO_EVENT_KEY_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_char">ALLEGRO_EVENT_KEY_CHAR</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_axes">ALLEGRO_EVENT_MOUSE_AXES</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_button_down">ALLEGRO_EVENT_MOUSE_BUTTON_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_button_up">ALLEGRO_EVENT_MOUSE_BUTTON_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_warped">ALLEGRO_EVENT_MOUSE_WARPED</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_enter_display">ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_leave_display">ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_timer">ALLEGRO_EVENT_TIMER</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_expose">ALLEGRO_EVENT_DISPLAY_EXPOSE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_resize">ALLEGRO_EVENT_DISPLAY_RESIZE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_close">ALLEGRO_EVENT_DISPLAY_CLOSE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_lost">ALLEGRO_EVENT_DISPLAY_LOST</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_found">ALLEGRO_EVENT_DISPLAY_FOUND</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_switch_out">ALLEGRO_EVENT_DISPLAY_SWITCH_OUT</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_switch_in">ALLEGRO_EVENT_DISPLAY_SWITCH_IN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_orientation">ALLEGRO_EVENT_DISPLAY_ORIENTATION</a></li></ul></li><li><a href="https://www.allegro.cc/manual/5/allegro_user_event">ALLEGRO_USER_EVENT</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_queue">ALLEGRO_EVENT_QUEUE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_source">ALLEGRO_EVENT_SOURCE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_type">ALLEGRO_EVENT_TYPE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_get_event_type">ALLEGRO_GET_EVENT_TYPE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_type_is_user">ALLEGRO_EVENT_TYPE_IS_USER</a></li><li><a href="al_create_event_queue.html">al_create_event_queue</a></li><li><a href="al_destroy_event_queue.html">al_destroy_event_queue</a></li><li><a href="al_register_event_source.html">al_register_event_source</a></li><li><a href="al_unregister_event_source.html">al_unregister_event_source</a></li><li><a href="al_is_event_queue_empty.html">al_is_event_queue_empty</a></li><li><a href="al_get_next_event.html">al_get_next_event</a></li><li><a href="al_peek_next_event.html">al_peek_next_event</a></li><li><a href="al_drop_next_event.html">al_drop_next_event</a></li><li><a href="al_flush_event_queue.html">al_flush_event_queue</a></li><li><a href="al_wait_for_event.html">al_wait_for_event</a></li><li><a href="al_wait_for_event_timed.html">al_wait_for_event_timed</a></li><li><a href="al_wait_for_event_until.html">al_wait_for_event_until</a></li><li><a href="al_init_user_event_source.html">al_init_user_event_source</a></li><li><a href="al_destroy_user_event_source.html">al_destroy_user_event_source</a></li><li><a href="al_emit_user_event.html">al_emit_user_event</a></li><li><a href="al_unref_user_event.html">al_unref_user_event</a></li><li><a href="al_get_event_source_data.html">al_get_event_source_data</a></li><li><a href="al_set_event_source_data.html">al_set_event_source_data</a></li></ul></div>
+<div id="content">
+<h1 class="title">ALLEGRO_EVENT</h1>
+<code><pre><span class="k1">typedef</span> <span class="k1">union</span> <a href="https://www.allegro.cc/manual/ALLEGRO_EVENT"><span class="a">ALLEGRO_EVENT</span></a> <a href="https://www.allegro.cc/manual/ALLEGRO_EVENT"><span class="a">ALLEGRO_EVENT</span></a><span class="k2">;</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>An ALLEGRO_EVENT is a union of all builtin event structures, i.e. it is an object large enough to hold the data of any event type. All events have the following fields in common:</p><dl><dt>type (ALLEGRO_EVENT_TYPE)</dt><dd><p>Indicates the type of event.</p></dd><dt>any.source (ALLEGRO_EVENT_SOURCE *)</dt><dd><p>The event source which generated the event.</p></dd><dt>any.timestamp (double)</dt><dd><p>When the event was generated.</p></dd></dl><p>By examining the <code>type</code> field you can then access type-specific fields. The <code>any.source</code> field tells you which event source generated that particular event. The <code>any.timestamp</code> field tells you when the event was generated. The time is referenced to the same starting point as <a href="al_get_time.html">al_get_time</a>.</p><p>Each event is of one of the following types, with the usable fields given.</p><div id="allegro_event_joystick_axis"><h2><a href="#TOC">ALLEGRO_EVENT_JOYSTICK_AXIS</a></h2><p>A joystick axis value changed.</p><dl><dt>joystick.id (ALLEGRO_JOYSTICK *)</dt><dd><p>The joystick which generated the event. This is not the same as the event source <code>joystick.source</code>.</p></dd><dt>joystick.stick (int)</dt><dd><p>The stick number, counting from zero. Axes on a joystick are grouped into "sticks".</p></dd><dt>joystick.axis (int)</dt><dd><p>The axis number on the stick, counting from zero.</p></dd><dt>joystick.pos (float)</dt><dd><p>The axis position, from -1.0 to +1.0.</p></dd></dl></div><div id="allegro_event_joystick_button_down"><h2><a href="#TOC">ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN</a></h2><p>A joystick button was pressed.</p><dl><dt>joystick.id (ALLEGRO_JOYSTICK *)</dt><dd><p>The joystick which generated the event.</p></dd><dt>joystick.button (int)</dt><dd><p>The button which was pressed, counting from zero.</p></dd></dl></div><div id="allegro_event_joystick_button_up"><h2><a href="#TOC">ALLEGRO_EVENT_JOYSTICK_BUTTON_UP</a></h2><p>A joystick button was released.</p><dl><dt>joystick.id (ALLEGRO_JOYSTICK *)</dt><dd><p>The joystick which generated the event.</p></dd><dt>joystick.button (int)</dt><dd><p>The button which was released, counting from zero.</p></dd></dl></div><div id="allegro_event_joystick_configuration"><h2><a href="#TOC">ALLEGRO_EVENT_JOYSTICK_CONFIGURATION</a></h2><p>A joystick was plugged in or unplugged. See <a href="al_reconfigure_joysticks.html">al_reconfigure_joysticks</a> for details.</p></div><div id="allegro_event_key_down"><h2><a href="#TOC">ALLEGRO_EVENT_KEY_DOWN</a></h2><p>A keyboard key was pressed.</p><dl><dt>keyboard.keycode (int)</dt><dd><p>The code corresponding to the physical key which was pressed. See the "Key codes" section for the list of ALLEGRO_KEY_* constants.</p></dd><dt>keyboard.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had keyboard focus when the event occurred.</p></dd></dl><blockquote><p><em>Note:</em> this event is about the physical keys being press on the keyboard. Look for ALLEGRO_EVENT_KEY_CHAR events for character input.</p></blockquote></div><div id="allegro_event_key_up"><h2><a href="#TOC">ALLEGRO_EVENT_KEY_UP</a></h2><p>A keyboard key was released.</p><dl><dt>keyboard.keycode (int)</dt><dd><p>The code corresponding to the physical key which was released. See the "Key codes" section for the list of ALLEGRO_KEY_* constants.</p></dd><dt>keyboard.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had keyboard focus when the event occurred.</p></dd></dl></div><div id="allegro_event_key_char"><h2><a href="#TOC">ALLEGRO_EVENT_KEY_CHAR</a></h2><p>A character was typed on the keyboard, or a character was auto-repeated.</p><dl><dt>keyboard.keycode (int)</dt><dd><p>The code corresponding to the physical key which was last pressed. See the "Key codes" section for the list of ALLEGRO_KEY_* constants.</p></dd><dt>keyboard.unichar (int)</dt><dd><p>A Unicode code point (character). This may be zero or negative if the event was generated for a non-visible "character", such as an arrow key. In that case you can act upon the <code>keycode</code> field.</p></dd><dt>keyboard.modifiers (unsigned)</dt><dd><p>This is a bitfield of the modifier keys which were pressed when the event occurred. See "Keyboard modifier flags" for the constants.</p></dd><dt>keyboard.repeat (bool)</dt><dd><p>Indicates if this is a repeated character.</p></dd><dt>keyboard.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had keyboard focus when the event occurred.</p></dd></dl><blockquote><p><em>Note</em>: in many input methods, characters are <em>not</em> entered one-for-one with physical key presses. Multiple key presses can combine to generate a single character, e.g. apostrophe + e may produce 'é'. Fewer key presses can also generate more characters, e.g. macro sequences expanding to common phrases.</p></blockquote></div><div id="allegro_event_mouse_axes"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_AXES</a></h2><p>One or more mouse axis values changed.</p><dl><dt>mouse.x (int)</dt><dd><p>x-coordinate</p></dd><dt>mouse.y (int)</dt><dd><p>y-coordinate</p></dd><dt>mouse.z (int)</dt><dd><p>z-coordinate. This usually means the vertical axis of a mouse wheel, where up is positive and down is negative.</p></dd><dt>mouse.w (int)</dt><dd><p>w-coordinate. This usually means the horizontal axis of a mouse wheel.</p></dd><dt>mouse.dx (int)</dt><dd><p>Change in the x-coordinate value since the previous ALLEGRO_EVENT_MOUSE_AXES event.</p></dd><dt>mouse.dy (int)</dt><dd><p>Change in the y-coordinate value since the previous ALLEGRO_EVENT_MOUSE_AXES event.</p></dd><dt>mouse.dz (int)</dt><dd><p>Change in the z-coordinate value since the previous ALLEGRO_EVENT_MOUSE_AXES event.</p></dd><dt>mouse.dw (int)</dt><dd><p>Change in the w-coordinate value since the previous ALLEGRO_EVENT_MOUSE_AXES event.</p></dd><dt>mouse.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had mouse focus.</p></dd></dl><blockquote><p><em>Note:</em> Calling <a href="al_set_mouse_xy.html">al_set_mouse_xy</a> also will result in a change of axis values, but such a change is reported with ALLEGRO_EVENT_MOUSE_WARPED events instead.</p></blockquote><blockquote><p><em>Note:</em> currently mouse.display may be NULL if an event is generated in response to <a href="al_set_mouse_axis.html">al_set_mouse_axis</a>.</p></blockquote></div><div id="allegro_event_mouse_button_down"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_BUTTON_DOWN</a></h2><p>A mouse button was pressed.</p><dl><dt>mouse.x (int)</dt><dd><p>x-coordinate</p></dd><dt>mouse.y (int)</dt><dd><p>y-coordinate</p></dd><dt>mouse.z (int)</dt><dd><p>z-coordinate</p></dd><dt>mouse.w (int)</dt><dd><p>w-coordinate</p></dd><dt>mouse.button (unsigned)</dt><dd><p>The mouse button which was pressed, numbering from 1.</p></dd><dt>mouse.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had mouse focus.</p></dd></dl></div><div id="allegro_event_mouse_button_up"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_BUTTON_UP</a></h2><p>A mouse button was released.</p><dl><dt>mouse.x (int)</dt><dd><p>x-coordinate</p></dd><dt>mouse.y (int)</dt><dd><p>y-coordinate</p></dd><dt>mouse.z (int)</dt><dd><p>z-coordinate</p></dd><dt>mouse.w (int)</dt><dd><p>w-coordinate</p></dd><dt>mouse.button (unsigned)</dt><dd><p>The mouse button which was released, numbering from 1.</p></dd><dt>mouse.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had mouse focus.</p></dd></dl></div><div id="allegro_event_mouse_warped"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_WARPED</a></h2><p><a href="al_set_mouse_xy.html">al_set_mouse_xy</a> was called to move the mouse. This event is identical to ALLEGRO_EVENT_MOUSE_AXES otherwise.</p></div><div id="allegro_event_mouse_enter_display"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY</a></h2><p>The mouse cursor entered a window opened by the program.</p><dl><dt>mouse.x (int)</dt><dd><p>x-coordinate</p></dd><dt>mouse.y (int)</dt><dd><p>y-coordinate</p></dd><dt>mouse.z (int)</dt><dd><p>z-coordinate</p></dd><dt>mouse.w (int)</dt><dd><p>w-coordinate</p></dd><dt>mouse.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had mouse focus.</p></dd></dl></div><div id="allegro_event_mouse_leave_display"><h2><a href="#TOC">ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY</a></h2><p>The mouse cursor leave the boundaries of a window opened by the program.</p><dl><dt>mouse.x (int)</dt><dd><p>x-coordinate</p></dd><dt>mouse.y (int)</dt><dd><p>y-coordinate</p></dd><dt>mouse.z (int)</dt><dd><p>z-coordinate</p></dd><dt>mouse.w (int)</dt><dd><p>w-coordinate</p></dd><dt>mouse.display (ALLEGRO_DISPLAY *)</dt><dd><p>The display which had mouse focus.</p></dd></dl></div><div id="allegro_event_timer"><h2><a href="#TOC">ALLEGRO_EVENT_TIMER</a></h2><p>A timer counter incremented.</p><dl><dt>timer.source (ALLEGRO_TIMER *)</dt><dd><p>The timer which generated the event.</p></dd><dt>timer.count (int64_t)</dt><dd><p>The timer count value.</p></dd></dl></div><div id="allegro_event_display_expose"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_EXPOSE</a></h2><p>The display (or a portion thereof) has become visible.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd><p>The display which was exposed.</p></dd><dt>display.x (int)</dt><dd> </dd><dt>display.y (int)</dt><dd> </dd><dd><p>The top-left corner of the display which was exposed.</p></dd><dt>display.width (int)</dt><dd> </dd><dt>display.height (int)</dt><dd><p>The width and height of the rectangle which was exposed.</p></dd></dl><blockquote><p><em>Note:</em> The display needs to be created with ALLEGRO_GENERATE_EXPOSE_EVENTS flag for these events to be generated.</p></blockquote></div><div id="allegro_event_display_resize"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_RESIZE</a></h2><p>The window has been resized.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd><p>The display which was resized.</p></dd><dt>display.x (int)</dt><dd> </dd><dt>display.y (int)</dt><dd><p>The position of the top-level corner of the display.</p></dd><dt>display.width (int)</dt><dd><p>The new width of the display.</p></dd><dt>display.height (int)</dt><dd><p>The new height of the display.</p></dd></dl><p>Note that further resize events may be generated by the time you process the event, so these fields may hold outdated information.</p></div><div id="allegro_event_display_close"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_CLOSE</a></h2><p>The close button of the window has been pressed.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd>The display which was closed.</dd></dl></div><div id="allegro_event_display_lost"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_LOST</a></h2><p>When using Direct3D, displays can enter a "lost" state. In that state, drawing calls are ignored, and upon entering the state, bitmap's pixel data can become undefined. Allegro does its best to preserve the correct contents of bitmaps (see ALLEGRO_NO_PRESERVE_TEXTURE) and restore them when the device is "found" (see ALLEGRO_EVENT_DISPLAY_FOUND). However, this is not 100% fool proof.</p><p>To ensure that all bitmap contents are restored accurately, one must take additional steps. The best procedure to follow if bitmap constancy is important to you is as follows: first, always have the ALLEGRO_NO_PRESERVE_TEXTURE flag set to true when creating bitmaps, as it incurs pointless overhead when using this method. Second, create a mechanism in your game for easily reloading all of your bitmaps -- for example, wrap them in a class or data structure and have a "bitmap manager" that can reload them back to the desired state. Then, when you receive an ALLEGRO_EVENT_DISPLAY_FOUND event, tell the bitmap manager (or whatever your mechanism is) to restore your bitmaps.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd>The display which was lost.</dd></dl></div><div id="allegro_event_display_found"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_FOUND</a></h2><p>Generated when a lost device is restored to operating state. See ALLEGRO_EVENT_DISPLAY_LOST.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd>The display which was found.</dd></dl></div><div id="allegro_event_display_switch_out"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_SWITCH_OUT</a></h2><p>The window is no longer active, that is the user might have clicked into another window or "tabbed" away.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd>The display which was switched out of.</dd></dl></div><div id="allegro_event_display_switch_in"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_SWITCH_IN</a></h2><p>The window is the active one again.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd>The display which was switched into.</dd></dl></div><div id="allegro_event_display_orientation"><h2><a href="#TOC">ALLEGRO_EVENT_DISPLAY_ORIENTATION</a></h2><p>Generated when the rotation or orientation of a display changes.</p><dl><dt>display.source (ALLEGRO_DISPLAY *)</dt><dd><p>The display which generated the event.</p></dd><dt>event.display.orientation</dt><dd><p>Contains one of the following values:</p><ul><li>ALLEGRO_DISPLAY_ORIENTATION_0_DEGREES</li><li>ALLEGRO_DISPLAY_ORIENTATION_90_DEGREES</li><li>ALLEGRO_DISPLAY_ORIENTATION_180_DEGREES</li><li>ALLEGRO_DISPLAY_ORIENTATION_270_DEGREES</li><li>ALLEGRO_DISPLAY_ORIENTATION_FACE_UP</li><li>ALLEGRO_DISPLAY_ORIENTATION_FACE_DOWN</li></ul></dd></dl><p>See also: <a href="https://www.allegro.cc/manual/5/allegro_event_source">ALLEGRO_EVENT_SOURCE</a>, <a href="https://www.allegro.cc/manual/5/allegro_event_type">ALLEGRO_EVENT_TYPE</a>, <a href="https://www.allegro.cc/manual/5/allegro_user_event">ALLEGRO_USER_EVENT</a></p></div>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_audio_simple</a>, <a href="#" onclick="return false;">ex_bitmap</a>, <a href="#" onclick="return false;">ex_bitmap_flip</a>, <a href="#" onclick="return false;">ex_bitmap_target</a>, <a href="#" onclick="return false;">ex_blend</a>, <a href="#" onclick="return false;">ex_blend_test</a>, <a href="#" onclick="return false;">ex_blit</a>, <a href="#" onclick="return false;">ex_clip</a>, <a href="#" onclick="return false;">ex_curl</a>, <a href="#" onclick="return false;">ex_disable_screensaver</a>, <a href="#" onclick="return false;">ex_display_options</a>, <a href="#" onclick="return false;">ex_draw</a>, <a href="#" onclick="return false;">ex_draw_bitmap</a>, <a href="#" onclick="return false;">ex_dualies</a>, <a href="#" onclick="return false;">ex_expose</a>, <a href="#" onclick="return false;">ex_filter</a>, <a href="#" onclick="return false;">ex_font</a>, <a href="#" onclick="return false;">ex_fs_resize</a>, <a href="#" onclick="return false;">ex_fs_window</a>, <a href="#" onclick="return false;">ex_gldepth</a>, <a href="#" onclick="return false;">ex_glext</a>, <a href="#" onclick="return false;">ex_haiku</a>, <a href="#" onclick="return false;">ex_icon</a>, <a href="#" onclick="return false;">ex_iphone</a>, <a href="#" onclick="return false;">ex_joystick_events</a>, <a href="#" onclick="return false;">ex_joystick_hotplugging</a>, <a href="#" onclick="return false;">ex_keyboard_events</a>, <a href="#" onclick="return false;">ex_lines</a>, <a href="#" onclick="return false;">ex_lockbitmap</a>, <a href="#" onclick="return false;">ex_logo</a>, <a href="#" onclick="return false;">ex_membmp</a>, <a href="#" onclick="return false;">ex_mixer_pp</a>, <a href="#" onclick="return false;">ex_mouse_cursor</a>, <a href="#" onclick="return false;">ex_mouse_events</a>, <a href="#" onclick="return false;">ex_multisample</a>, <a href="#" onclick="return false;">ex_multiwin</a>, <a href="#" onclick="return false;">ex_native_filechooser</a>, <a href="#" onclick="return false;">ex_noframe</a>, <a href="#" onclick="return false;">ex_ogre3d</a>, <a href="#" onclick="return false;">ex_opengl</a>, <a href="#" onclick="return false;">ex_physfs</a>, <a href="#" onclick="return false;">ex_premulalpha</a>, <a href="#" onclick="return false;">ex_prim</a>, <a href="#" onclick="return false;">ex_resize</a>, <a href="#" onclick="return false;">ex_resize2</a>, <a href="#" onclick="return false;">ex_rotate</a>, <a href="#" onclick="return false;">ex_saw</a>, <a href="#" onclick="return false;">ex_scale</a>, <a href="#" onclick="return false;">ex_stream_file</a>, <a href="#" onclick="return false;">ex_stream_seek</a>, <a href="#" onclick="return false;">ex_subbitmap</a>, <a href="#" onclick="return false;">ex_synth</a>, <a href="#" onclick="return false;">ex_threads</a>, <a href="#" onclick="return false;">ex_threads2</a>, <a href="#" onclick="return false;">ex_timedwait</a>, <a href="#" onclick="return false;">ex_timer</a>, <a href="#" onclick="return false;">ex_transform</a>, <a href="#" onclick="return false;">ex_ttf</a>, <a href="#" onclick="return false;">ex_user_events</a>, <a href="#" onclick="return false;">ex_vsync</a>, <a href="#" onclick="return false;">ex_warp_mouse</a>, <a href="#" onclick="return false;">ex_windows</a>, <a href="#" onclick="return false;">ex_winfull</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610536">[A5] Simple Keypress?</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618670">ALLEGRO_EVENT_DISPLAY_SWITCH_OUT</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618631">Math question (2d trig)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618637">Black stripe with menus on Windows</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618620">Keyboard Modifiers flag on Windows?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618615">Multiple threads/displays, Event handling question</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618576">I am looking for correct detailed instructions how to build Allegro....</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618566">How to handle game state changes?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618443">Difficulty compiling on Windows</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618438">How do I return a boolean instead of locking up the process?</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618407">Screen is cleared and a new one appears Allegro5 in C?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618364">A little bit of fun for family and friends</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618356">Builtin font doesn&amp;#39;t work in resizeable display on windows</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618330">How do I completely skip Mouse Axes events?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618313">KrampusHack 2020: Odd Results With Color Mapping Functions</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618277">Problem solved: memory bitmaps not being converted</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618223">Allegro 5 performance</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618193">Allegro 5 crashes when using al_draw_bitmap inside a list container</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618167">Rendering A Hot Air Balloon</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618159">Game Crashing and I&amp;#39;m not sure why?</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/ALLEGRO_EVENT by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/ALLEGRO_STATE by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>ALLEGRO_STATE - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="state.html">State</a></h2>
+		<ul><li><a href="https://www.allegro.cc/manual/5/allegro_state">ALLEGRO_STATE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_state_flags">ALLEGRO_STATE_FLAGS</a></li><li><a href="al_restore_state.html">al_restore_state</a></li><li><a href="al_store_state.html">al_store_state</a></li><li><a href="al_get_errno.html">al_get_errno</a></li><li><a href="al_set_errno.html">al_set_errno</a></li></ul></div>
+<div id="content">
+<h1 class="title">ALLEGRO_STATE</h1>
+<code><pre><span class="k1">typedef</span> <span class="k1">struct</span> <a href="https://www.allegro.cc/manual/ALLEGRO_STATE"><span class="a">ALLEGRO_STATE</span></a> <a href="https://www.allegro.cc/manual/ALLEGRO_STATE"><span class="a">ALLEGRO_STATE</span></a><span class="k2">;</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Opaque type which is passed to <a href="al_store_state.html">al_store_state</a>/<a href="al_restore_state.html">al_restore_state</a>.</p><p>The various state kept internally by Allegro can be displayed like this:</p><pre><code>  global
+      active <a href="http://www.delorie.com/djgpp/doc/libc/libc_802.html" target="_blank">system</a> driver
+          current config
+  per thread
+      <span class="k1">new</span> bitmap params
+      <span class="k1">new</span> display params
+      active file interface
+      <a href="http://www.delorie.com/djgpp/doc/libc/libc_293.html" target="_blank">errno</a>
+      current blending mode
+      current display
+          deferred drawing
+      current target bitmap
+          current transformation
+          current clipping rectangle
+          bitmap locking</code></pre><p>In general, the only real global state is the active system driver. All other global state is per-thread, so if your application has multiple separate threads they never will interfere with each other. (Except if there are objects accessed by multiple threads of course. Usually you want to minimize that though and for the remaining cases use synchronization primitives described in the threads section or events described in the events section to control inter-thread communication.)</p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_blend2</a>, <a href="#" onclick="return false;">ex_blend_bench</a>, <a href="#" onclick="return false;">ex_blit</a>, <a href="#" onclick="return false;">ex_clip</a>, <a href="#" onclick="return false;">ex_draw</a>, <a href="#" onclick="return false;">ex_logo</a>, <a href="#" onclick="return false;">ex_threads</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617860">Draw to bitmap failing</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617808">Storing the clipping rectangle with al_store_state</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617749">git format-patch: troubles with white space trailing</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617247">video &amp;amp; physfs problems in the same file</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617150">Good programmig practice light effects</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616642">KrampusHack 2016</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616352">Lightning with some light points</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616245">Mask / combine bitmaps</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616036">Mode 7 graphics in Allegro 5...</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616000">Scaled font print call?</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615645">[a5] al_create_bitmap() not creating mipmap in OPENGL</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615293">Is this me or Allegro?!?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615184">Combining Allegro 5.1.8 with OpenGL culling problems</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614860">If it&amp;#39;s true, you don&amp;#39;t believ in the afterlife.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614551">Al_save_bitmap only saves a blank png</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614268">Load bitmap from zip file</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613790">al_save_bitmap not working!</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613224">[A5] Just Sharing a simple screen shot function</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613104">Developing in Windows, Need a Linux port</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/612548">Bitmaps and multi-threading</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/ALLEGRO_STATE by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

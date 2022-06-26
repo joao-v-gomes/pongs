@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_wait_for_event_timed by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_wait_for_event_timed - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="events.html">Event system and events</a></h2>
+		<ul><li><a href="allegro_event-2.html">ALLEGRO_EVENT</a><ul><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_axis">ALLEGRO_EVENT_JOYSTICK_AXIS</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_button_down">ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_button_up">ALLEGRO_EVENT_JOYSTICK_BUTTON_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_joystick_configuration">ALLEGRO_EVENT_JOYSTICK_CONFIGURATION</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_down">ALLEGRO_EVENT_KEY_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_up">ALLEGRO_EVENT_KEY_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_key_char">ALLEGRO_EVENT_KEY_CHAR</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_axes">ALLEGRO_EVENT_MOUSE_AXES</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_button_down">ALLEGRO_EVENT_MOUSE_BUTTON_DOWN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_button_up">ALLEGRO_EVENT_MOUSE_BUTTON_UP</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_warped">ALLEGRO_EVENT_MOUSE_WARPED</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_enter_display">ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_mouse_leave_display">ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_timer">ALLEGRO_EVENT_TIMER</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_expose">ALLEGRO_EVENT_DISPLAY_EXPOSE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_resize">ALLEGRO_EVENT_DISPLAY_RESIZE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_close">ALLEGRO_EVENT_DISPLAY_CLOSE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_lost">ALLEGRO_EVENT_DISPLAY_LOST</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_found">ALLEGRO_EVENT_DISPLAY_FOUND</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_switch_out">ALLEGRO_EVENT_DISPLAY_SWITCH_OUT</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_switch_in">ALLEGRO_EVENT_DISPLAY_SWITCH_IN</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_display_orientation">ALLEGRO_EVENT_DISPLAY_ORIENTATION</a></li></ul></li><li><a href="https://www.allegro.cc/manual/5/allegro_user_event">ALLEGRO_USER_EVENT</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_queue">ALLEGRO_EVENT_QUEUE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_source">ALLEGRO_EVENT_SOURCE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_type">ALLEGRO_EVENT_TYPE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_get_event_type">ALLEGRO_GET_EVENT_TYPE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_event_type_is_user">ALLEGRO_EVENT_TYPE_IS_USER</a></li><li><a href="al_create_event_queue.html">al_create_event_queue</a></li><li><a href="al_destroy_event_queue.html">al_destroy_event_queue</a></li><li><a href="al_register_event_source.html">al_register_event_source</a></li><li><a href="al_unregister_event_source.html">al_unregister_event_source</a></li><li><a href="al_is_event_queue_empty.html">al_is_event_queue_empty</a></li><li><a href="al_get_next_event.html">al_get_next_event</a></li><li><a href="al_peek_next_event.html">al_peek_next_event</a></li><li><a href="al_drop_next_event.html">al_drop_next_event</a></li><li><a href="al_flush_event_queue.html">al_flush_event_queue</a></li><li><a href="al_wait_for_event.html">al_wait_for_event</a></li><li><a href="al_wait_for_event_timed.html">al_wait_for_event_timed</a></li><li><a href="al_wait_for_event_until.html">al_wait_for_event_until</a></li><li><a href="al_init_user_event_source.html">al_init_user_event_source</a></li><li><a href="al_destroy_user_event_source.html">al_destroy_user_event_source</a></li><li><a href="al_emit_user_event.html">al_emit_user_event</a></li><li><a href="al_unref_user_event.html">al_unref_user_event</a></li><li><a href="al_get_event_source_data.html">al_get_event_source_data</a></li><li><a href="al_set_event_source_data.html">al_set_event_source_data</a></li></ul></div>
+<div id="content">
+<h1 class="title">al_wait_for_event_timed</h1>
+<code><pre><span class="k1">bool</span> <a href="https://www.allegro.cc/manual/al_wait_for_event_timed"><span class="a">al_wait_for_event_timed</span></a><span class="k2">(</span><a href="https://www.allegro.cc/manual/ALLEGRO_EVENT_QUEUE"><span class="a">ALLEGRO_EVENT_QUEUE</span></a> <span class="k3">*</span>queue,
+   <a href="https://www.allegro.cc/manual/ALLEGRO_EVENT"><span class="a">ALLEGRO_EVENT</span></a> <span class="k3">*</span>ret_event, <span class="k1">float</span> secs<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Wait until the event queue specified is non-empty. If <code>ret_event</code> is not NULL, the first event in the queue will be copied into <code>ret_event</code> and removed from the queue. If <code>ret_event</code> is NULL the first event is left at the head of the queue.</p><p><code>timeout_msecs</code> determines approximately how many seconds to wait. If the call times out, false is returned. Otherwise true is returned.</p><p>See also: <a href="allegro_event-2.html">ALLEGRO_EVENT</a>, <a href="al_wait_for_event.html">al_wait_for_event</a>, <a href="al_wait_for_event_until.html">al_wait_for_event_until</a></p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_mixer_pp</a>, <a href="#" onclick="return false;">ex_timedwait</a>, <a href="#" onclick="return false;">ex_windows</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617709">event loop best practice</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617548">Problem in Allegro 5.2.4 Timer!</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617475">60 FPS limit in linux?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617280">Controlling threads</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615454">Porting from Allegro 4.4 to 5.0</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615266">Random deadlocks playing WAV sounds (Windows, MSVC)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615114">Doing stuff while drawing is halted</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614032">[A5] Event and socket messages ?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610130">Instance of a class inside some other class.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610019">Collision Detection again..</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610000">Collision detection and keyboard input question..</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/608240">game loop</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_wait_for_event_timed by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_show_native_message_box by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_show_native_message_box - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="native_dialog.html">Native dialogs support</a></h2>
+		<ul><li><a href="https://www.allegro.cc/manual/5/allegro_filechooser">ALLEGRO_FILECHOOSER</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_textlog">ALLEGRO_TEXTLOG</a></li><li><a href="al_create_native_file_dialog.html">al_create_native_file_dialog</a></li><li><a href="al_show_native_file_dialog.html">al_show_native_file_dialog</a></li><li><a href="al_get_native_file_dialog_count.html">al_get_native_file_dialog_count</a></li><li><a href="al_get_native_file_dialog_path.html">al_get_native_file_dialog_path</a></li><li><a href="al_destroy_native_file_dialog.html">al_destroy_native_file_dialog</a></li><li><a href="al_show_native_message_box.html">al_show_native_message_box</a></li><li><a href="al_open_native_text_log.html">al_open_native_text_log</a></li><li><a href="al_close_native_text_log.html">al_close_native_text_log</a></li><li><a href="al_append_native_text_log.html">al_append_native_text_log</a></li><li><a href="al_get_native_text_log_event_source.html">al_get_native_text_log_event_source</a></li><li><a href="al_get_allegro_native_dialog_version.html">al_get_allegro_native_dialog_version</a></li></ul></div>
+<div id="content">
+<h1 class="title">al_show_native_message_box</h1>
+<code><pre><span class="k1">int</span> <a href="https://www.allegro.cc/manual/al_show_native_message_box"><span class="a">al_show_native_message_box</span></a><span class="k2">(</span><a href="https://www.allegro.cc/manual/ALLEGRO_DISPLAY"><span class="a">ALLEGRO_DISPLAY</span></a> <span class="k3">*</span>display,
+   <span class="k1">char</span> <span class="k1">const</span> <span class="k3">*</span>title, <span class="k1">char</span> <span class="k1">const</span> <span class="k3">*</span>heading, <span class="k1">char</span> <span class="k1">const</span> <span class="k3">*</span>text,
+   <span class="k1">char</span> <span class="k1">const</span> <span class="k3">*</span>buttons, <span class="k1">int</span> flags<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Show a native GUI message box. This can be used for example to display an error message if creation of an initial display fails. The display may be NULL, otherwise the given display is treated as the parent if possible.</p><p>The message box will have a single "OK" button and use the style informative dialog boxes usually have on the native system. If the <code>buttons</code> parameter is not NULL, you can instead specify the button text in a string, with buttons separated by a vertical bar (|).</p><dl><dt>ALLEGRO_MESSAGEBOX_WARN</dt><dd>The message is a warning. This may cause a different icon (or other effects).</dd><dt>ALLEGRO_MESSAGEBOX_ERROR</dt><dd>The message is an error.</dd><dt>ALLEGRO_MESSAGEBOX_QUESTION</dt><dd>The message is a question.</dd><dt>ALLEGRO_MESSAGEBOX_OK_CANCEL</dt><dd>Instead of the "OK" button also display a cancel button. Ignored if <code>buttons</code> is not NULL.</dd><dt>ALLEGRO_MESSAGEBOX_YES_NO</dt><dd>Instead of the "OK" button display Yes/No buttons. Ignored if <code>buttons</code> is not NULL.</dd></dl><p><a href="al_show_native_message_box.html">al_show_native_message_box</a> may be called without Allegro being installed. This is useful to report an error to initialise Allegro itself.</p><p>Returns:</p><ul><li>0 if the dialog window was closed without activating a button.</li><li>1 if the OK or Yes button was pressed.</li><li>2 if the Cancel or No button was pressed.</li></ul><p>If <code>buttons</code> is not NULL, the number of the pressed button is returned, starting with 1.</p><p>If a message box could not be created then this returns 0, as if the window was dismissed without activating a button.</p><p>Example:</p><pre><code>  button <span class="k3">=</span> <a href="https://www.allegro.cc/manual/al_show_native_message_box"><span class="a">al_show_native_message_box</span></a><span class="k2">(</span>
+     display,
+     <span class="s">"Warning"</span>,
+     <span class="s">"Are you sure?"</span>,
+     <span class="s">"If you click yes then you are confirming that \"Yes\""</span>
+     <span class="s">"is your response to the query which you have"</span>
+     <span class="s">"generated by the action you took to open this"</span>
+     <span class="s">"message box."</span>,
+     NULL,
+     ALLEGRO_MESSAGEBOX_YES_NO
+  <span class="k2">)</span><span class="k2">;</span></code></pre>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_native_filechooser</a>, <a href="#" onclick="return false;">ex_nodisplay</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615338">Weird Crash</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615093">Compiling from the command line with gcc</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614571">RPG game (Arrays, Structs Message boxes)</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611638">[A5] Possible to make alerts?</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/608918">Hidden Message Box (native dialogs)</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/606505">Problems loading using PHYSFS</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618576">I am looking for correct detailed instructions how to build Allegro....</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618454">Getting Allegro to Play Nice with Windows Scaling Settings</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618417">Allegro Access Violation while Drawing</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618193">Allegro 5 crashes when using al_draw_bitmap inside a list container</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618381">Allegro 5.2.7 released!</a>
+		(-1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618114">MinGW does not see the library</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618005">al_init_primitives_addon is undefined VS2017 Nuget</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618003">Some allegro 5 functions not working on some laptops</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617784">struggling with initialisation using CMake on arch</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617652">open directories with special characters</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617458">Depth bug (Allegro 5 + Opengl)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617338">Install Allegro 5.2.4.1 on Win10</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617309">al_create_display not working!</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617290">Allegro 5 basic game loop</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_show_native_message_box by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+</html>

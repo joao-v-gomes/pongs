@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_shutdown_ttf_addon by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_shutdown_ttf_addon - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="font.html">Font addons</a></h2>
+		<ul><li><span>General font routines</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_font">ALLEGRO_FONT</a></li><li><a href="al_init_font_addon.html">al_init_font_addon</a></li><li><a href="al_shutdown_font_addon.html">al_shutdown_font_addon</a></li><li><a href="al_load_font.html">al_load_font</a></li><li><a href="al_destroy_font.html">al_destroy_font</a></li><li><a href="al_register_font_loader.html">al_register_font_loader</a></li><li><a href="al_get_font_line_height.html">al_get_font_line_height</a></li><li><a href="al_get_font_ascent.html">al_get_font_ascent</a></li><li><a href="al_get_font_descent.html">al_get_font_descent</a></li><li><a href="al_get_text_width.html">al_get_text_width</a></li><li><a href="al_get_ustr_width.html">al_get_ustr_width</a></li><li><a href="al_draw_text.html">al_draw_text</a></li><li><a href="al_draw_ustr.html">al_draw_ustr</a></li><li><a href="al_draw_justified_text.html">al_draw_justified_text</a></li><li><a href="al_draw_justified_ustr.html">al_draw_justified_ustr</a></li><li><a href="al_draw_textf.html">al_draw_textf</a></li><li><a href="al_draw_justified_textf.html">al_draw_justified_textf</a></li><li><a href="al_get_text_dimensions.html">al_get_text_dimensions</a></li><li><a href="al_get_ustr_dimensions.html">al_get_ustr_dimensions</a></li><li><a href="al_get_allegro_font_version.html">al_get_allegro_font_version</a></li></ul></li><li><span>Bitmap fonts</span><ul><li><a href="al_grab_font_from_bitmap.html">al_grab_font_from_bitmap</a></li><li><a href="al_load_bitmap_font.html">al_load_bitmap_font</a></li></ul></li><li><span>TTF fonts</span><ul><li><a href="al_init_ttf_addon.html">al_init_ttf_addon</a></li><li><a href="al_shutdown_ttf_addon.html">al_shutdown_ttf_addon</a></li><li><a href="al_load_ttf_font.html">al_load_ttf_font</a></li><li><a href="al_load_ttf_font_f.html">al_load_ttf_font_f</a></li><li><a href="al_get_allegro_ttf_version.html">al_get_allegro_ttf_version</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_shutdown_ttf_addon</h1>
+<code><pre><span class="k1">void</span> <a href="https://www.allegro.cc/manual/al_shutdown_ttf_addon"><span class="a">al_shutdown_ttf_addon</span></a><span class="k2">(</span><span class="k1">void</span><span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Unloads the ttf addon again. You normally don't need to call this.</p>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618625">Program locks on exit (linux only)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617704">Pixel shader- how do I get the source coordinate?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617483">What&amp;#39;s the easiest way to distribute my Allegro 5 game to buddies?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617252">Error Message when program finishes</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613627">crash on destroy_display in OSX 10.9</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611431">Restarting display to change multisampling has effect on vsync</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611353">Error Drawing Fonts</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610908">Big TTF fonts and al_draw_text</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/609601">fonts in 5.0.1 vs. 5.0.5</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/609560">Saving a part of the backbuffer to ALLEGRO_BITMAP</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/609122">Something about fonts causing a crash?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/608697">A5 Linux to Windows (Porting Blues!)</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/608034">Loading of .fon files.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/607353">A5 joystick</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/607332">Routes with allegro problem</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/606685">[A5] Allegro assertion failure with TTF font addon.</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_shutdown_ttf_addon by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+</html>

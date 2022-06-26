@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_get_standard_path by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_get_standard_path - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="system.html">System routines</a></h2>
+		<ul><li><a href="al_install_system.html">al_install_system</a></li><li><a href="al_init.html">al_init</a></li><li><a href="al_uninstall_system.html">al_uninstall_system</a></li><li><a href="al_is_system_installed.html">al_is_system_installed</a></li><li><a href="al_get_allegro_version.html">al_get_allegro_version</a></li><li><a href="al_get_standard_path.html">al_get_standard_path</a></li><li><a href="al_set_app_name.html">al_set_app_name</a></li><li><a href="al_set_org_name.html">al_set_org_name</a></li><li><a href="al_get_app_name.html">al_get_app_name</a></li><li><a href="al_get_org_name.html">al_get_org_name</a></li><li><a href="al_get_system_config.html">al_get_system_config</a></li></ul></div>
+<div id="content">
+<h1 class="title">al_get_standard_path</h1>
+<code><pre>ALLEGRO_PATH <span class="k3">*</span><a href="https://www.allegro.cc/manual/al_get_standard_path"><span class="a">al_get_standard_path</span></a><span class="k2">(</span><span class="k1">int</span> id<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Gets a system path, depending on the <code>id</code> parameter. Some of these paths may be affected by the organization and application name, so be sure to set those before calling this function.</p><p>The paths are not guaranteed to be unique (e.g., SETTINGS and DATA may be the same on some platforms), so you should be sure your filenames are unique if you need to avoid naming collisions. Also, a returned path may not actually exist on the file system.</p><dl><dt>ALLEGRO_RESOURCES_PATH</dt><dd><p>If you bundle data in a location relative to your executable, then you should use this path to locate that data. On most platforms, this is the directory that contains the executable file.</p><p>If ran from an OS X app bundle, then this will point to the internal resource directory (&lt;bundle.app&gt;/Contents/Resources). To maintain consistency, if you put your resources into a directory called "data" beneath the executable on some other platform (like Windows), then you should also create a directory called "data" under the OS X app bundle's resource folder.</p><p>You should not try to write to this path, as it is very likely read-only.</p><p>If you install your resources in some other system directory (e.g., in /usr/share or C:\ProgramData), then you are responsible for keeping track of that yourself.</p></dd><dt>ALLEGRO_TEMP_PATH</dt><dd><p>Path to the directory for temporary files.</p></dd><dt>ALLEGRO_USER_HOME_PATH</dt><dd><p>This is the user's home directory. You should not normally write files into this directory directly, or create any sub folders in it, without explicit permission from the user. One practical application of this path would be to use it as the starting place of a file selector in a GUI.</p></dd><dt>ALLEGRO_USER_DOCUMENTS_PATH</dt><dd><p>This location is easily accessible by the user, and is the place to store documents and files that the user might want to later open with an external program or transfer to another place.</p><p>You should not save files here unless the user expects it, usually by explicit permission.</p></dd><dt>ALLEGRO_USER_DATA_PATH</dt><dd><p>If your program saves any data that the user doesn't need to access externally, then you should place it here. This is generally the least intrusive place to store data.</p></dd><dt>ALLEGRO_USER_SETTINGS_PATH</dt><dd><p>If you are saving configuration files (especially if the user may want to edit them outside of your program), then you should place them here.</p></dd><dt>ALLEGRO_EXENAME_PATH</dt><dd><p>The full path to the executable.</p></dd></dl><p>Returns NULL on failure. The returned path should be freed with <a href="al_destroy_path.html">al_destroy_path</a>.</p><p>See also: <a href="al_set_app_name.html">al_set_app_name</a>, <a href="al_set_org_name.html">al_set_org_name</a>, <a href="al_destroy_path.html">al_destroy_path</a></p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_get_path</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615073">Creating directory in A5 for Linux and Windows</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613656">Game cannot write to its installation folder</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613219">[A5] Getting directory exe is running in</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611278">PHYSFS Add-On al_change_directory() Patch</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/607748">Allegro 5 - al_load_bitmap() not working!</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618103">allegro_image-5.2.dll - Cannot find or open the PDB file</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/618003">Some allegro 5 functions not working on some laptops</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617730">Allegro  unable to load font</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617661">Problems with Code:Blocks</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617544">Creating executable files in Visual Studio</a>
+					</li>
+</ul>
+
+<p><i>Other recent discussions:</i></p>
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617368">TTF Loading Failing</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617323">VS 2017 Release &amp;amp; Allegro bitmaps</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617282">Allegro in the file management.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617252">Error Message when program finishes</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617245">Creating an array of files</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617084">Allegro 5, android, writing files.</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616941">Dependency Binaries</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616642">KrampusHack 2016</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616560">upgrading tank war codebase to allegro 5</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/616509">ALLEGRO_PATH implementation</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_get_standard_path by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

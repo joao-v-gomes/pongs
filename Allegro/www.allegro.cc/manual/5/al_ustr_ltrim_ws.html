@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_ustr_ltrim_ws by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_ustr_ltrim_ws - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="utf8.html">UTF-8 string routines</a></h2>
+		<ul><li><span>About UTF-8 string routines</span></li><li><span>UTF-8 string types</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_ustr">ALLEGRO_USTR</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_ustr_info">ALLEGRO_USTR_INFO</a></li></ul></li><li><span>Creating and destroying strings</span><ul><li><a href="al_ustr_new.html">al_ustr_new</a></li><li><a href="al_ustr_new_from_buffer.html">al_ustr_new_from_buffer</a></li><li><a href="al_ustr_newf.html">al_ustr_newf</a></li><li><a href="al_ustr_free.html">al_ustr_free</a></li><li><a href="al_cstr.html">al_cstr</a></li><li><a href="al_ustr_to_buffer.html">al_ustr_to_buffer</a></li><li><a href="al_cstr_dup.html">al_cstr_dup</a></li><li><a href="al_ustr_dup.html">al_ustr_dup</a></li><li><a href="al_ustr_dup_substr.html">al_ustr_dup_substr</a></li></ul></li><li><span>Predefined strings</span><ul><li><a href="al_ustr_empty_string.html">al_ustr_empty_string</a></li></ul></li><li><span>Creating strings by referencing other data</span><ul><li><a href="al_ref_cstr.html">al_ref_cstr</a></li><li><a href="al_ref_buffer.html">al_ref_buffer</a></li><li><a href="al_ref_ustr.html">al_ref_ustr</a></li></ul></li><li><span>Sizes and offsets</span><ul><li><a href="al_ustr_size.html">al_ustr_size</a></li><li><a href="al_ustr_length.html">al_ustr_length</a></li><li><a href="al_ustr_offset.html">al_ustr_offset</a></li><li><a href="al_ustr_next.html">al_ustr_next</a></li><li><a href="al_ustr_prev.html">al_ustr_prev</a></li></ul></li><li><span>Getting code points</span><ul><li><a href="al_ustr_get.html">al_ustr_get</a></li><li><a href="al_ustr_get_next.html">al_ustr_get_next</a></li><li><a href="al_ustr_prev_get.html">al_ustr_prev_get</a></li></ul></li><li><span>Inserting into strings</span><ul><li><a href="al_ustr_insert.html">al_ustr_insert</a></li><li><a href="al_ustr_insert_cstr.html">al_ustr_insert_cstr</a></li><li><a href="al_ustr_insert_chr.html">al_ustr_insert_chr</a></li></ul></li><li><span>Appending to strings</span><ul><li><a href="al_ustr_append.html">al_ustr_append</a></li><li><a href="al_ustr_append_cstr.html">al_ustr_append_cstr</a></li><li><a href="al_ustr_append_chr.html">al_ustr_append_chr</a></li><li><a href="al_ustr_appendf.html">al_ustr_appendf</a></li><li><a href="al_ustr_vappendf.html">al_ustr_vappendf</a></li></ul></li><li><span>Removing parts of strings</span><ul><li><a href="al_ustr_remove_chr.html">al_ustr_remove_chr</a></li><li><a href="al_ustr_remove_range.html">al_ustr_remove_range</a></li><li><a href="al_ustr_truncate.html">al_ustr_truncate</a></li><li><a href="al_ustr_ltrim_ws.html">al_ustr_ltrim_ws</a></li><li><a href="al_ustr_rtrim_ws.html">al_ustr_rtrim_ws</a></li><li><a href="al_ustr_trim_ws.html">al_ustr_trim_ws</a></li></ul></li><li><span>Assigning one string to another</span><ul><li><a href="al_ustr_assign.html">al_ustr_assign</a></li><li><a href="al_ustr_assign_substr.html">al_ustr_assign_substr</a></li><li><a href="al_ustr_assign_cstr.html">al_ustr_assign_cstr</a></li></ul></li><li><span>Replacing parts of string</span><ul><li><a href="al_ustr_set_chr.html">al_ustr_set_chr</a></li><li><a href="al_ustr_replace_range.html">al_ustr_replace_range</a></li></ul></li><li><span>Searching</span><ul><li><a href="al_ustr_find_chr.html">al_ustr_find_chr</a></li><li><a href="al_ustr_rfind_chr.html">al_ustr_rfind_chr</a></li><li><a href="al_ustr_find_set.html">al_ustr_find_set</a></li><li><a href="al_ustr_find_set_cstr.html">al_ustr_find_set_cstr</a></li><li><a href="al_ustr_find_cset.html">al_ustr_find_cset</a></li><li><a href="al_ustr_find_cset_cstr.html">al_ustr_find_cset_cstr</a></li><li><a href="al_ustr_find_str.html">al_ustr_find_str</a></li><li><a href="al_ustr_find_cstr.html">al_ustr_find_cstr</a></li><li><a href="al_ustr_rfind_str.html">al_ustr_rfind_str</a></li><li><a href="al_ustr_rfind_cstr.html">al_ustr_rfind_cstr</a></li><li><a href="al_ustr_find_replace.html">al_ustr_find_replace</a></li><li><a href="al_ustr_find_replace_cstr.html">al_ustr_find_replace_cstr</a></li></ul></li><li><span>Comparing</span><ul><li><a href="al_ustr_equal.html">al_ustr_equal</a></li><li><a href="al_ustr_compare.html">al_ustr_compare</a></li><li><a href="al_ustr_ncompare.html">al_ustr_ncompare</a></li><li><a href="al_ustr_has_prefix.html">al_ustr_has_prefix</a></li><li><a href="al_ustr_has_prefix_cstr.html">al_ustr_has_prefix_cstr</a></li><li><a href="al_ustr_has_suffix.html">al_ustr_has_suffix</a></li><li><a href="al_ustr_has_suffix_cstr.html">al_ustr_has_suffix_cstr</a></li></ul></li><li><span>UTF-16 conversion</span><ul><li><a href="al_ustr_new_from_utf16.html">al_ustr_new_from_utf16</a></li><li><a href="al_ustr_size_utf16.html">al_ustr_size_utf16</a></li><li><a href="al_ustr_encode_utf16.html">al_ustr_encode_utf16</a></li></ul></li><li><span>Low-level UTF-8 routines</span><ul><li><a href="al_utf8_width.html">al_utf8_width</a></li><li><a href="al_utf8_encode.html">al_utf8_encode</a></li></ul></li><li><span>Low-level UTF-16 routines</span><ul><li><a href="al_utf16_width.html">al_utf16_width</a></li><li><a href="al_utf16_encode.html">al_utf16_encode</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_ustr_ltrim_ws</h1>
+<code><pre><span class="k1">bool</span> <a href="https://www.allegro.cc/manual/al_ustr_ltrim_ws"><span class="a">al_ustr_ltrim_ws</span></a><span class="k2">(</span><a href="https://www.allegro.cc/manual/ALLEGRO_USTR"><span class="a">ALLEGRO_USTR</span></a> <span class="k3">*</span>us<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Remove leading whitespace characters from a string, as defined by the C function <code>isspace()</code>.</p><p>Returns true on success, or false if the function was passed an empty string.</p><p>See also: <a href="al_ustr_rtrim_ws.html">al_ustr_rtrim_ws</a>, <a href="al_ustr_trim_ws.html">al_ustr_trim_ws</a></p>
+<div id="examples">
+<p class="names">Examples: <a href="#" onclick="return false;">ex_utf8</a></p>
+
+<div id="example-code" style="display: none">
+</div>
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_ustr_ltrim_ws by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_get_separate_blender by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_get_separate_blender - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="graphics.html">Graphics routines</a></h2>
+		<ul><li><span>Colors</span><ul><li><a href="allegro_color-2.html">ALLEGRO_COLOR</a></li><li><a href="al_map_rgb.html">al_map_rgb</a></li><li><a href="al_map_rgb_f.html">al_map_rgb_f</a></li><li><a href="al_map_rgba.html">al_map_rgba</a></li><li><a href="al_map_rgba_f.html">al_map_rgba_f</a></li><li><a href="al_unmap_rgb.html">al_unmap_rgb</a></li><li><a href="al_unmap_rgb_f.html">al_unmap_rgb_f</a></li><li><a href="al_unmap_rgba.html">al_unmap_rgba</a></li><li><a href="al_unmap_rgba_f.html">al_unmap_rgba_f</a></li></ul></li><li><span>Locking and pixel formats</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_locked_region">ALLEGRO_LOCKED_REGION</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_pixel_format">ALLEGRO_PIXEL_FORMAT</a></li><li><a href="al_get_pixel_size.html">al_get_pixel_size</a></li><li><a href="al_get_pixel_format_bits.html">al_get_pixel_format_bits</a></li><li><a href="al_lock_bitmap.html">al_lock_bitmap</a></li><li><a href="al_lock_bitmap_region.html">al_lock_bitmap_region</a></li><li><a href="al_unlock_bitmap.html">al_unlock_bitmap</a></li></ul></li><li><span>Bitmap creation</span><ul><li><a href="allegro_bitmap-2.html">ALLEGRO_BITMAP</a></li><li><a href="al_create_bitmap.html">al_create_bitmap</a></li><li><a href="al_create_sub_bitmap.html">al_create_sub_bitmap</a></li><li><a href="al_clone_bitmap.html">al_clone_bitmap</a></li><li><a href="al_destroy_bitmap.html">al_destroy_bitmap</a></li><li><a href="al_get_new_bitmap_flags.html">al_get_new_bitmap_flags</a></li><li><a href="al_get_new_bitmap_format.html">al_get_new_bitmap_format</a></li><li><a href="al_set_new_bitmap_flags.html">al_set_new_bitmap_flags</a></li><li><a href="al_add_new_bitmap_flag.html">al_add_new_bitmap_flag</a></li><li><a href="al_set_new_bitmap_format.html">al_set_new_bitmap_format</a></li></ul></li><li><span>Bitmap properties</span><ul><li><a href="al_get_bitmap_flags.html">al_get_bitmap_flags</a></li><li><a href="al_get_bitmap_format.html">al_get_bitmap_format</a></li><li><a href="al_get_bitmap_height.html">al_get_bitmap_height</a></li><li><a href="al_get_bitmap_width.html">al_get_bitmap_width</a></li><li><a href="al_get_pixel.html">al_get_pixel</a></li><li><a href="al_is_bitmap_locked.html">al_is_bitmap_locked</a></li><li><a href="al_is_compatible_bitmap.html">al_is_compatible_bitmap</a></li><li><a href="al_is_sub_bitmap.html">al_is_sub_bitmap</a></li></ul></li><li><span>Drawing operations</span><ul><li><a href="al_clear_to_color.html">al_clear_to_color</a></li><li><a href="al_draw_bitmap.html">al_draw_bitmap</a></li><li><a href="al_draw_tinted_bitmap.html">al_draw_tinted_bitmap</a></li><li><a href="al_draw_bitmap_region.html">al_draw_bitmap_region</a></li><li><a href="al_draw_tinted_bitmap_region.html">al_draw_tinted_bitmap_region</a></li><li><a href="al_draw_pixel.html">al_draw_pixel</a></li><li><a href="al_draw_rotated_bitmap.html">al_draw_rotated_bitmap</a></li><li><a href="al_draw_tinted_rotated_bitmap.html">al_draw_tinted_rotated_bitmap</a></li><li><a href="al_draw_scaled_rotated_bitmap.html">al_draw_scaled_rotated_bitmap</a></li><li><a href="al_draw_tinted_scaled_rotated_bitmap.html">al_draw_tinted_scaled_rotated_bitmap</a></li><li><a href="al_draw_scaled_bitmap.html">al_draw_scaled_bitmap</a></li><li><a href="al_draw_tinted_scaled_bitmap.html">al_draw_tinted_scaled_bitmap</a></li><li><a href="al_get_target_bitmap.html">al_get_target_bitmap</a></li><li><a href="al_put_pixel.html">al_put_pixel</a></li><li><a href="al_put_blended_pixel.html">al_put_blended_pixel</a></li><li><a href="al_set_target_bitmap.html">al_set_target_bitmap</a></li><li><a href="al_set_target_backbuffer.html">al_set_target_backbuffer</a></li><li><a href="al_get_current_display.html">al_get_current_display</a></li></ul></li><li><span>Blending modes</span><ul><li><a href="al_get_blender.html">al_get_blender</a></li><li><a href="al_get_separate_blender.html">al_get_separate_blender</a></li><li><a href="al_set_blender.html">al_set_blender</a></li><li><a href="al_set_separate_blender.html">al_set_separate_blender</a></li></ul></li><li><span>Clipping</span><ul><li><a href="al_get_clipping_rectangle.html">al_get_clipping_rectangle</a></li><li><a href="al_set_clipping_rectangle.html">al_set_clipping_rectangle</a></li></ul></li><li><span>Graphics utility functions</span><ul><li><a href="al_convert_mask_to_alpha.html">al_convert_mask_to_alpha</a></li></ul></li><li><span>Deferred drawing</span><ul><li><a href="al_hold_bitmap_drawing.html">al_hold_bitmap_drawing</a></li><li><a href="al_is_bitmap_drawing_held.html">al_is_bitmap_drawing_held</a></li></ul></li><li><span>Image I/O</span><ul><li><a href="al_register_bitmap_loader.html">al_register_bitmap_loader</a></li><li><a href="al_register_bitmap_saver.html">al_register_bitmap_saver</a></li><li><a href="al_register_bitmap_loader_f.html">al_register_bitmap_loader_f</a></li><li><a href="al_register_bitmap_saver_f.html">al_register_bitmap_saver_f</a></li><li><a href="al_load_bitmap.html">al_load_bitmap</a></li><li><a href="al_load_bitmap_f.html">al_load_bitmap_f</a></li><li><a href="al_save_bitmap.html">al_save_bitmap</a></li><li><a href="al_save_bitmap_f.html">al_save_bitmap_f</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_get_separate_blender</h1>
+<code><pre><span class="k1">void</span> <a href="https://www.allegro.cc/manual/al_get_separate_blender"><span class="a">al_get_separate_blender</span></a><span class="k2">(</span><span class="k1">int</span> <span class="k3">*</span>op, <span class="k1">int</span> <span class="k3">*</span>src, <span class="k1">int</span> <span class="k3">*</span>dst,
+   <span class="k1">int</span> <span class="k3">*</span>alpha_op, <span class="k1">int</span> <span class="k3">*</span>alpha_src, <span class="k1">int</span> <span class="k3">*</span>alpha_dst<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Returns the active blender for the current thread. You can pass NULL for values you are not interested in.</p><p>See also: <a href="al_set_separate_blender.html">al_set_separate_blender</a>, <a href="al_get_blender.html">al_get_blender</a></p>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/609249">[A5.1] Blending bug</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_get_separate_blender by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

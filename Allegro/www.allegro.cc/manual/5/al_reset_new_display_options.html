@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_reset_new_display_options by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_reset_new_display_options - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="display.html">Display routines</a></h2>
+		<ul><li><span>Display creation</span><ul><li><a href="allegro_display-2.html">ALLEGRO_DISPLAY</a></li><li><a href="al_create_display.html">al_create_display</a></li><li><a href="al_destroy_display.html">al_destroy_display</a></li><li><a href="al_get_new_display_flags.html">al_get_new_display_flags</a></li><li><a href="al_get_new_display_refresh_rate.html">al_get_new_display_refresh_rate</a></li><li><a href="al_get_new_window_position.html">al_get_new_window_position</a></li><li><a href="al_set_new_display_option.html">al_set_new_display_option</a></li><li><a href="al_get_new_display_option.html">al_get_new_display_option</a></li><li><a href="al_reset_new_display_options.html">al_reset_new_display_options</a></li><li><a href="al_set_new_display_flags.html">al_set_new_display_flags</a></li><li><a href="al_set_new_display_refresh_rate.html">al_set_new_display_refresh_rate</a></li><li><a href="al_set_new_window_position.html">al_set_new_window_position</a></li></ul></li><li><span>Display operations</span><ul><li><a href="al_acknowledge_resize.html">al_acknowledge_resize</a></li><li><a href="al_flip_display.html">al_flip_display</a></li><li><a href="al_get_backbuffer.html">al_get_backbuffer</a></li><li><a href="al_get_display_flags.html">al_get_display_flags</a></li><li><a href="al_get_display_format.html">al_get_display_format</a></li><li><a href="al_get_display_height.html">al_get_display_height</a></li><li><a href="al_get_display_refresh_rate.html">al_get_display_refresh_rate</a></li><li><a href="al_get_display_width.html">al_get_display_width</a></li><li><a href="al_get_window_position.html">al_get_window_position</a></li><li><a href="al_inhibit_screensaver.html">al_inhibit_screensaver</a></li><li><a href="al_resize_display.html">al_resize_display</a></li><li><a href="al_set_display_icon.html">al_set_display_icon</a></li><li><a href="al_get_display_option.html">al_get_display_option</a></li><li><a href="al_set_window_position.html">al_set_window_position</a></li><li><a href="al_set_window_title.html">al_set_window_title</a></li><li><a href="al_toggle_display_flag.html">al_toggle_display_flag</a></li><li><a href="al_update_display_region.html">al_update_display_region</a></li><li><a href="al_wait_for_vsync.html">al_wait_for_vsync</a></li><li><a href="al_get_display_event_source.html">al_get_display_event_source</a></li></ul></li><li><span>Fullscreen display modes</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_display_mode">ALLEGRO_DISPLAY_MODE</a></li><li><a href="al_get_display_mode.html">al_get_display_mode</a></li><li><a href="al_get_num_display_modes.html">al_get_num_display_modes</a></li></ul></li><li><span>Monitors</span><ul><li><a href="https://www.allegro.cc/manual/5/allegro_monitor_info">ALLEGRO_MONITOR_INFO</a></li><li><a href="al_get_new_display_adapter.html">al_get_new_display_adapter</a></li><li><a href="al_set_new_display_adapter.html">al_set_new_display_adapter</a></li><li><a href="al_get_monitor_info.html">al_get_monitor_info</a></li><li><a href="al_get_num_video_adapters.html">al_get_num_video_adapters</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_reset_new_display_options</h1>
+<code><pre><span class="k1">void</span> <a href="https://www.allegro.cc/manual/al_reset_new_display_options"><span class="a">al_reset_new_display_options</span></a><span class="k2">(</span><span class="k1">void</span><span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>This undoes any previous call to <a href="al_set_new_display_option.html">al_set_new_display_option</a> on the calling thread.</p>
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_reset_new_display_options by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:15 GMT -->
+</html>

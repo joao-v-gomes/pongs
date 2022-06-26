@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_set_sample_instance_playing by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>al_set_sample_instance_playing - Allegro 5 Manual</title>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="manual.css" /> 
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/prototype.js"></script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+#examples p.names { font-size: 75%; }
+
+.snippet, .terminal {
+	font-size: 13px;
+	font-family: monospace;
+	line-height: 1.2;
+	width: 95%;
+	white-space: pre;
+	overflow: auto;
+}
+
+.snippet code {
+	font-family: monospace;
+	font-size: 13px;
+	line-height: 1.2;
+	white-space: normal;
+}
+
+div.source-code div.inner, pre.source-code, .terminal.scroll {
+	background-color: #fff;
+	border-bottom: solid #999 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	border-top: solid #ccc 1px;
+	font-family: monospace;
+	line-height: 1.2;
+	white-space: pre;
+	max-height: 400px;
+	overflow: auto;
+}
+
+span.source-code,
+.source-code pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+	white-space: pre;
+}
+
+div.mockup div.source-code {
+	xwidth: 600px;
+}
+
+div.mockup div.source-code.snippet div.inner,
+div.mockup div.source-code.snippet div.inner td {
+	border: none;
+	background-color: transparent !important;
+}
+
+div.mockup div.source-code div.inner.fullsize {
+	max-height: none;
+}
+
+div.mockup div.source-code div.toolbar {
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-right: solid #999 1px;
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	padding: 4px;
+}
+
+div.mockup div.source-code div.toolbar span.name {
+	font-weight: bold;
+	margin-right: 16px;
+}
+
+div.mockup div.source-code div.toolbar span.button {
+	border: solid #eee 1px;
+	cursor: pointer;
+	padding: 1px 4px;
+	margin-right: 2px;
+}
+
+div.mockup div.source-code div.toolbar span.button.enabled {
+	background-color: #ddd;
+	border-top: solid #fff 1px;
+	border-left: solid #fff 1px;
+	border-right: solid #999 1px;
+	border-bottom: solid #999 1px;
+}
+
+div.mockup div.source-code div.highlight {
+	background-color: #ffa !important;
+}
+
+div.mockup div.source-code span.number {
+	background-color: #eee !important;
+	border-right: #999 solid 1px !important;
+	text-align: right;
+	padding: 0 0.5em;
+	margin: 0 1em 0 0;
+	width: 40px;
+}
+
+div.mockup div.source-code div.highlight span.number {
+	background-color: #ccc !important;
+	font-weight: bold;
+}
+
+div.mockup div.source-code div.inner {
+	margin: 0;
+	padding: 0;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+</style>
+<script type="text/javascript">
+var $j = $.noConflict();
+var codecache = {};
+$j(function()
+{
+  $j("#examples a").click(function()
+  {
+    var ex = $j(this).html();
+    if (codecache[ex])
+      show_code(codecache[ex]);
+    else
+      $j.getJSON('/dhtml/get-example.rpc/' + ex, function(json)
+      {
+        codecache[ex] = json;
+        show_code(json);
+      });
+  });
+});
+
+function show_code(code)
+{
+  $j("#example-code").html($j('<input type="button" value="Hide" style="margin-bottom: 8px;" />').click(function()
+  {
+    $j(this).closest('div').hide();
+  })).append(code).show();
+  attachGlobalEvents($("examples"));
+};
+</script>
+<script type="text/javascript" src="http://djungxnpq2nug.cloudfront.net/js/general.js"></script>
+
+</head>
+<body>
+<div id="sidebar">
+<p class="site"><a href="https://www.allegro.cc/">allegro.cc</a></p>
+<h1><a href="index.html">Manual</a></h1>
+<h2><a href="audio.html">Audio addon</a></h2>
+		<ul><li><span>Audio types</span><ul><li><a href="allegro_audio_depth-2.html">ALLEGRO_AUDIO_DEPTH</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_audio_pan_none">ALLEGRO_AUDIO_PAN_NONE</a></li><li><a href="allegro_channel_conf-2.html">ALLEGRO_CHANNEL_CONF</a></li><li><a href="allegro_mixer-2.html">ALLEGRO_MIXER</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_mixer_quality">ALLEGRO_MIXER_QUALITY</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_playmode">ALLEGRO_PLAYMODE</a></li><li><a href="https://www.allegro.cc/manual/5/allegro_sample_id">ALLEGRO_SAMPLE_ID</a></li><li><a href="allegro_sample-2.html">ALLEGRO_SAMPLE</a></li><li><a href="allegro_sample_instance-2.html">ALLEGRO_SAMPLE_INSTANCE</a></li><li><a href="allegro_audio_stream-2.html">ALLEGRO_AUDIO_STREAM</a></li><li><a href="allegro_voice-2.html">ALLEGRO_VOICE</a></li></ul></li><li><span>Setting up audio</span><ul><li><a href="al_install_audio.html">al_install_audio</a></li><li><a href="al_uninstall_audio.html">al_uninstall_audio</a></li><li><a href="al_is_audio_installed.html">al_is_audio_installed</a></li><li><a href="al_reserve_samples.html">al_reserve_samples</a></li></ul></li><li><span>Misc audio functions</span><ul><li><a href="al_get_allegro_audio_version.html">al_get_allegro_audio_version</a></li><li><a href="https://www.allegro.cc/manual/5/al_get_audio_depth_size">al_get_audio_depth_size</a></li><li><a href="https://www.allegro.cc/manual/5/al_get_channel_count">al_get_channel_count</a></li></ul></li><li><span>Voice functions</span><ul><li><a href="al_create_voice.html">al_create_voice</a></li><li><a href="al_destroy_voice.html">al_destroy_voice</a></li><li><a href="al_detach_voice.html">al_detach_voice</a></li><li><a href="al_attach_audio_stream_to_voice.html">al_attach_audio_stream_to_voice</a></li><li><a href="al_attach_mixer_to_voice.html">al_attach_mixer_to_voice</a></li><li><a href="al_attach_sample_instance_to_voice.html">al_attach_sample_instance_to_voice</a></li><li><a href="al_get_voice_frequency.html">al_get_voice_frequency</a></li><li><a href="al_get_voice_channels.html">al_get_voice_channels</a></li><li><a href="al_get_voice_depth.html">al_get_voice_depth</a></li><li><a href="al_get_voice_playing.html">al_get_voice_playing</a></li><li><a href="al_set_voice_playing.html">al_set_voice_playing</a></li><li><a href="al_get_voice_position.html">al_get_voice_position</a></li><li><a href="al_set_voice_position.html">al_set_voice_position</a></li></ul></li><li><span>Sample functions</span><ul><li><a href="al_create_sample.html">al_create_sample</a></li><li><a href="al_destroy_sample.html">al_destroy_sample</a></li><li><a href="al_play_sample.html">al_play_sample</a></li><li><a href="al_stop_sample.html">al_stop_sample</a></li><li><a href="al_stop_samples.html">al_stop_samples</a></li><li><a href="al_get_sample_channels.html">al_get_sample_channels</a></li><li><a href="al_get_sample_depth.html">al_get_sample_depth</a></li><li><a href="al_get_sample_frequency.html">al_get_sample_frequency</a></li><li><a href="al_get_sample_length.html">al_get_sample_length</a></li><li><a href="al_get_sample_data.html">al_get_sample_data</a></li></ul></li><li><span>Sample instance functions</span><ul><li><a href="al_create_sample_instance.html">al_create_sample_instance</a></li><li><a href="al_destroy_sample_instance.html">al_destroy_sample_instance</a></li><li><a href="al_play_sample_instance.html">al_play_sample_instance</a></li><li><a href="al_stop_sample_instance.html">al_stop_sample_instance</a></li><li><a href="al_get_sample_instance_channels.html">al_get_sample_instance_channels</a></li><li><a href="al_get_sample_instance_depth.html">al_get_sample_instance_depth</a></li><li><a href="al_get_sample_instance_frequency.html">al_get_sample_instance_frequency</a></li><li><a href="al_get_sample_instance_length.html">al_get_sample_instance_length</a></li><li><a href="al_set_sample_instance_length.html">al_set_sample_instance_length</a></li><li><a href="al_get_sample_instance_position.html">al_get_sample_instance_position</a></li><li><a href="al_set_sample_instance_position.html">al_set_sample_instance_position</a></li><li><a href="al_get_sample_instance_speed.html">al_get_sample_instance_speed</a></li><li><a href="al_set_sample_instance_speed.html">al_set_sample_instance_speed</a></li><li><a href="al_get_sample_instance_gain.html">al_get_sample_instance_gain</a></li><li><a href="al_set_sample_instance_gain.html">al_set_sample_instance_gain</a></li><li><a href="al_get_sample_instance_pan.html">al_get_sample_instance_pan</a></li><li><a href="al_set_sample_instance_pan.html">al_set_sample_instance_pan</a></li><li><a href="al_get_sample_instance_time.html">al_get_sample_instance_time</a></li><li><a href="al_get_sample_instance_playmode.html">al_get_sample_instance_playmode</a></li><li><a href="al_set_sample_instance_playmode.html">al_set_sample_instance_playmode</a></li><li><a href="al_get_sample_instance_playing.html">al_get_sample_instance_playing</a></li><li><a href="al_set_sample_instance_playing.html">al_set_sample_instance_playing</a></li><li><a href="al_get_sample_instance_attached.html">al_get_sample_instance_attached</a></li><li><a href="al_detach_sample_instance.html">al_detach_sample_instance</a></li><li><a href="al_get_sample.html">al_get_sample</a></li><li><a href="al_set_sample.html">al_set_sample</a></li></ul></li><li><span>Mixer functions</span><ul><li><a href="al_create_mixer.html">al_create_mixer</a></li><li><a href="al_destroy_mixer.html">al_destroy_mixer</a></li><li><a href="al_get_default_mixer.html">al_get_default_mixer</a></li><li><a href="al_set_default_mixer.html">al_set_default_mixer</a></li><li><a href="al_restore_default_mixer.html">al_restore_default_mixer</a></li><li><a href="al_attach_mixer_to_mixer.html">al_attach_mixer_to_mixer</a></li><li><a href="al_attach_sample_instance_to_mixer.html">al_attach_sample_instance_to_mixer</a></li><li><a href="al_attach_audio_stream_to_mixer.html">al_attach_audio_stream_to_mixer</a></li><li><a href="al_get_mixer_frequency.html">al_get_mixer_frequency</a></li><li><a href="al_set_mixer_frequency.html">al_set_mixer_frequency</a></li><li><a href="al_get_mixer_channels.html">al_get_mixer_channels</a></li><li><a href="al_get_mixer_depth.html">al_get_mixer_depth</a></li><li><a href="al_get_mixer_quality.html">al_get_mixer_quality</a></li><li><a href="al_set_mixer_quality.html">al_set_mixer_quality</a></li><li><a href="al_get_mixer_playing.html">al_get_mixer_playing</a></li><li><a href="al_set_mixer_playing.html">al_set_mixer_playing</a></li><li><a href="al_get_mixer_attached.html">al_get_mixer_attached</a></li><li><a href="al_detach_mixer.html">al_detach_mixer</a></li><li><a href="al_set_mixer_postprocess_callback.html">al_set_mixer_postprocess_callback</a></li></ul></li><li><span>Stream functions</span><ul><li><a href="al_create_audio_stream.html">al_create_audio_stream</a></li><li><a href="al_destroy_audio_stream.html">al_destroy_audio_stream</a></li><li><a href="al_get_audio_stream_event_source.html">al_get_audio_stream_event_source</a></li><li><a href="al_drain_audio_stream.html">al_drain_audio_stream</a></li><li><a href="al_rewind_audio_stream.html">al_rewind_audio_stream</a></li><li><a href="al_get_audio_stream_frequency.html">al_get_audio_stream_frequency</a></li><li><a href="al_get_audio_stream_channels.html">al_get_audio_stream_channels</a></li><li><a href="al_get_audio_stream_depth.html">al_get_audio_stream_depth</a></li><li><a href="al_get_audio_stream_length.html">al_get_audio_stream_length</a></li><li><a href="al_get_audio_stream_speed.html">al_get_audio_stream_speed</a></li><li><a href="al_set_audio_stream_speed.html">al_set_audio_stream_speed</a></li><li><a href="al_get_audio_stream_gain.html">al_get_audio_stream_gain</a></li><li><a href="al_set_audio_stream_gain.html">al_set_audio_stream_gain</a></li><li><a href="al_get_audio_stream_pan.html">al_get_audio_stream_pan</a></li><li><a href="al_set_audio_stream_pan.html">al_set_audio_stream_pan</a></li><li><a href="al_get_audio_stream_playing.html">al_get_audio_stream_playing</a></li><li><a href="al_set_audio_stream_playing.html">al_set_audio_stream_playing</a></li><li><a href="al_get_audio_stream_playmode.html">al_get_audio_stream_playmode</a></li><li><a href="al_set_audio_stream_playmode.html">al_set_audio_stream_playmode</a></li><li><a href="al_get_audio_stream_attached.html">al_get_audio_stream_attached</a></li><li><a href="al_detach_audio_stream.html">al_detach_audio_stream</a></li><li><a href="al_get_audio_stream_fragment.html">al_get_audio_stream_fragment</a></li><li><a href="al_set_audio_stream_fragment.html">al_set_audio_stream_fragment</a></li><li><a href="al_get_audio_stream_fragments.html">al_get_audio_stream_fragments</a></li><li><a href="al_get_available_audio_stream_fragments.html">al_get_available_audio_stream_fragments</a></li><li><a href="al_seek_audio_stream_secs.html">al_seek_audio_stream_secs</a></li><li><a href="al_get_audio_stream_position_secs.html">al_get_audio_stream_position_secs</a></li><li><a href="al_get_audio_stream_length_secs.html">al_get_audio_stream_length_secs</a></li><li><a href="al_set_audio_stream_loop_secs.html">al_set_audio_stream_loop_secs</a></li></ul></li><li><span>Audio file I/O</span><ul><li><a href="al_register_sample_loader.html">al_register_sample_loader</a></li><li><a href="al_register_sample_loader_f.html">al_register_sample_loader_f</a></li><li><a href="al_register_sample_saver.html">al_register_sample_saver</a></li><li><a href="al_register_sample_saver_f.html">al_register_sample_saver_f</a></li><li><a href="al_register_audio_stream_loader.html">al_register_audio_stream_loader</a></li><li><a href="al_register_audio_stream_loader_f.html">al_register_audio_stream_loader_f</a></li><li><a href="al_load_sample.html">al_load_sample</a></li><li><a href="al_load_sample_f.html">al_load_sample_f</a></li><li><a href="al_load_audio_stream.html">al_load_audio_stream</a></li><li><a href="al_load_audio_stream_f.html">al_load_audio_stream_f</a></li><li><a href="al_save_sample.html">al_save_sample</a></li><li><a href="al_save_sample_f.html">al_save_sample_f</a></li></ul></li></ul></div>
+<div id="content">
+<h1 class="title">al_set_sample_instance_playing</h1>
+<code><pre><span class="k1">bool</span> <a href="https://www.allegro.cc/manual/al_set_sample_instance_playing"><span class="a">al_set_sample_instance_playing</span></a><span class="k2">(</span><a href="https://www.allegro.cc/manual/ALLEGRO_SAMPLE_INSTANCE"><span class="a">ALLEGRO_SAMPLE_INSTANCE</span></a> <span class="k3">*</span>spl, <span class="k1">bool</span> val<span class="k2">)</span></pre></code>
+<small>Introduced in <b>5.0.0</b></small>
+
+
+<p>Change whether the sample instance is playing.</p><p>Returns true on success, false on failure.</p>
+
+<hr />
+
+<p><i>Most helpful discussions:</i></p>
+
+
+<ul>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/611901">[A5] Checking if a sample is playing?</a>
+		(1)			</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/617315">Audio seems overly complicated :(</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/615910">Audio addon: pause sample</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614563">Allegro needs your help!</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/614273">SpeedHack 2014 is this weekend!</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/613614">Possible inconsistency in the behavior of al_set_sample_instance_playing() ?</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/610522">[Allegro 5][Mac OS X]invalid fullscreen drawable</a>
+					</li>
+	<li>
+		<a href="https://www.allegro.cc/forums/thread/608940">Allegro sample/stream</a>
+					</li>
+</ul>
+
+
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from www.allegro.cc/manual/5/al_set_sample_instance_playing by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Jun 2022 21:28:16 GMT -->
+</html>
