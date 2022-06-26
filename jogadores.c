@@ -29,7 +29,7 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica fundo
-		if ((p->y) < SCREEN_H - ALTURA_JOGADOR - 7) {
+		if ((p->y) < SCREEN_H - ALTURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->baixo = 0;
@@ -43,14 +43,14 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica dir
-		if ((p->x) < SCREEN_W - LARGURA_JOGADOR - 7) {
+		if ((p->x) < SCREEN_W - LARGURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->dir = 0;
 		}
 	} else {
 		// Verifica meio
-		if ((p->y) <= SCREEN_H / 2 - ALTURA_JOGADOR - 5) {
+		if ((p->y) <= SCREEN_H / 2 - ALTURA_JOGADOR_1 - 5) {
 			// tudo certo
 			//  p->cima = 0;
 		} else {
@@ -73,7 +73,7 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica dir
-		if ((p->x) < SCREEN_W - LARGURA_JOGADOR - 7) {
+		if ((p->x) < SCREEN_W - LARGURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->dir = 0;
@@ -90,20 +90,20 @@ void desenha_jogador(Jogador p) {
 
 	al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, p.cor);
 
-	if (p.id == 2) {
-		printf("pos x: %.1f \n pos y: %.1f", p.x, p.y);
-	}
+	// if (p.id == 2) {
+	// 	printf("pos x: %.1f \n pos y: %.1f", p.x, p.y);
+	// }
 }
 
 void init_jogador(Jogador *p) {
-	p->h = ALTURA_JOGADOR;
-	p->w = LARGURA_JOGADOR;
+	p->h = ALTURA_JOGADOR_1;
+	p->w = LARGURA_JOGADOR_1;
 	p->x = SCREEN_W / 2 - p->w / 2;
 	p->dir = 0;
 	p->esq = 0;
 	p->cima = 0;
 	p->baixo = 0;
-	p->vel = VEL_JOGADOR;
+	p->vel = VEL_JOGADOR_1;
 }
 
 void init_jogador1(Jogador *p1) {

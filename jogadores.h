@@ -21,14 +21,17 @@
 #define ALTURA_JOGADOR_1  30
 #define LARGURA_JOGADOR_1 100
 #define VEL_JOGADOR_1	  3
+#define COR_JOGADOR_1	  al_map_rgb(0, 0, 155)
 //
 #define ALTURA_JOGADOR_2  25
-#define LARGURA_JOGADOR_2 70
+#define LARGURA_JOGADOR_2 75
 #define VEL_JOGADOR_2	  5
+#define COR_JOGADOR_2	  al_map_rgb(155, 0, 0)
 //
 #define ALTURA_JOGADOR_3  35
-#define LARGURA_JOGADOR_3 130
+#define LARGURA_JOGADOR_3 150
 #define VEL_JOGADOR_3	  2
+#define COR_JOGADOR_3	  al_map_rgb(155, 0, 155)
 
 typedef struct Jogador {
 	float x, y, h, w, vel;

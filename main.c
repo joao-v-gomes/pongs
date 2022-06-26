@@ -82,10 +82,10 @@ int main(int argc, char **argv) {
 	}
 
 	// carrega o arquivo arial.ttf da fonte Arial e define que sera usado o tamanho 32 (segundo parametro)
-	ALLEGRO_FONT *fonte_texto = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
-	if (fonte_texto == NULL) {
-		fprintf(stderr, "font file does not exist or cannot be accessed!\n");
-	}
+	// ALLEGRO_FONT *fonte_texto = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
+	// if (fonte_texto == NULL) {
+	// 	fprintf(stderr, "font file does not exist or cannot be accessed!\n");
+	// }
 
 	// cria a fila de eventos
 	event_queue = al_create_event_queue();
@@ -123,13 +123,12 @@ int main(int argc, char **argv) {
 
 	// Audios
 	ALLEGRO_SAMPLE *intro = NULL;
-	ALLEGRO_SAMPLE *move_menu = NULL;
+	// ALLEGRO_SAMPLE *move_menu = NULL;
 
 	// intro = al_load_sample("data/audio/words_of_a_madman.wav");
 	intro = al_load_sample("data/audio/top-gear-3.wav");
-	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
 
-	al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 
 	bool foi_menu = false;
 	bool abre_jogo = false;
@@ -145,12 +144,18 @@ int main(int argc, char **argv) {
 
 	al_resize_display(display, imageW, imageH);
 
-	int8_t counter = 0;
+	volatile int counter = 0;
 
 	fsm_menu state = INIT;
 	fsm_menu opcao = INIT;
 
 	int playing = 1;
+
+	// state = ESCOLHE_UM_JOGADOR;
+
+	init_pongs();
+	init_graficos();
+
 	while (playing) {
 		ALLEGRO_EVENT ev;
 		// espera por um evento e o armazena na variavel de evento ev
@@ -165,7 +170,7 @@ int main(int argc, char **argv) {
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
-					desenha_menu(display, fonte_texto, bg_menu, counter);
+					desenha_menu(display, bg_menu, &counter);
 
 					switch (opcao) {
 						case UM_JOGADOR:
@@ -185,6 +190,7 @@ int main(int argc, char **argv) {
 					}
 					break;
 				case ESCOLHE_UM_JOGADOR:
+					desenha_escolha_jogador(display);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					break;
@@ -232,55 +238,16 @@ int main(int argc, char **argv) {
 			printf("\nmouse clicado em: %d, %d", ev.mouse.x, ev.mouse.y);
 		} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN || ev.type == ALLEGRO_EVENT_KEY_UP) {
 
-			verifica_esc(&playing, ev);
-
 			verifica_tecla_movimentacao(ev, &p1, &p2);
 
-			// if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
-			// 	al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-			// 	foi_menu = true;
+			verifica_selecao_menu(ev, &counter, &state, &opcao);
+			verifica_som_menu(ev, &counter);
+			verifica_esc(ev, &playing);
+
+			// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+
+			// } else {
 			// }
-			if (ev.type == ALLEGRO_EVENT_KEY_UP) {
-
-			} else {
-				if (ev.keyboard.keycode == ALLEGRO_KEY_UP) {
-					al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-					counter--;
-
-					if (counter < 0) {
-						counter = 2;
-					}
-				}
-
-				if (ev.keyboard.keycode == ALLEGRO_KEY_DOWN) {
-					al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-					counter++;
-
-					if (counter > 2) {
-						counter = 0;
-					}
-				}
-
-				if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-					if (state == MENU) {
-						switch (counter) {
-							case 0:
-								opcao = UM_JOGADOR;
-								break;
-							case 1:
-								opcao = DOIS_JOGADORES;
-								break;
-							case 2:
-								opcao = SAIR;
-								break;
-
-							default:
-								break;
-						}
-						// opcao = counter;
-					}
-				}
-			}
 			// imprime qual tecla foi
 			//  printf("\ncodigo tecla: %d", ev.keyboard.keycode);
 		}
@@ -291,9 +258,9 @@ int main(int argc, char **argv) {
 
 	// al_destroy_bitmap(bg_menu);
 	al_destroy_bitmap(icone_pong);
-	al_destroy_font(fonte_texto);
+	// al_destroy_font(fonte_texto);
 	al_destroy_sample(intro);
-	al_destroy_sample(move_menu);
+	// al_destroy_sample(move_menu);
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);
