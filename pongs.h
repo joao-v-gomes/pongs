@@ -3,7 +3,7 @@
 
 #include "jogadores.h"
 
-#define FPS			50
+#define FPS			30
 #define SCREEN_INIT 1
 #define SCREEN_H	960
 #define SCREEN_W	441

@@ -14,9 +14,13 @@
 #include "jogadores.h"
 
 ALLEGRO_SAMPLE *move_menu = NULL;
+ALLEGRO_SAMPLE *intro = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
+	intro = al_load_sample("data/audio/top-gear-3.wav");
+
+	al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
 
 void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
@@ -152,4 +156,9 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2) {
 				break;
 		}
 	}
+}
+
+void limpa_pongs() {
+	al_destroy_sample(intro);
+	al_destroy_sample(move_menu);
 }

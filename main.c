@@ -122,27 +122,27 @@ int main(int argc, char **argv) {
 	al_set_display_icon(display, icone_pong);
 
 	// Audios
-	ALLEGRO_SAMPLE *intro = NULL;
+	// ALLEGRO_SAMPLE *intro = NULL;
 	// ALLEGRO_SAMPLE *move_menu = NULL;
 
 	// intro = al_load_sample("data/audio/words_of_a_madman.wav");
-	intro = al_load_sample("data/audio/top-gear-3.wav");
+	// intro = al_load_sample("data/audio/top-gear-3.wav");
 
 	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 
-	bool foi_menu = false;
-	bool abre_jogo = false;
+	// bool foi_menu = false;
+	// bool abre_jogo = false;
 
 	// Prepara o desenho do menu
-	ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
+	// ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
 
-	int imageH = 0;
-	int imageW = 0;
+	// int imageH = MENU_H;
+	// int imageW = MENU_W;
 
-	imageH = al_get_bitmap_height(bg_menu);
-	imageW = al_get_bitmap_width(bg_menu);
+	// imageH = al_get_bitmap_height(bg_menu);
+	// imageW = al_get_bitmap_width(bg_menu);
 
-	al_resize_display(display, imageW, imageH);
+	al_resize_display(display, MENU_W, MENU_H);
 
 	volatile int counter = 0;
 
@@ -172,11 +172,12 @@ int main(int argc, char **argv) {
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
-					desenha_menu(display, bg_menu, &counter);
+					desenha_menu(display, &counter);
 
 					switch (opcao_menu) {
 						case UM_JOGADOR:
 							state = ESCOLHE_UM_JOGADOR;
+							counter = 0;
 							printf("Foi um jogador\r\n");
 							break;
 						case DOIS_JOGADORES:
@@ -192,7 +193,7 @@ int main(int argc, char **argv) {
 					}
 					break;
 				case ESCOLHE_UM_JOGADOR:
-					desenha_escolha_jogador(display, &opcao_jogador1, &opcao_jogador2, state);
+					escolha_um_jogador(display, &opcao_jogador1, &counter);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					break;
@@ -202,7 +203,7 @@ int main(int argc, char **argv) {
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");
-					limpa_menu(bg_menu);
+					// limpa_menu(bg_menu);
 					playing = 0;
 					break;
 
@@ -267,7 +268,7 @@ int main(int argc, char **argv) {
 	// al_destroy_bitmap(bg_menu);
 	al_destroy_bitmap(icone_pong);
 	// al_destroy_font(fonte_texto);
-	al_destroy_sample(intro);
+	// al_destroy_sample(intro);
 	// al_destroy_sample(move_menu);
 	al_destroy_timer(timer);
 	al_destroy_display(display);

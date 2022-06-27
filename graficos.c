@@ -17,12 +17,14 @@
 
 ALLEGRO_FONT *fonte_texto_pequeno = NULL;
 ALLEGRO_FONT *fonte_texto_grande = NULL;
+ALLEGRO_BITMAP *bg_menu;
 ALLEGRO_BITMAP *seletor = NULL;
 
 void init_graficos() {
 	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 20, 1);
 	fonte_texto_grande = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
 	seletor = al_load_bitmap("data/img/barra-menu.bmp");
+	bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
 }
 
 void desenha_quadra() {
@@ -60,9 +62,7 @@ void desenha_quadra() {
 	al_draw_line(SCREEN_W / 2 - 2, 222, SCREEN_W / 2 - 2, 222 + (258 + 258), al_map_rgb(255, 255, 255), linha);
 }
 
-void desenha_menu(ALLEGRO_DISPLAY *display, ALLEGRO_BITMAP *bg_menu, int *counter) {
-
-	// printf("Valor counter6: %d\r\n", *counter);
+void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 
 	char um_jog[] = "1 Jogador";
 	char dois_jog[] = "2 Jogadores";
@@ -129,20 +129,13 @@ void desenha_menu(ALLEGRO_DISPLAY *display, ALLEGRO_BITMAP *bg_menu, int *counte
 	}
 }
 
-void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, fsm_menu state) {
-	int num_jogador = 0;
-
-	if (state == ESCOLHE_UM_JOGADOR) {
-		num_jogador = 1;
-	} else if (state == ESCOLHE_DOIS_JOGADORES) {
-		num_jogador = 2;
-	}
+void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter) {
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	int text_w = 0;
 	int screen_w = al_get_display_width(display);
-	int screen_h = al_get_display_height(display);
+	// int screen_h = al_get_display_height(display);
 
 	int posicao_w_texto = 0;
 	int posicao_h_texto = 50;
@@ -157,14 +150,22 @@ void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *op
 	desenha_tipo_jogador1(display);
 	desenha_tipo_jogador2(display);
 	desenha_tipo_jogador3(display);
+
+	// int inicio_largura_box = 50;
+	// int final_largura_box = 480;
+	// int altura_box = 130;
+	// int espessura = 2;
+
+	// al_draw_rectangle(inicio_largura_box, altura_box, final_largura_box, altura_box + 90, al_map_rgb(255, 255, 255), espessura);
+	// al_draw_rectangle(inicio_largura_box + 10, (2 * altura_box), final_largura_box, (2 * altura_box) + 90, al_map_rgb(255, 255, 255), espessura);
+	// al_draw_rectangle(inicio_largura_box - 20, (3 * altura_box) - 5, final_largura_box, (3 * altura_box) - 5 + 90, al_map_rgb(255, 255, 255), espessura);
+}
+
+void escolha_um_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, int *counter) {
+	desenha_escolha_jogador(display, counter);
 }
 
 void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
-	// al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, COR_JOGADOR_1);
-
-	// uint8_t tamanho_fonte = 20;
-
-	// ALLEGRO_FONT *fonte_texto = al_load_font("data/font/UbuntuMono-RI.ttf", tamanho_fonte, 1);
 
 	int screen_w = al_get_display_width(display);
 	int screen_h = al_get_display_height(display);
@@ -308,6 +309,9 @@ void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
 	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 }
 
-void limpa_menu(ALLEGRO_BITMAP *bg_menu) {
+void limpa_menu() {
+	al_destroy_bitmap(seletor);
 	al_destroy_bitmap(bg_menu);
+	al_destroy_font(fonte_texto_pequeno);
+	al_destroy_font(fonte_texto_grande);
 }
