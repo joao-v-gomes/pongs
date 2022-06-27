@@ -129,7 +129,7 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	}
 }
 
-void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter) {
+void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter, int *counter2) {
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
@@ -161,9 +161,9 @@ void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter) {
 	// al_draw_rectangle(inicio_largura_box - 20, (3 * altura_box) - 5, final_largura_box, (3 * altura_box) - 5 + 90, al_map_rgb(255, 255, 255), espessura);
 }
 
-void escolha_um_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, int *counter) {
-	desenha_escolha_jogador(display, counter);
-}
+// void desenha_escolha_um_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, int *counter) {
+// 	desenha_escolha_jogador(display, counter);
+// }
 
 void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
 

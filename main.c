@@ -145,9 +145,10 @@ int main(int argc, char **argv) {
 	al_resize_display(display, MENU_W, MENU_H);
 
 	volatile int counter = 0;
+	volatile int counter2 = 0;
 
 	fsm_menu state = INIT_MENU;
-	fsm_menu opcao_menu = INIT_MENU;
+	// fsm_menu opcao_menu = INIT_MENU;
 	fsm_escolha_jogadores opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
 	fsm_escolha_jogadores opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
 
@@ -173,33 +174,25 @@ int main(int argc, char **argv) {
 					break;
 				case MENU:
 					desenha_menu(display, &counter);
-
-					switch (opcao_menu) {
-						case UM_JOGADOR:
-							state = ESCOLHE_UM_JOGADOR;
-							counter = 0;
-							printf("Foi um jogador\r\n");
-							break;
-						case DOIS_JOGADORES:
-							state = ESCOLHE_DOIS_JOGADORES;
-							printf("Foi dois jogadores\r\n");
-							break;
-						case SAIR:
-							state = SAIR;
-							break;
-
-						default:
-							break;
-					}
 					break;
 				case ESCOLHE_UM_JOGADOR:
-					escolha_um_jogador(display, &opcao_jogador1, &counter);
+					desenha_escolha_jogador(display, &counter, &counter2);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					break;
+				case CARREGA_UM_JOGADOR:
+					// Faz o init do jogador1 utilizando o tipo de jogador escolhido
+					state = JOGO_UM_JOGADOR;
+					break;
+				case CARREGA_DOIS_JOGADORES:
+					// Faz o init do jogador1 e jogador2 utilizando o tipo de jogador escolhido
+					state = JOGO_DOIS_JOGADORES;
+					break;
 				case JOGO_UM_JOGADOR:
+					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
+					// Abre o jogo para 2 jogadores
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");
@@ -244,11 +237,11 @@ int main(int argc, char **argv) {
 			verifica_tecla_movimentacao(ev, &p1, &p2);
 
 			if (state == MENU) {
-				verifica_selecao_menu(ev, &counter, &opcao_menu);
-				verifica_som_menu(ev, &counter);
+				verifica_selecao_menu(ev, &counter, &state);
+				verifica_movimentacao_menus(ev, &counter);
 			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
 				verifica_selecao_jogador(ev, &counter);
-				verifica_som_menu(ev, &counter);
+				verifica_movimentacao_menus(ev, &counter);
 			}
 
 			verifica_esc(ev, &playing);

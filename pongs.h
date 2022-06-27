@@ -18,14 +18,19 @@ typedef enum {
 	ESCOLHE_UM_JOGADOR,
 	ESCOLHE_DOIS_JOGADORES,
 
+	CARREGA_UM_JOGADOR,
+	CARREGA_DOIS_JOGADORES,
+
 	JOGO_UM_JOGADOR,
 	JOGO_DOIS_JOGADORES,
 } fsm_menu;
 
 typedef enum {
-	POSICAO_JOGADOR1,
-	POSICAO_JOGADOR2,
-	POSICAO_JOGADOR3
+	TIPO_JOGADOR1,
+	TIPO_JOGADOR2,
+	TIPO_JOGADOR3,
+
+	INIT_ESCOLHA_JOGADOR
 } fsm_escolha_jogadores;
 
 void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2);
