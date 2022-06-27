@@ -23,8 +23,6 @@ typedef enum {
 } fsm_menu;
 
 typedef enum {
-	INIT_ESCOLHA_JOGADOR,
-
 	POSICAO_JOGADOR1,
 	POSICAO_JOGADOR2,
 	POSICAO_JOGADOR3

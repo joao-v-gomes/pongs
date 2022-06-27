@@ -29,26 +29,24 @@ void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
 	}
 }
 
-void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, fsm_menu *state, fsm_menu *opcao_menu) {
+void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, fsm_menu *opcao_menu) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-			if (*state == MENU) {
-				switch (*counter) {
-					case 0:
-						*opcao_menu = UM_JOGADOR;
-						break;
-					case 1:
-						*opcao_menu = DOIS_JOGADORES;
-						break;
-					case 2:
-						*opcao_menu = SAIR;
-						break;
+			switch (*counter) {
+				case 0:
+					*opcao_menu = UM_JOGADOR;
+					break;
+				case 1:
+					*opcao_menu = DOIS_JOGADORES;
+					break;
+				case 2:
+					*opcao_menu = SAIR;
+					break;
 
-					default:
-						break;
-				}
-				// opcao_menu = counter;
+				default:
+					break;
+					// opcao_menu = counter;
 			}
 		}
 	}

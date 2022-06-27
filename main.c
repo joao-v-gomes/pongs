@@ -244,7 +244,7 @@ int main(int argc, char **argv) {
 			verifica_tecla_movimentacao(ev, &p1, &p2);
 
 			if (state == MENU) {
-				verifica_selecao_menu(ev, &counter, &state, &opcao_menu);
+				verifica_selecao_menu(ev, &counter, &opcao_menu);
 				verifica_som_menu(ev, &counter);
 			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
 				verifica_selecao_jogador(ev, &counter);
