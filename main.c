@@ -145,7 +145,7 @@ int main(int argc, char **argv) {
 	al_resize_display(display, MENU_W, MENU_H);
 
 	volatile int counter = 0;
-	volatile int counter2 = 0;
+	volatile int counter2 = -1;
 
 	fsm_menu state = INIT_MENU;
 	// fsm_menu opcao_menu = INIT_MENU;
@@ -173,12 +173,17 @@ int main(int argc, char **argv) {
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
+					// Printa e atualiza a movimentacao no menu inicial
 					desenha_menu(display, &counter);
 					break;
 				case ESCOLHE_UM_JOGADOR:
+					// Printa e atualiza a movimentacao no menu de jogadores para um jogador
+					counter2 = -1;
 					desenha_escolha_jogador(display, &counter, &counter2);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
+					// Printa e atualiza a movimentacao no menu de jogadores para dois jogadores
+					desenha_escolha_jogador(display, &counter, &counter2);
 					break;
 				case CARREGA_UM_JOGADOR:
 					// Faz o init do jogador1 utilizando o tipo de jogador escolhido
@@ -237,11 +242,11 @@ int main(int argc, char **argv) {
 			verifica_tecla_movimentacao(ev, &p1, &p2);
 
 			if (state == MENU) {
-				verifica_selecao_menu(ev, &counter, &state);
-				verifica_movimentacao_menus(ev, &counter);
+				verifica_selecao_menu(ev, &counter, &counter2, &state);
+				verifica_movimentacao_menus(ev, &counter, &counter2);
 			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
 				verifica_selecao_jogador(ev, &counter);
-				verifica_movimentacao_menus(ev, &counter);
+				verifica_movimentacao_menus(ev, &counter, &counter2);
 			}
 
 			verifica_esc(ev, &playing);
@@ -258,11 +263,7 @@ int main(int argc, char **argv) {
 
 	// procedimentos de fim de jogo (fecha a tela, limpa a memoria, etc)
 
-	// al_destroy_bitmap(bg_menu);
 	al_destroy_bitmap(icone_pong);
-	// al_destroy_font(fonte_texto);
-	// al_destroy_sample(intro);
-	// al_destroy_sample(move_menu);
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);

@@ -29,17 +29,21 @@ void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
 	}
 }
 
-void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, fsm_menu *state) {
+void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_menu *state) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 			switch (*counter) {
 				case 0:
 					*state = ESCOLHE_UM_JOGADOR;
+					*counter = 0;
+					*counter2 = -1;
 					printf("Foi escolhe um jogador!\r\n");
 					break;
 				case 1:
 					*state = ESCOLHE_DOIS_JOGADORES;
+					*counter = 0;
+					*counter2 = 0;
 					printf("Foi escolhe dois jogador!\r\n");
 					break;
 				case 2:
@@ -76,7 +80,7 @@ void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, fsm_escolha_jogado
 	}
 }
 
-void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter) {
+void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter, int *counter2) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_UP) {
@@ -96,6 +100,28 @@ void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter) {
 
 			if (*counter > 2) {
 				*counter = 0;
+			}
+		}
+
+		if (*counter2 != -1) {
+			if (ev.keyboard.keycode == ALLEGRO_KEY_W) {
+				al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+				// *counter-- não funciona. Estranho...
+				*counter2 = *counter2 - 1;
+
+				if (*counter2 < 0) {
+					*counter2 = 2;
+				}
+			} else if (ev.keyboard.keycode == ALLEGRO_KEY_S) {
+				al_play_sample(move_menu, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+				// *counter++ não funciona. Estranho...
+				*counter2 = *counter2 + 1;
+
+				if (*counter2 > 2) {
+					*counter2 = 0;
+				}
 			}
 		}
 	}
