@@ -199,13 +199,13 @@ void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
 	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
-	int posicao_w_bolinha = 260;
+	int posicao_w_bolinha = 310;
 
 	// Desenha as bolinhas velocidade
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 
-	posicao_w_bolinha = 415;
+	posicao_w_bolinha = 470;
 
 	// Desenha as bolinhas tamanho
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
@@ -247,14 +247,14 @@ void desenha_tipo_jogador2(ALLEGRO_DISPLAY *display) {
 	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
-	int posicao_w_bolinha = 250;
+	int posicao_w_bolinha = 300;
 
 	// Desenha as bolinhas velocidade
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 
-	posicao_w_bolinha = 425;
+	posicao_w_bolinha = 480;
 
 	// Desenha as bolinhas tamanho
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
@@ -295,13 +295,13 @@ void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
 	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
-	int posicao_w_bolinha = 270;
+	int posicao_w_bolinha = 320;
 
 	// Desenha as bolinhas velocidade
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 	// al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
 
-	posicao_w_bolinha = 405;
+	posicao_w_bolinha = 460;
 
 	// Desenha as bolinhas tamanho
 	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
