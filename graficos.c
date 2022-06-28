@@ -24,7 +24,7 @@ void init_graficos() {
 	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 20, 1);
 	fonte_texto_grande = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
 	seletor = al_load_bitmap("data/img/barra-menu.bmp");
-	bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
+	bg_menu = al_load_bitmap("data/img/menu-grande.bmp");
 }
 
 void desenha_quadra() {
@@ -74,7 +74,7 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	int text_w = 0;
 
 	int posicao_w_texto = 0;
-	int posicao_h_texto = 280;
+	int posicao_h_texto = 350;
 
 	al_draw_bitmap(bg_menu, 0, 0, 0);
 

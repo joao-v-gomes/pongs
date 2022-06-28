@@ -18,7 +18,7 @@
 //
 #include "jogadores.h"
 
-#define MENU_W 500
-#define MENU_H 500
+#define MENU_W 600
+#define MENU_H 600
 
 #endif
