@@ -157,7 +157,7 @@ void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter, int *counter2) 
 	}
 }
 
-void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2) {
+void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm_menu state) {
 
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		switch (ev.keyboard.keycode) {
@@ -228,6 +228,13 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2) {
 				p2->dir = 0;
 				break;
 		}
+	}
+
+	if (state == JOGO_UM_JOGADOR) {
+		p2->cima = 0;
+		p2->baixo = 0;
+		p2->esq = 0;
+		p2->dir = 0;
 	}
 }
 

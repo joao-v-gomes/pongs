@@ -113,34 +113,11 @@ int main(int argc, char **argv) {
 	al_start_timer(timer);
 
 	Jogador p1, p2;
-	// init_jogador1(&p1);
-	// init_jogador2(&p2);
 
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
 	al_set_window_title(display, "PongS");
 	al_set_display_icon(display, icone_pong);
-
-	// Audios
-	// ALLEGRO_SAMPLE *intro = NULL;
-	// ALLEGRO_SAMPLE *move_menu = NULL;
-
-	// intro = al_load_sample("data/audio/words_of_a_madman.wav");
-	// intro = al_load_sample("data/audio/top-gear-3.wav");
-
-	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
-
-	// bool foi_menu = false;
-	// bool abre_jogo = false;
-
-	// Prepara o desenho do menu
-	// ALLEGRO_BITMAP *bg_menu = al_load_bitmap("data/img/menu-alt-2.bmp");
-
-	// int imageH = MENU_H;
-	// int imageW = MENU_W;
-
-	// imageH = al_get_bitmap_height(bg_menu);
-	// imageW = al_get_bitmap_width(bg_menu);
 
 	al_resize_display(display, MENU_W, MENU_H);
 
@@ -154,7 +131,7 @@ int main(int argc, char **argv) {
 
 	int playing = 1;
 
-	state = ESCOLHE_UM_JOGADOR;
+	// state = ESCOLHE_UM_JOGADOR;
 	// opcao_jogador1 = TIPO_JOGADOR1;
 
 	init_pongs();
@@ -194,8 +171,8 @@ int main(int argc, char **argv) {
 
 					// printa_info_jogador(p1);
 					al_resize_display(display, JOGO_W, JOGO_H);
-					desenha_quadra();
-					desenha_jogador(p1);
+
+					// desenha_jogador(p1);
 
 					state = JOGO_UM_JOGADOR;
 					break;
@@ -204,7 +181,10 @@ int main(int argc, char **argv) {
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:
-					printf("Foi jogo 1 jogador\r\n");
+					// printf("Foi jogo 1 jogador\r\n");
+					desenha_quadra();
+					desenha_jogador(p1);
+					atualiza_jogador(&p1);
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
@@ -219,21 +199,6 @@ int main(int argc, char **argv) {
 				default:
 					break;
 			}
-
-			// if (foi_menu == false) {
-			// 	// desenha_menu(fonte_texto);
-
-			// 	abre_jogo = true;
-			// } else {
-			// 	if (abre_jogo == true) {
-			// 		al_resize_display(display, JOGO_W, JOGO_H);
-			// 	}
-
-			// 	desenha_quadra();
-			// 	verifica_posicoes_jogadores(&p1, &p2);
-			// 	atualiza_jogadores(&p1, &p2);
-			// 	desenha_jogadores(p1, p2);
-			// }
 
 			// atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
@@ -250,30 +215,22 @@ int main(int argc, char **argv) {
 			printf("\nmouse clicado em: %d, %d", ev.mouse.x, ev.mouse.y);
 		} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN || ev.type == ALLEGRO_EVENT_KEY_UP) {
 
-			verifica_tecla_movimentacao(ev, &p1, &p2);
-
 			if (state == MENU) {
 				verifica_selecao_menu(ev, &counter, &counter2, &state);
 				verifica_movimentacao_menus(ev, &counter, &counter2);
 			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
 				verifica_selecao_jogador(ev, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &state);
 				verifica_movimentacao_menus(ev, &counter, &counter2);
+			} else if (state == JOGO_UM_JOGADOR || state == JOGO_DOIS_JOGADORES) {
+				verifica_tecla_movimentacao(ev, &p1, &p2, state);
 			}
 
 			verifica_esc(ev, &playing);
-
-			// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
-
-			// } else {
-			// }
-			// imprime qual tecla foi
-			//  printf("\ncodigo tecla: %d", ev.keyboard.keycode);
 		}
 
 	} // fim do while
 
 	// procedimentos de fim de jogo (fecha a tela, limpa a memoria, etc)
-
 	al_destroy_bitmap(icone_pong);
 	al_destroy_timer(timer);
 	al_destroy_display(display);

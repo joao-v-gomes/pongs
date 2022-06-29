@@ -133,7 +133,7 @@ void init_jogador(Jogador *p, fsm_escolha_jogadores opcao_jogador) {
 
 void init_jogador1(Jogador *p1, fsm_escolha_jogadores opcao_jogador) {
 	init_jogador(p1, opcao_jogador);
-	p1->x = 0 + DIST_FUNDO - p1->w;
+	p1->x = DIST_FUNDO - p1->w;
 	p1->id = 1;
 }
 
