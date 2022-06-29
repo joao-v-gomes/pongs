@@ -20,7 +20,7 @@ void verifica_posicao(Jogador *p) {
 
 	if (p->id == 1) {
 		// Verifica meio
-		if ((p->y) > SCREEN_H / 2 + 4) {
+		if ((p->y) > JOGO_H / 2 + 4) {
 			// tudo certo
 			//  p->cima = 0;
 		} else {
@@ -29,7 +29,7 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica fundo
-		if ((p->y) < SCREEN_H - ALTURA_JOGADOR_1 - 7) {
+		if ((p->y) < JOGO_H - ALTURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->baixo = 0;
@@ -43,14 +43,14 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica dir
-		if ((p->x) < SCREEN_W - LARGURA_JOGADOR_1 - 7) {
+		if ((p->x) < JOGO_W - LARGURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->dir = 0;
 		}
 	} else {
 		// Verifica meio
-		if ((p->y) <= SCREEN_H / 2 - ALTURA_JOGADOR_1 - 5) {
+		if ((p->y) <= JOGO_H / 2 - ALTURA_JOGADOR_1 - 5) {
 			// tudo certo
 			//  p->cima = 0;
 		} else {
@@ -73,7 +73,7 @@ void verifica_posicao(Jogador *p) {
 		}
 
 		// Verifica dir
-		if ((p->x) < SCREEN_W - LARGURA_JOGADOR_1 - 7) {
+		if ((p->x) < JOGO_W - LARGURA_JOGADOR_1 - 7) {
 
 		} else {
 			p->dir = 0;
@@ -95,28 +95,51 @@ void desenha_jogador(Jogador p) {
 	// }
 }
 
-void init_jogador(Jogador *p) {
-	p->h = ALTURA_JOGADOR_1;
-	p->w = LARGURA_JOGADOR_1;
-	p->x = SCREEN_W / 2 - p->w / 2;
+void init_jogador(Jogador *p, fsm_escolha_jogadores opcao_jogador) {
+
+	switch (opcao_jogador) {
+		case 0:
+			p->w = ALTURA_JOGADOR_1;
+			p->h = LARGURA_JOGADOR_1;
+			p->vel = VEL_JOGADOR_1;
+			p->cor = COR_JOGADOR_1;
+			break;
+
+		case 1:
+			p->w = ALTURA_JOGADOR_2;
+			p->h = LARGURA_JOGADOR_2;
+			p->vel = VEL_JOGADOR_2;
+			p->cor = COR_JOGADOR_2;
+			break;
+
+		case 2:
+			p->w = ALTURA_JOGADOR_3;
+			p->h = LARGURA_JOGADOR_3;
+			p->vel = VEL_JOGADOR_3;
+			p->cor = COR_JOGADOR_3;
+			break;
+
+		default:
+			printf("Entrou default initjogador!");
+			break;
+	}
+
+	p->y = JOGO_H / 2 - p->h / 2;
 	p->dir = 0;
 	p->esq = 0;
 	p->cima = 0;
 	p->baixo = 0;
-	p->vel = VEL_JOGADOR_1;
 }
 
-void init_jogador1(Jogador *p1) {
-	init_jogador(p1);
-	p1->y = SCREEN_H - DIST_FUNDO - p1->h;
-	p1->cor = al_map_rgb(155, 0, 0);
+void init_jogador1(Jogador *p1, fsm_escolha_jogadores opcao_jogador) {
+	init_jogador(p1, opcao_jogador);
+	p1->x = 0 + DIST_FUNDO - p1->w;
 	p1->id = 1;
 }
 
-void init_jogador2(Jogador *p2) {
-	init_jogador(p2);
-	p2->y = 0 + DIST_FUNDO;
-	p2->cor = al_map_rgb(0, 0, 155);
+void init_jogador2(Jogador *p2, fsm_escolha_jogadores opcao_jogador) {
+	init_jogador(p2, opcao_jogador);
+	p2->x = JOGO_W - DIST_FUNDO;
 	p2->id = 2;
 }
 
@@ -129,4 +152,10 @@ void atualiza_jogador(Jogador *p) {
 
 	p->x = p->x + p->dir * p->vel - p->esq * p->vel;
 	p->y = p->y + p->baixo * p->vel - p->cima * p->vel;
+}
+
+void printa_info_jogador(Jogador p) {
+	printf(" Jogador: %d\r\n", p.id);
+	printf(" Altura: %.2f\r\n", p.w);
+	printf(" Largura: %.2f\r\n", p.h);
 }

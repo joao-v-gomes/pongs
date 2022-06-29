@@ -21,4 +21,9 @@
 #define MENU_W 600
 #define MENU_H 600
 
+#define SELETOR_W 15
+#define SELETOR_H 50
+
+#define COR_BRANCA al_map_rgb(255, 255, 255)
+
 #endif

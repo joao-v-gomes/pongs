@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-	// cria uma tela com dimensoes de SCREEN_W, SCREEN_H pixels
+	// cria uma tela com dimensoes de JOGO_W, JOGO_H pixels
 	display = al_create_display(SCREEN_INIT, SCREEN_INIT);
 	if (!display) {
 		fprintf(stderr, "failed to create display!\n");
@@ -113,8 +113,8 @@ int main(int argc, char **argv) {
 	al_start_timer(timer);
 
 	Jogador p1, p2;
-	init_jogador1(&p1);
-	init_jogador2(&p2);
+	// init_jogador1(&p1);
+	// init_jogador2(&p2);
 
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
@@ -154,7 +154,8 @@ int main(int argc, char **argv) {
 
 	int playing = 1;
 
-	// state = ESCOLHE_UM_JOGADOR;
+	state = ESCOLHE_UM_JOGADOR;
+	// opcao_jogador1 = TIPO_JOGADOR1;
 
 	init_pongs();
 	init_graficos();
@@ -179,7 +180,7 @@ int main(int argc, char **argv) {
 				case ESCOLHE_UM_JOGADOR:
 					// Printa e atualiza a movimentacao no menu de jogadores para um jogador
 					counter2 = -1;
-					desenha_escolha_jogador(display, &counter, &counter2);
+					desenha_escolha_um_jogador(display, opcao_jogador1, &counter, &counter2);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					// Printa e atualiza a movimentacao no menu de jogadores para dois jogadores
@@ -187,6 +188,15 @@ int main(int argc, char **argv) {
 					break;
 				case CARREGA_UM_JOGADOR:
 					// Faz o init do jogador1 utilizando o tipo de jogador escolhido
+					printf("Foi carrega 1 jogador1\r\n");
+					// carrega_jogador_1(&opcao_jogador1);
+					init_jogador1(&p1, opcao_jogador1);
+
+					// printa_info_jogador(p1);
+					al_resize_display(display, JOGO_W, JOGO_H);
+					desenha_quadra();
+					desenha_jogador(p1);
+
 					state = JOGO_UM_JOGADOR;
 					break;
 				case CARREGA_DOIS_JOGADORES:
@@ -194,6 +204,7 @@ int main(int argc, char **argv) {
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:
+					printf("Foi jogo 1 jogador\r\n");
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
@@ -215,7 +226,7 @@ int main(int argc, char **argv) {
 			// 	abre_jogo = true;
 			// } else {
 			// 	if (abre_jogo == true) {
-			// 		al_resize_display(display, SCREEN_W, SCREEN_H);
+			// 		al_resize_display(display, JOGO_W, JOGO_H);
 			// 	}
 
 			// 	desenha_quadra();
@@ -245,7 +256,7 @@ int main(int argc, char **argv) {
 				verifica_selecao_menu(ev, &counter, &counter2, &state);
 				verifica_movimentacao_menus(ev, &counter, &counter2);
 			} else if (state == ESCOLHE_UM_JOGADOR || state == ESCOLHE_DOIS_JOGADORES) {
-				verifica_selecao_jogador(ev, &counter);
+				verifica_selecao_jogador(ev, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &state);
 				verifica_movimentacao_menus(ev, &counter, &counter2);
 			}
 

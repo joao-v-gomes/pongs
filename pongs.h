@@ -5,8 +5,8 @@
 
 #define FPS			30
 #define SCREEN_INIT 1
-#define SCREEN_H	960
-#define SCREEN_W	441
+#define JOGO_H		440
+#define JOGO_W		960
 
 typedef enum {
 	INIT_MENU,
@@ -29,6 +29,8 @@ typedef enum {
 	TIPO_JOGADOR1,
 	TIPO_JOGADOR2,
 	TIPO_JOGADOR3,
+
+	JOGADOR_ESCOLHIDO,
 
 	INIT_ESCOLHA_JOGADOR
 } fsm_escolha_jogadores;

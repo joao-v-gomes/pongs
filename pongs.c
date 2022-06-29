@@ -20,7 +20,7 @@ void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
 	intro = al_load_sample("data/audio/top-gear-3.wav");
 
-	al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
 
 void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
@@ -58,7 +58,7 @@ void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_me
 	}
 }
 
-void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, fsm_escolha_jogadores *opcao_jogador1) {
+void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, fsm_menu *state) {
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 			switch (*counter) {
@@ -73,9 +73,39 @@ void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, fsm_escolha_jogado
 					break;
 
 				default:
+					*opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
 					break;
 					// opcao_menu = counter;
 			}
+		}
+
+		if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+			switch (*counter2) {
+				case 0:
+					*opcao_jogador2 = TIPO_JOGADOR1;
+					break;
+				case 1:
+					*opcao_jogador2 = TIPO_JOGADOR2;
+					break;
+				case 2:
+					*opcao_jogador2 = TIPO_JOGADOR3;
+					break;
+
+				default:
+					*opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
+					break;
+					// opcao_menu = counter;
+			}
+		}
+	}
+
+	if (*state == ESCOLHE_UM_JOGADOR) {
+		if (*opcao_jogador1 != INIT_ESCOLHA_JOGADOR) {
+			*state = CARREGA_UM_JOGADOR;
+		}
+	} else if (*state == ESCOLHE_DOIS_JOGADORES) {
+		if (*opcao_jogador1 != INIT_ESCOLHA_JOGADOR && *opcao_jogador2 != INIT_ESCOLHA_JOGADOR) {
+			*state = CARREGA_DOIS_JOGADORES;
 		}
 	}
 }

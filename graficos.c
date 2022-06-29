@@ -1,3 +1,4 @@
+#include "graficos.h"
 #include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_image.h"
@@ -10,8 +11,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-//
-#include "pongs.h"
 //
 #include "jogadores.h"
 
@@ -31,35 +30,36 @@ void desenha_quadra() {
 	uint8_t linha = 3;
 
 	al_clear_to_color(al_map_rgb(0, 155, 0));
-	// Linha meio principal
-	al_draw_line(linha, SCREEN_H / 2, SCREEN_W - linha, SCREEN_H / 2, al_map_rgb(255, 255, 255), linha + linha);
-
-	// Linha baixo principal
-	al_draw_line(0, SCREEN_H - linha, SCREEN_W - linha, SCREEN_H - linha, al_map_rgb(255, 255, 255), linha);
 
 	// Linha alto principal
-	al_draw_line(0, linha, SCREEN_W - linha, linha, al_map_rgb(255, 255, 255), linha);
+	al_draw_line(0, 0, JOGO_W, 0, COR_BRANCA, linha + linha);
 
-	// Linha esq principal
-	al_draw_line(3, linha, 3, SCREEN_H - linha, al_map_rgb(255, 255, 255), linha);
+	// Linha esquerda principal
+	al_draw_line(0, 0, 0, JOGO_H, COR_BRANCA, linha + linha);
 
-	// Linha dir principal
-	al_draw_line(SCREEN_W - linha, linha - 1, SCREEN_W - linha, SCREEN_H - linha + 2, al_map_rgb(255, 255, 255), linha);
+	// Linha baixo principal
+	al_draw_line(0, JOGO_H, JOGO_W, JOGO_H, COR_BRANCA, linha + linha);
 
-	// Linha esq secundaria
-	al_draw_line(55, linha, 55, SCREEN_H - linha, al_map_rgb(255, 255, 255), linha);
-
-	// Linha dir secundaria
-	al_draw_line(SCREEN_W - 55, linha, SCREEN_W - 55, SCREEN_H - linha, al_map_rgb(255, 255, 255), linha);
-
-	// Linha meio secundaria baixo
-	al_draw_line(55, SCREEN_H - 222, SCREEN_W - 55, SCREEN_H - 222, al_map_rgb(255, 255, 255), linha);
-
-	// Linha meio secundaria alto
-	al_draw_line(55, 222, SCREEN_W - 55, 222, al_map_rgb(255, 255, 255), linha);
+	// Linha direita principal
+	al_draw_line(JOGO_W, 0, JOGO_W, JOGO_H, COR_BRANCA, linha + linha);
 
 	// Linha centro
-	al_draw_line(SCREEN_W / 2 - 2, 222, SCREEN_W / 2 - 2, 222 + (258 + 258), al_map_rgb(255, 255, 255), linha);
+	al_draw_line(JOGO_W / 2, 0, JOGO_W / 2, JOGO_H, COR_BRANCA, linha + linha);
+
+	// Linha alto secundaria
+	al_draw_line(0, 55, JOGO_W, 55, COR_BRANCA, linha);
+
+	// Linha baixo secundaria
+	al_draw_line(0, JOGO_H - 55, JOGO_W, JOGO_H - 55, COR_BRANCA, linha);
+
+	// Linha meio secundaria esq
+	al_draw_line(222, 55, 222, JOGO_H - 55, COR_BRANCA, linha);
+
+	// Linha meio secundaria direita
+	al_draw_line(JOGO_W - 222, 55, JOGO_W - 222, JOGO_H - 55, COR_BRANCA, linha);
+
+	// Linha centro
+	al_draw_line(222, (55 + 166), JOGO_W - 222, (55 + 166), COR_BRANCA, linha);
 }
 
 void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
@@ -81,19 +81,19 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	text_w = al_get_text_width(fonte_texto_grande, um_jog);
 	posicao_w_texto = (screen_w / 2) - (text_w / 2);
 
-	al_draw_text(fonte_texto_grande, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, um_jog);
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, um_jog);
 
 	text_w = al_get_text_width(fonte_texto_grande, dois_jog);
 	posicao_w_texto = (screen_w / 2) - (text_w / 2);
 	posicao_h_texto = posicao_h_texto + 70;
 
-	al_draw_text(fonte_texto_grande, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, dois_jog);
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, dois_jog);
 
 	text_w = al_get_text_width(fonte_texto_grande, sair);
 	posicao_w_texto = (screen_w / 2) - (text_w / 2);
 	posicao_h_texto = posicao_h_texto + 70;
 
-	al_draw_text(fonte_texto_grande, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, sair);
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, sair);
 
 	switch (*counter) {
 		case 0:
@@ -129,7 +129,7 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	}
 }
 
-void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter, int *counter2) {
+void desenha_escolha_jogador(ALLEGRO_DISPLAY *display) {
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
@@ -145,7 +145,7 @@ void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter, int *counte
 	text_w = al_get_text_width(fonte_texto_grande, escolha);
 	posicao_w_texto = (screen_w / 2) - (text_w / 2);
 
-	al_draw_text(fonte_texto_grande, al_map_rgb(255, 255, 255), posicao_w_texto, posicao_h_texto, 0, escolha);
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, escolha);
 
 	desenha_tipo_jogador1(display);
 	desenha_tipo_jogador2(display);
@@ -156,14 +156,58 @@ void desenha_escolha_jogador(ALLEGRO_DISPLAY *display, int *counter, int *counte
 	// int altura_box = 130;
 	// int espessura = 2;
 
-	// al_draw_rectangle(inicio_largura_box, altura_box, final_largura_box, altura_box + 90, al_map_rgb(255, 255, 255), espessura);
-	// al_draw_rectangle(inicio_largura_box + 10, (2 * altura_box), final_largura_box, (2 * altura_box) + 90, al_map_rgb(255, 255, 255), espessura);
-	// al_draw_rectangle(inicio_largura_box - 20, (3 * altura_box) - 5, final_largura_box, (3 * altura_box) - 5 + 90, al_map_rgb(255, 255, 255), espessura);
+	// al_draw_rectangle(inicio_largura_box, altura_box, final_largura_box, altura_box + 90, COR_BRANCA, espessura);
+	// al_draw_rectangle(inicio_largura_box + 10, (2 * altura_box), final_largura_box, (2 * altura_box) + 90, COR_BRANCA, espessura);
+	// al_draw_rectangle(inicio_largura_box - 20, (3 * altura_box) - 5, final_largura_box, (3 * altura_box) - 5 + 90, COR_BRANCA, espessura);
 }
 
-// void desenha_escolha_um_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, int *counter) {
-// 	desenha_escolha_jogador(display, counter);
-// }
+void desenha_escolha_um_jogador(ALLEGRO_DISPLAY *display, fsm_escolha_jogadores *opcao_jogador1, int *counter, int *counter2) {
+	desenha_escolha_jogador(display);
+
+	int pos_w = 30;
+	int pos_h_1 = 180;
+	int pos_h_2 = 330;
+	int pos_h_3 = 460;
+
+	int text_w = 0;
+
+	int posicao_w_texto = 0;
+	int posicao_h_texto = 350;
+
+	char jogador1[] = "J1";
+
+	text_w = al_get_text_width(fonte_texto_grande, jogador1);
+
+	switch (*counter) {
+		case 0:
+			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_1 - 40), 0, jogador1);
+
+			al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), COR_BRANCA);
+
+			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
+			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
+			break;
+		case 1:
+			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_2 - 40), 0, jogador1);
+
+			al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), COR_BRANCA);
+
+			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
+			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
+			break;
+		case 2:
+			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_3 - 40), 0, jogador1);
+
+			al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), COR_BRANCA);
+
+			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
+			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
+			break;
+
+		default:
+			break;
+	}
+}
 
 void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
 
@@ -190,26 +234,26 @@ void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
 
 	posicao_h = y1 - 30;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, velocidade);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, velocidade);
 
 	// Escreve Tamanho
 	text_w = al_get_text_width(fonte_texto_pequeno, tamanho);
 	posicao_w = (screen_w / 2) + text_w + 70;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
 	int posicao_w_bolinha = 310;
 
 	// Desenha as bolinhas velocidade
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, COR_BRANCA);
 
 	posicao_w_bolinha = 470;
 
 	// Desenha as bolinhas tamanho
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, COR_BRANCA);
 }
 
 void desenha_tipo_jogador2(ALLEGRO_DISPLAY *display) {
@@ -238,26 +282,26 @@ void desenha_tipo_jogador2(ALLEGRO_DISPLAY *display) {
 
 	posicao_h = y1 - 30;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, velocidade);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, velocidade);
 
 	// Escreve Tamanho
 	text_w = al_get_text_width(fonte_texto_pequeno, tamanho);
 	posicao_w = (screen_w / 2) + text_w + 70;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
 	int posicao_w_bolinha = 300;
 
 	// Desenha as bolinhas velocidade
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, COR_BRANCA);
 
 	posicao_w_bolinha = 480;
 
 	// Desenha as bolinhas tamanho
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
 }
 
 void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
@@ -286,27 +330,27 @@ void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
 
 	posicao_h = y1 - 30;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, velocidade);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, velocidade);
 
 	// Escreve Tamanho
 	text_w = al_get_text_width(fonte_texto_pequeno, tamanho);
 	posicao_w = (screen_w / 2) + text_w + 70;
 
-	al_draw_text(fonte_texto_pequeno, al_map_rgb(255, 255, 255), posicao_w, posicao_h, 0, tamanho);
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w, posicao_h, 0, tamanho);
 
 	int posicao_h_bolinha = y2 - 15;
 	int posicao_w_bolinha = 320;
 
 	// Desenha as bolinhas velocidade
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	// al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
+	// al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, COR_BRANCA);
 
 	posicao_w_bolinha = 460;
 
 	// Desenha as bolinhas tamanho
-	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
-	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, al_map_rgb(255, 255, 255));
+	al_draw_filled_circle(posicao_w_bolinha, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 20, posicao_h_bolinha, 5, COR_BRANCA);
+	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, COR_BRANCA);
 }
 
 void limpa_menu() {
