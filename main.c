@@ -191,20 +191,20 @@ int main(int argc, char **argv) {
 				case JOGO_UM_JOGADOR:
 					// printf("Foi jogo 1 jogador\r\n");
 					desenha_quadra();
+					verifica_posicao(&p1);
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
+
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
-					// printf("Foi jogo 1 jogador\r\n");
+					// // Abre o jogo para 2 jogadores
+					// printf("Foi jogo 2 jogador\r\n");
 					desenha_quadra();
+					verifica_posicoes_jogadores(&p1, &p2);
+					desenha_jogadores(p1, p2);
+					atualiza_jogadores(&p1, &p2);
 
-					desenha_jogador(p1);
-					atualiza_jogador(&p1);
-
-					desenha_jogador(p2);
-					atualiza_jogador(&p2);
-					// Abre o jogo para 2 jogadores
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");

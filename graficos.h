@@ -24,6 +24,8 @@
 #define SELETOR_W 15
 #define SELETOR_H 50
 
-#define COR_BRANCA al_map_rgb(255, 255, 255)
+#define COR_BRANCA			   al_map_rgb(255, 255, 255)
+#define ESPESSURA_LINHA_QUADRA 3
+#define DIST_FUNDO_LIMITE	   (ESPESSURA_LINHA_QUADRA * 2)
 
 #endif

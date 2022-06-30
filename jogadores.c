@@ -10,74 +10,69 @@
 #include "pongs.h"
 //
 #include "jogadores.h"
+//
+#include "graficos.h"
 
 void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2) {
 	verifica_posicao(p1);
 	verifica_posicao(p2);
 }
 
+void verifica_fundo_baixo(Jogador *p) {
+	if ((p->x) < DIST_FUNDO_LIMITE) {
+		p->esq = 0;
+	}
+}
+
+void verifica_fundo_alto(Jogador *p) {
+	if ((p->x) > JOGO_W - p->w - DIST_FUNDO_LIMITE) {
+		p->dir = 0;
+	}
+}
+
+void verifica_fundo_esquerdo(Jogador *p) {
+	if ((p->y) < DIST_FUNDO_LIMITE) {
+		p->cima = 0;
+	}
+}
+
+void verifica_fundo_direito(Jogador *p) {
+	if ((p->y) > JOGO_H - p->h - DIST_FUNDO_LIMITE) {
+		p->baixo = 0;
+	}
+}
+
+void verifica_meio_quadra(Jogador *p) {
+	if (p->id == 1) {
+		if ((p->x) > (JOGO_W / 2) - p->w - DIST_FUNDO_LIMITE) {
+			p->dir = 0;
+		}
+	} else if (p->id == 2) {
+		if ((p->x) < (JOGO_W / 2) + DIST_FUNDO_LIMITE) {
+			p->esq = 0;
+		}
+	}
+}
+
 void verifica_posicao(Jogador *p) {
 
+	// Fundo Alto = Esquerda dos jogadores
+	// Fundo Baixo = Direita dos jogadores
+	// Fundo Esquerdo = Acima dos jogadores
+	// Fundo Direito = Abaixo dos jogadores
+
 	if (p->id == 1) {
-		// Verifica meio
-		if ((p->y) > JOGO_H / 2 + 4) {
-			// tudo certo
-			//  p->cima = 0;
-		} else {
-			// printf("deu merda\r\n");
-			p->cima = 0;
-		}
-
-		// Verifica fundo
-		if ((p->y) < JOGO_H - ALTURA_JOGADOR_1 - 7) {
-
-		} else {
-			p->baixo = 0;
-		}
-
-		// Verifica esq
-		if ((p->x) > 0 + 6) {
-
-		} else {
-			p->esq = 0;
-		}
-
-		// Verifica dir
-		if ((p->x) < JOGO_W - LARGURA_JOGADOR_1 - 7) {
-
-		} else {
-			p->dir = 0;
-		}
-	} else {
-		// Verifica meio
-		if ((p->y) <= JOGO_H / 2 - ALTURA_JOGADOR_1 - 5) {
-			// tudo certo
-			//  p->cima = 0;
-		} else {
-			// printf("deu merda\r\n");
-			p->baixo = 0;
-		}
-
-		// Verifica topo
-		if ((p->y) > 0 + 5) {
-
-		} else {
-			p->cima = 0;
-		}
-
-		// Verifica esq
-		if ((p->x) > 0 + 6) {
-
-		} else {
-			p->esq = 0;
-		}
-
-		// Verifica dir
-		if ((p->x) < JOGO_W - LARGURA_JOGADOR_1 - 7) {
-
-		} else {
-			p->dir = 0;
-		}
+		verifica_fundo_alto(p);
+		verifica_fundo_baixo(p);
+		verifica_fundo_esquerdo(p);
+		verifica_fundo_direito(p);
+		verifica_meio_quadra(p);
+	} else if (p->id == 2) {
+		verifica_fundo_alto(p);
+		verifica_fundo_baixo(p);
+		verifica_fundo_esquerdo(p);
+		verifica_fundo_direito(p);
+		verifica_meio_quadra(p);
 	}
 }
 

@@ -27,39 +27,38 @@ void init_graficos() {
 }
 
 void desenha_quadra() {
-	uint8_t linha = 3;
 
 	al_clear_to_color(al_map_rgb(0, 155, 0));
 
 	// Linha alto principal
-	al_draw_line(0, 0, JOGO_W, 0, COR_BRANCA, linha + linha);
+	al_draw_line(0, 0, JOGO_W, 0, COR_BRANCA, ESPESSURA_LINHA_QUADRA + ESPESSURA_LINHA_QUADRA);
 
 	// Linha esquerda principal
-	al_draw_line(0, 0, 0, JOGO_H, COR_BRANCA, linha + linha);
+	al_draw_line(0, 0, 0, JOGO_H, COR_BRANCA, ESPESSURA_LINHA_QUADRA + ESPESSURA_LINHA_QUADRA);
 
 	// Linha baixo principal
-	al_draw_line(0, JOGO_H, JOGO_W, JOGO_H, COR_BRANCA, linha + linha);
+	al_draw_line(0, JOGO_H, JOGO_W, JOGO_H, COR_BRANCA, ESPESSURA_LINHA_QUADRA + ESPESSURA_LINHA_QUADRA);
 
 	// Linha direita principal
-	al_draw_line(JOGO_W, 0, JOGO_W, JOGO_H, COR_BRANCA, linha + linha);
+	al_draw_line(JOGO_W, 0, JOGO_W, JOGO_H, COR_BRANCA, ESPESSURA_LINHA_QUADRA + ESPESSURA_LINHA_QUADRA);
 
 	// Linha centro
-	al_draw_line(JOGO_W / 2, 0, JOGO_W / 2, JOGO_H, COR_BRANCA, linha + linha);
+	al_draw_line(JOGO_W / 2, 0, JOGO_W / 2, JOGO_H, COR_BRANCA, ESPESSURA_LINHA_QUADRA + ESPESSURA_LINHA_QUADRA);
 
 	// Linha alto secundaria
-	al_draw_line(0, 55, JOGO_W, 55, COR_BRANCA, linha);
+	al_draw_line(0, 55, JOGO_W, 55, COR_BRANCA, ESPESSURA_LINHA_QUADRA);
 
 	// Linha baixo secundaria
-	al_draw_line(0, JOGO_H - 55, JOGO_W, JOGO_H - 55, COR_BRANCA, linha);
+	al_draw_line(0, JOGO_H - 55, JOGO_W, JOGO_H - 55, COR_BRANCA, ESPESSURA_LINHA_QUADRA);
 
 	// Linha meio secundaria esq
-	al_draw_line(222, 55, 222, JOGO_H - 55, COR_BRANCA, linha);
+	al_draw_line(222, 55, 222, JOGO_H - 55, COR_BRANCA, ESPESSURA_LINHA_QUADRA);
 
 	// Linha meio secundaria direita
-	al_draw_line(JOGO_W - 222, 55, JOGO_W - 222, JOGO_H - 55, COR_BRANCA, linha);
+	al_draw_line(JOGO_W - 222, 55, JOGO_W - 222, JOGO_H - 55, COR_BRANCA, ESPESSURA_LINHA_QUADRA);
 
 	// Linha centro
-	al_draw_line(222, (55 + 166), JOGO_W - 222, (55 + 166), COR_BRANCA, linha);
+	al_draw_line(222, (55 + 166), JOGO_W - 222, (55 + 166), COR_BRANCA, ESPESSURA_LINHA_QUADRA);
 }
 
 void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
