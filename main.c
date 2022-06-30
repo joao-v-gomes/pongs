@@ -156,12 +156,14 @@ int main(int argc, char **argv) {
 					break;
 				case ESCOLHE_UM_JOGADOR:
 					// Printa e atualiza a movimentacao no menu de jogadores para um jogador
-					counter2 = -1;
-					desenha_escolha_um_jogador(display, opcao_jogador1, &counter, &counter2);
+					desenha_escolha_jogador(display);
+					desenha_escolha_jogador_um(display, &counter);
 					break;
 				case ESCOLHE_DOIS_JOGADORES:
 					// Printa e atualiza a movimentacao no menu de jogadores para dois jogadores
-					desenha_escolha_jogador(display, &counter, &counter2);
+					desenha_escolha_jogador(display);
+					desenha_escolha_jogador_um(display, &counter);
+					desenha_escolha_jogador_dois(display, &counter2);
 					break;
 				case CARREGA_UM_JOGADOR:
 					// Faz o init do jogador1 utilizando o tipo de jogador escolhido
@@ -178,6 +180,12 @@ int main(int argc, char **argv) {
 					break;
 				case CARREGA_DOIS_JOGADORES:
 					// Faz o init do jogador1 e jogador2 utilizando o tipo de jogador escolhido
+					printf("Foi carrega 2 jogadores\r\n");
+
+					init_jogador1(&p1, opcao_jogador1);
+					init_jogador2(&p2, opcao_jogador2);
+
+					al_resize_display(display, JOGO_W, JOGO_H);
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:
@@ -188,6 +196,14 @@ int main(int argc, char **argv) {
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
+					// printf("Foi jogo 1 jogador\r\n");
+					desenha_quadra();
+
+					desenha_jogador(p1);
+					atualiza_jogador(&p1);
+
+					desenha_jogador(p2);
+					atualiza_jogador(&p2);
 					// Abre o jogo para 2 jogadores
 					break;
 				case SAIR:

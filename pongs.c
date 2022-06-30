@@ -99,6 +99,9 @@ void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm
 		}
 	}
 
+	printf("Opcao j1: %d\r\n", *counter);
+	printf("Opcao j2: %d\r\n", *counter2);
+
 	if (*state == ESCOLHE_UM_JOGADOR) {
 		if (*opcao_jogador1 != INIT_ESCOLHA_JOGADOR) {
 			*state = CARREGA_UM_JOGADOR;
