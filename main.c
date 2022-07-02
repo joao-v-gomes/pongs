@@ -16,6 +16,8 @@
 #include "pongs.h"
 //
 #include "jogadores.h"
+//
+#include "bolas.h"
 
 int main(int argc, char **argv) {
 
@@ -113,6 +115,7 @@ int main(int argc, char **argv) {
 	al_start_timer(timer);
 
 	Jogador p1, p2;
+	Bola bola1;
 
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
@@ -131,8 +134,16 @@ int main(int argc, char **argv) {
 
 	int playing = 1;
 
-	// state = ESCOLHE_UM_JOGADOR;
+	state = JOGO_UM_JOGADOR;
+	al_resize_display(display, JOGO_W, JOGO_H);
 	// opcao_jogador1 = TIPO_JOGADOR1;
+
+	// float bola_x = 100;
+	// float bola_y = 100;
+
+	// float bola_dx = 2;
+	// float bola_dy = 2;
+	init_bola(&bola1);
 
 	init_pongs();
 	init_graficos();
@@ -191,9 +202,13 @@ int main(int argc, char **argv) {
 				case JOGO_UM_JOGADOR:
 					// printf("Foi jogo 1 jogador\r\n");
 					desenha_quadra();
-					verifica_posicao(&p1);
-					desenha_jogador(p1);
-					atualiza_jogador(&p1);
+
+					verifica_posicao_bola(&bola1);
+					desenha_bola(bola1);
+					atualiza_posicao_bola(&bola1);
+					// verifica_posicao(&p1);
+					// desenha_jogador(p1);
+					// atualiza_jogador(&p1);
 
 					// Abre o jogo para 1 jogador
 					break;
