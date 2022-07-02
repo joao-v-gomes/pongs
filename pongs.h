@@ -25,17 +25,11 @@ typedef enum {
 	JOGO_DOIS_JOGADORES,
 } fsm_menu;
 
-typedef enum {
-	TIPO_JOGADOR1,
-	TIPO_JOGADOR2,
-	TIPO_JOGADOR3,
-
-	JOGADOR_ESCOLHIDO,
-
-	INIT_ESCOLHA_JOGADOR
-} fsm_escolha_jogadores;
-
-// void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2);
+void init_pongs();
+void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_menu *state);
+void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter, int *counter2);
+void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm_menu state);
 void verifica_esc(ALLEGRO_EVENT ev, int *playing);
+void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, fsm_menu *state);
 
 #endif

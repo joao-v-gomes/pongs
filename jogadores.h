@@ -40,14 +40,23 @@ typedef struct Jogador {
 	int id;
 } Jogador;
 
-// void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
-// void verifica_posicao(Jogador *p);
-// void desenha_jogadores(Jogador p1, Jogador p2);
-// void desenha_jogador(Jogador p);
-// void init_jogador(Jogador *p);
-// void init_jogador1(Jogador *p1);
-// void init_jogador2(Jogador *p2);
-// void atualiza_jogadores(Jogador *p1, Jogador *p2);
-// void atualiza_jogador(Jogador *p);
+typedef enum {
+	TIPO_JOGADOR1,
+	TIPO_JOGADOR2,
+	TIPO_JOGADOR3,
+
+	JOGADOR_ESCOLHIDO,
+
+	INIT_ESCOLHA_JOGADOR
+} fsm_escolha_jogadores;
+
+void init_jogador1(Jogador *p1, fsm_escolha_jogadores opcao_jogador);
+void init_jogador2(Jogador *p2, fsm_escolha_jogadores opcao_jogador);
+void desenha_jogador(Jogador p);
+void desenha_jogadores(Jogador p1, Jogador p2);
+void atualiza_jogador(Jogador *p);
+void atualiza_jogadores(Jogador *p1, Jogador *p2);
+void verifica_posicao(Jogador *p);
+void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
 
 #endif
