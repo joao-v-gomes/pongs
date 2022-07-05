@@ -130,10 +130,16 @@ int main(int argc, char **argv) {
 	fsm_escolha_jogadores opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
 	fsm_escolha_jogadores opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
 
+	ALLEGRO_TIMER *timer_bola = NULL;
+
+	timer_bola = al_create_timer(1);
+
+	al_start_timer(timer_bola);
+
 	int playing = 1;
 
-	state = JOGO_UM_JOGADOR;
-	al_resize_display(display, JOGO_W, JOGO_H);
+	// state = JOGO_UM_JOGADOR;
+	// al_resize_display(display, JOGO_W, JOGO_H);
 	// opcao_jogador1 = TIPO_JOGADOR1;
 
 	init_bolas(&bolas, &indice_bolas);
@@ -141,10 +147,6 @@ int main(int argc, char **argv) {
 	init_pongs();
 	init_graficos();
 	int i = 0;
-
-	cria_bola(&bolas, &indice_bolas);
-	cria_bola(&bolas, &indice_bolas);
-	cria_bola(&bolas, &indice_bolas);
 
 	while (playing) {
 		ALLEGRO_EVENT ev;
@@ -195,6 +197,7 @@ int main(int argc, char **argv) {
 					init_jogador2(&p2, opcao_jogador2);
 
 					al_resize_display(display, JOGO_W, JOGO_H);
+					al_set_timer_count(timer_bola, 0);
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:
@@ -202,31 +205,17 @@ int main(int argc, char **argv) {
 
 					desenha_quadra();
 
-					// int i;
-					// for (i = 0; i < MAX_BOLAS; i++) {
-					// 	printf("bola[%d]: %d\r\n", i, bolas[i].bola_criada);
-					// }
-
-					// for (i; i < MAX_BOLAS; i++) {
-					// 	printf("Bola %d:\r\n", i);
-					// 	printf("X: %f\r\n", bolas[i].x);
-					// 	printf("Y: %f\r\n", bolas[i].y);
-					// 	printf("dx: %f\r\n", bolas[i].dx);
-					// 	printf("dy: %f\r\n", bolas[i].dy);
-					// 	printf("d: %d\r\n", bolas[i].d);
-					// 	printf("id: %d\r\n", bolas[i].id);
-					// 	printf("BC: %d\r\n", bolas[i].bola_criada);
-					// 	printf("Indice: %d\r\n", indice_bolas);
-					// 	printf("\r\n");
-					// }
+					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
+						cria_bola(&bolas, &indice_bolas);
+						al_set_timer_count(timer_bola, 0);
+					}
 
 					verifica_posicao_bola(&bolas, indice_bolas);
 					desenha_bola(bolas, indice_bolas);
 					atualiza_bolas(&bolas, indice_bolas);
-					// atualiza_posicao_bola(&bolas);
-					// verifica_posicao(&p1);
-					// desenha_jogador(p1);
-					// atualiza_jogador(&p1);
+					verifica_posicao(&p1);
+					desenha_jogador(p1);
+					atualiza_jogador(&p1);
 
 					// Abre o jogo para 1 jogador
 					break;

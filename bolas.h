@@ -18,14 +18,24 @@
 //
 #include "bolas.h"
 
-#define MAX_BOLAS 3
+#define DIAMETRO_BOLA	 5
+#define MAX_BOLAS		 60
+#define TEMPO_SOLTA_BOLA 5
+
+typedef enum {
+	CANTO_SUP_DIR,
+	CANTO_INF_DIR,
+	CANTO_INF_ESQ,
+	CANTO_SUP_ESQ
+
+} posicao_bola;
 
 typedef struct Bola {
 	float x, y;
 	float dx, dy;
 	uint8_t d;
 	uint8_t id;
-	uint8_t bola_criada;
+	uint8_t bola_valida;
 
 } Bola;
 

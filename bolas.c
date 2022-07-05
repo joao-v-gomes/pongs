@@ -15,23 +15,16 @@
 //
 #include "bolas.h"
 
-ALLEGRO_TIMER *timer_bola = NULL;
-// Bola bolas[MAX_BOLAS];
-
-int teste = 10;
+posicao_bola posicao_nova_bola = CANTO_SUP_DIR;
 
 void init_bolas(Bola bola[], int *indice_bolas) {
-
-	timer_bola = al_create_timer(1);
-
-	al_start_timer(timer_bola);
 
 	*indice_bolas = 0;
 
 	int i;
 
 	for (i = 0; i < MAX_BOLAS; i++) {
-		bola[i].bola_criada = 0;
+		bola[i].bola_valida = 0;
 		// printf("bola[%d]: %d\r\n", i, bola[i].bola_criada);
 	}
 }
@@ -60,28 +53,70 @@ void verifica_fundo_direito_bola(Bola *b) {
 	}
 }
 
+void verifica_contato_jogador(Bola *b, Jogador *j) {
+	if (b.x ==)
+}
+
 void cria_bola(Bola bolas[], int *indice_bolas) {
-	// int i = *indice_bolas;
 
-	// for (i; i < MAX_BOLAS; i++) {
-	// if (al_get_timer_count(timer_bola) == 2) {
-	bolas[*indice_bolas].x = teste;
-	bolas[*indice_bolas].y = teste + 10;
-	bolas[*indice_bolas].dx = 10;
-	bolas[*indice_bolas].dy = 15;
-	bolas[*indice_bolas].d = 5;
-	bolas[*indice_bolas].id = *indice_bolas;
-	bolas[*indice_bolas].bola_criada = 1;
+	float x, y;
+	float dx, dy;
 
-	*indice_bolas = *indice_bolas + 1;
+	if (*indice_bolas < MAX_BOLAS) {
+		switch (posicao_nova_bola) {
+			case CANTO_SUP_DIR:
+				x = JOGO_W - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
+				y = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
+				dx = 5;
+				dy = 12;
 
-	teste = teste + 10;
+				posicao_nova_bola = CANTO_INF_DIR;
+				break;
 
-	// al_set_timer_count(timer_bola, 0);
-	// }
+			case CANTO_INF_DIR:
+				x = JOGO_W - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
+				y = JOGO_H - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
+				dx = 2;
+				dy = 16;
 
-	// printf("Indice: %d\r\n", *indice_bolas);
-	// }
+				posicao_nova_bola = CANTO_INF_ESQ;
+				break;
+
+			case CANTO_INF_ESQ:
+				x = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
+				y = JOGO_H - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
+				dx = 8;
+				dy = 19;
+
+				posicao_nova_bola = CANTO_SUP_ESQ;
+				break;
+
+			case CANTO_SUP_ESQ:
+				x = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
+				y = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
+				dx = 15;
+				dy = 3;
+
+				posicao_nova_bola = CANTO_SUP_DIR;
+				break;
+
+			default:
+				printf("Caiu default cria bola!\r\n");
+				break;
+		}
+
+		bolas[*indice_bolas].x = x;
+		bolas[*indice_bolas].y = y;
+		bolas[*indice_bolas].dx = dx;
+		bolas[*indice_bolas].dy = dy;
+		bolas[*indice_bolas].d = DIAMETRO_BOLA;
+		bolas[*indice_bolas].id = *indice_bolas;
+		bolas[*indice_bolas].bola_valida = 1;
+
+		*indice_bolas = *indice_bolas + 1;
+	} else {
+		printf("Limite de bolas!\n\r");
+	}
 }
 
 void atualiza_posicao_bola(Bola *bola) {
@@ -93,7 +128,7 @@ void atualiza_bolas(Bola bolas[], int indice_bolas) {
 	int i = 0;
 
 	for (i; i < indice_bolas; i++) {
-		if (bolas[i].bola_criada) {
+		if (bolas[i].bola_valida) {
 			atualiza_posicao_bola(&bolas[i]);
 		}
 	}
