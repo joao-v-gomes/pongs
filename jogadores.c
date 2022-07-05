@@ -92,6 +92,8 @@ void desenha_jogador(Jogador p) {
 
 void init_jogador(Jogador *p, fsm_escolha_jogadores opcao_jogador) {
 
+	// printf("Opcao: %d\r\n\n", opcao_jogador);
+
 	switch (opcao_jogador) {
 		case 0:
 			p->w = ALTURA_JOGADOR_1;

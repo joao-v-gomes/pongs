@@ -19,8 +19,8 @@
 #include "bolas.h"
 
 #define DIAMETRO_BOLA	 5
-#define MAX_BOLAS		 60
-#define TEMPO_SOLTA_BOLA 5
+#define MAX_BOLAS		 2
+#define TEMPO_SOLTA_BOLA 2
 
 typedef enum {
 	CANTO_SUP_DIR,

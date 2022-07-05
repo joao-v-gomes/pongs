@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
 
 	Jogador p1, p2;
 	Bola bolas[MAX_BOLAS];
-	int indice_bolas = -1;
+	int contador_bolas = 0;
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
 	al_set_window_title(display, "PongS");
@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
 	// al_resize_display(display, JOGO_W, JOGO_H);
 	// opcao_jogador1 = TIPO_JOGADOR1;
 
-	init_bolas(&bolas, &indice_bolas);
+	init_bolas(&bolas, &contador_bolas);
 
 	init_pongs();
 	init_graficos();
@@ -206,13 +206,14 @@ int main(int argc, char **argv) {
 					desenha_quadra();
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
-						cria_bola(&bolas, &indice_bolas);
+						printf("entrou!\r\n");
+						cria_bola(&bolas, &contador_bolas);
 						al_set_timer_count(timer_bola, 0);
 					}
-
-					verifica_posicao_bola(&bolas, indice_bolas);
-					desenha_bola(bolas, indice_bolas);
-					atualiza_bolas(&bolas, indice_bolas);
+					printf("Vai verificar\r\n");
+					verifica_posicao_bola(&bolas, &p1);
+					desenha_bola(bolas);
+					atualiza_bolas(&bolas);
 					verifica_posicao(&p1);
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
