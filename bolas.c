@@ -29,18 +29,26 @@ void init_bolas(Bola bola[], int *contador_bolas) {
 	}
 }
 
-void verifica_fundo_baixo_bola(Bola *b) {
+void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas) {
 	if ((b->x) < DIST_FUNDO_LIMITE) {
 		// b->dx = -b->dx;
 		b->bola_valida = 0;
+
+		*contador_bolas = *contador_bolas - 1;
 
 		printf("Bola %d invalida\r\n", b->id);
 	}
 }
 
-void verifica_fundo_alto_bola(Bola *b) {
+void verifica_fundo_alto_bola(Bola *b, int *contador_bolas) {
 	if ((b->x) > JOGO_W - b->d - DIST_FUNDO_LIMITE) {
-		b->dx = -b->dx;
+		// b->dx = -b->dx;
+
+		b->bola_valida = 0;
+
+		*contador_bolas = *contador_bolas - 1;
+
+		printf("Bola %d invalida\r\n", b->id);
 	}
 }
 
@@ -58,18 +66,18 @@ void verifica_fundo_direito_bola(Bola *b) {
 
 void verifica_contato_jogador(Bola *b, Jogador *j) {
 
-	// if (((b->x + b->d) > j->x) && ((b->x + b->d) < j->x + j->w) && ((b->y + b->d) > j->y) && ((b->y + b->d) < j->y + j->h)) {
-	// 	// printf("Bateu!\r\n");
-	// 	// if (((b->y + b->d) > j->y) || ((b->y + b->d) < j->y + j->h)) {
-	// 	// 	b->dy = -b->dy;
-	// 	// 	b->dx = -b->dx;
-	// 	// 	printf("foi aqui1!\r\n");
-	// 	// }
-	// 	// if (((b->x + b->d) > j->x) || ((b->x + b->d) < j->x + j->w)) {
-	printf("foi aqui2!\r\n");
-	// 	b->dx = -b->dx;
-	// 	// }
-	// }
+	if (((b->x + b->d) > j->x) && ((b->x + b->d) < j->x + j->w) && ((b->y + b->d) > j->y) && ((b->y + b->d) < j->y + j->h)) {
+		// 	// printf("Bateu!\r\n");
+		// 	// if (((b->y + b->d) > j->y) || ((b->y + b->d) < j->y + j->h)) {
+		// 	// 	b->dy = -b->dy;
+		// 	// 	b->dx = -b->dx;
+		// 	// 	printf("foi aqui1!\r\n");
+		// 	// }
+		// 	// if (((b->x + b->d) > j->x) || ((b->x + b->d) < j->x + j->w)) {
+		printf("foi aqui2!\r\n");
+		b->dx = -b->dx;
+		// 	// }
+	}
 }
 
 void cria_bola(Bola bolas[], int *contador_bolas) {
@@ -91,35 +99,35 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 	if (*contador_bolas < MAX_BOLAS) {
 		switch (posicao_nova_bola) {
 			case CANTO_SUP_DIR:
-				x = JOGO_W - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
-				y = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
-				dx = 5;
+				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
+				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
+				dx = -5;
 				dy = 12;
 
 				posicao_nova_bola = CANTO_INF_DIR;
 				break;
 
 			case CANTO_INF_DIR:
-				x = JOGO_W - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
-				y = JOGO_H - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
-				dx = 2;
-				dy = 16;
+				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
+				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
+				dx = -2;
+				dy = -16;
 
 				posicao_nova_bola = CANTO_INF_ESQ;
 				break;
 
 			case CANTO_INF_ESQ:
-				x = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
-				y = JOGO_H - DIAMETRO_BOLA - ESPESSURA_LINHA_QUADRA;
+				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
+				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
 				dx = 8;
-				dy = 19;
+				dy = -19;
 
 				posicao_nova_bola = CANTO_SUP_ESQ;
 				break;
 
 			case CANTO_SUP_ESQ:
-				x = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
-				y = 0 + DIAMETRO_BOLA + ESPESSURA_LINHA_QUADRA;
+				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
+				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
 				dx = 15;
 				dy = 3;
 
@@ -172,21 +180,21 @@ void desenha_bola(Bola bolas[]) {
 	}
 }
 
-void verifica_posicao_bola(Bola bola[], Jogador *j) {
+void verifica_posicao_bola(Bola bola[], Jogador *j, int *contador_bolas) {
 	int i = 0;
-	printf("Foi verificar2!\r\n");
+	// printf("Foi verificar2!\r\n");
 	for (i; i < MAX_BOLAS; i++) {
 		if (bola[i].bola_valida) {
 			verifica_fundo_esquerdo_bola(&bola[i]);
-			printf("Foi verificar3!\r\n");
+			// printf("Foi verificar3!\r\n");
 			verifica_fundo_direito_bola(&bola[i]);
-			printf("Foi verificar4!\r\n");
-			verifica_fundo_alto_bola(&bola[i]);
-			printf("Foi verificar5!\r\n");
-			verifica_fundo_baixo_bola(&bola[i]);
-			printf("Foi verificar6!\r\n");
+			// printf("Foi verificar4!\r\n");
+			verifica_fundo_alto_bola(&bola[i], contador_bolas);
+			// printf("Foi verificar5!\r\n");
+			verifica_fundo_baixo_bola(&bola[i], contador_bolas);
+			// printf("Foi verificar6!\r\n");
 			verifica_contato_jogador(&bola[i], j);
-			printf("Foi verificar7!\r\n");
+			// printf("Foi verificar7!\r\n");
 		}
 	}
 }

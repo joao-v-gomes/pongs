@@ -206,12 +206,12 @@ int main(int argc, char **argv) {
 					desenha_quadra();
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
-						printf("entrou!\r\n");
+						// printf("e\r\n");
 						cria_bola(&bolas, &contador_bolas);
 						al_set_timer_count(timer_bola, 0);
 					}
-					printf("Vai verificar\r\n");
-					verifica_posicao_bola(&bolas, &p1);
+					// printf("Vai verificar\r\n");
+					verifica_posicao_bola(&bolas, &p1, &contador_bolas);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
 					verifica_posicao(&p1);

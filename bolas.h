@@ -19,7 +19,7 @@
 #include "bolas.h"
 
 #define DIAMETRO_BOLA	 5
-#define MAX_BOLAS		 2
+#define MAX_BOLAS		 5
 #define TEMPO_SOLTA_BOLA 2
 
 typedef enum {
