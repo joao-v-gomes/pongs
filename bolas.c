@@ -18,20 +18,21 @@
 ALLEGRO_TIMER *timer_bola = NULL;
 // Bola bolas[MAX_BOLAS];
 
-uint8_t indice_bolas;
+int teste = 10;
 
-void init_bolas(Bola *bolas[]) {
+void init_bolas(Bola bola[], int *indice_bolas) {
 
 	timer_bola = al_create_timer(1);
 
 	al_start_timer(timer_bola);
 
-	indice_bolas = 0;
+	*indice_bolas = 0;
 
 	int i;
 
 	for (i = 0; i < MAX_BOLAS; i++) {
-		bolas[i]->bola_criada = false;
+		bola[i].bola_criada = 0;
+		// printf("bola[%d]: %d\r\n", i, bola[i].bola_criada);
 	}
 }
 
@@ -59,16 +60,28 @@ void verifica_fundo_direito_bola(Bola *b) {
 	}
 }
 
-void cria_bola(Bola *bolas[]) {
-	bolas[indice_bolas]->x = 700;
-	bolas[indice_bolas]->y = 50;
-	bolas[indice_bolas]->dx = 10;
-	bolas[indice_bolas]->dy = 15;
-	bolas[indice_bolas]->d = 5;
-	bolas[indice_bolas]->id = 3;
-	bolas[indice_bolas]->bola_criada = true;
+void cria_bola(Bola bolas[], int *indice_bolas) {
+	// int i = *indice_bolas;
 
-	indice_bolas++;
+	// for (i; i < MAX_BOLAS; i++) {
+	// if (al_get_timer_count(timer_bola) == 2) {
+	bolas[*indice_bolas].x = teste;
+	bolas[*indice_bolas].y = teste + 10;
+	bolas[*indice_bolas].dx = 10;
+	bolas[*indice_bolas].dy = 15;
+	bolas[*indice_bolas].d = 5;
+	bolas[*indice_bolas].id = *indice_bolas;
+	bolas[*indice_bolas].bola_criada = 1;
+
+	*indice_bolas = *indice_bolas + 1;
+
+	teste = teste + 10;
+
+	// al_set_timer_count(timer_bola, 0);
+	// }
+
+	// printf("Indice: %d\r\n", *indice_bolas);
+	// }
 }
 
 void atualiza_posicao_bola(Bola *bola) {
@@ -76,23 +89,30 @@ void atualiza_posicao_bola(Bola *bola) {
 	bola->y = bola->y + bola->dy;
 }
 
-void atualiza_bolas(Bola bolas[]) {
+void atualiza_bolas(Bola bolas[], int indice_bolas) {
 	int i = 0;
 
-	for (i; i < MAX_BOLAS; i++) {
-		if (bolas[i].bola_criada == true) {
+	for (i; i < indice_bolas; i++) {
+		if (bolas[i].bola_criada) {
 			atualiza_posicao_bola(&bolas[i]);
 		}
 	}
 }
 
-void desenha_bola(Bola bola) {
-	al_draw_filled_circle(bola.x, bola.y, bola.d, COR_BRANCA);
+void desenha_bola(Bola bolas[], int indice_bolas) {
+	int i = 0;
+	for (i; i < indice_bolas; i++) {
+		al_draw_filled_circle(bolas[i].x, bolas[i].y, bolas[i].d, COR_BRANCA);
+	}
 }
 
-void verifica_posicao_bola(Bola *bola) {
-	verifica_fundo_esquerdo_bola(bola);
-	verifica_fundo_direito_bola(bola);
-	verifica_fundo_alto_bola(bola);
-	verifica_fundo_baixo_bola(bola);
+void verifica_posicao_bola(Bola bola[], int indice_bolas) {
+	int i = 0;
+
+	for (i; i < indice_bolas; i++) {
+		verifica_fundo_esquerdo_bola(&bola[i]);
+		verifica_fundo_direito_bola(&bola[i]);
+		verifica_fundo_alto_bola(&bola[i]);
+		verifica_fundo_baixo_bola(&bola[i]);
+	}
 }

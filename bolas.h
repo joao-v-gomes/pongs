@@ -18,14 +18,14 @@
 //
 #include "bolas.h"
 
-#define MAX_BOLAS 20
+#define MAX_BOLAS 3
 
-typedef struct {
+typedef struct Bola {
 	float x, y;
 	float dx, dy;
 	uint8_t d;
 	uint8_t id;
-	bool bola_criada;
+	uint8_t bola_criada;
 
 } Bola;
 

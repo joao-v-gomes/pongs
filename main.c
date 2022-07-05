@@ -21,8 +21,6 @@
 
 int main(int argc, char **argv) {
 
-	int i, j;
-
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
@@ -116,7 +114,7 @@ int main(int argc, char **argv) {
 
 	Jogador p1, p2;
 	Bola bolas[MAX_BOLAS];
-
+	int indice_bolas = -1;
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
 	al_set_window_title(display, "PongS");
@@ -138,15 +136,15 @@ int main(int argc, char **argv) {
 	al_resize_display(display, JOGO_W, JOGO_H);
 	// opcao_jogador1 = TIPO_JOGADOR1;
 
-	// float bola_x = 100;
-	// float bola_y = 100;
-
-	// float bola_dx = 2;
-	// float bola_dy = 2;
-	// init_bolas(&bolas[MAX_BOLAS]);
+	init_bolas(&bolas, &indice_bolas);
 
 	init_pongs();
 	init_graficos();
+	int i = 0;
+
+	cria_bola(&bolas, &indice_bolas);
+	cria_bola(&bolas, &indice_bolas);
+	cria_bola(&bolas, &indice_bolas);
 
 	while (playing) {
 		ALLEGRO_EVENT ev;
@@ -204,11 +202,28 @@ int main(int argc, char **argv) {
 
 					desenha_quadra();
 
-					// cria_bola(&bolas[MAX_BOLAS]);
+					// int i;
+					// for (i = 0; i < MAX_BOLAS; i++) {
+					// 	printf("bola[%d]: %d\r\n", i, bolas[i].bola_criada);
+					// }
 
-					// verifica_posicao_bola(&bolas[MAX_BOLAS]);
-					// desenha_bola(bolas[MAX_BOLAS]);
-					// atualiza_posicao_bola(&bolas[MAX_BOLAS]);
+					// for (i; i < MAX_BOLAS; i++) {
+					// 	printf("Bola %d:\r\n", i);
+					// 	printf("X: %f\r\n", bolas[i].x);
+					// 	printf("Y: %f\r\n", bolas[i].y);
+					// 	printf("dx: %f\r\n", bolas[i].dx);
+					// 	printf("dy: %f\r\n", bolas[i].dy);
+					// 	printf("d: %d\r\n", bolas[i].d);
+					// 	printf("id: %d\r\n", bolas[i].id);
+					// 	printf("BC: %d\r\n", bolas[i].bola_criada);
+					// 	printf("Indice: %d\r\n", indice_bolas);
+					// 	printf("\r\n");
+					// }
+
+					verifica_posicao_bola(&bolas, indice_bolas);
+					desenha_bola(bolas, indice_bolas);
+					atualiza_bolas(&bolas, indice_bolas);
+					// atualiza_posicao_bola(&bolas);
 					// verifica_posicao(&p1);
 					// desenha_jogador(p1);
 					// atualiza_jogador(&p1);

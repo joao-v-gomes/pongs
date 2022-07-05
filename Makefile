@@ -10,7 +10,7 @@ all: clean $(TARGET)
 teste-allegro-lab: teste-allegro-lab.o
 	$(CC) -o teste-allegro-lab teste-allegro-lab.o $(LIBS) $(LDLAGS)
 
-$(TARGET): $(OBJFILES)
+$(TARGET): clean $(OBJFILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
 # $(CC) $(CFLAGS) -c -o main.o main.c
 # $(CC) $(CFLAGS) -c -o jogadores.o jogadores.c
