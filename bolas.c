@@ -66,17 +66,11 @@ void verifica_fundo_direito_bola(Bola *b) {
 
 void verifica_contato_jogador(Bola *b, Jogador *j) {
 
-	if (((b->x + b->d) > j->x) && ((b->x + b->d) < j->x + j->w) && ((b->y + b->d) > j->y) && ((b->y + b->d) < j->y + j->h)) {
-		// 	// printf("Bateu!\r\n");
-		// 	// if (((b->y + b->d) > j->y) || ((b->y + b->d) < j->y + j->h)) {
-		// 	// 	b->dy = -b->dy;
-		// 	// 	b->dx = -b->dx;
-		// 	// 	printf("foi aqui1!\r\n");
-		// 	// }
-		// 	// if (((b->x + b->d) > j->x) || ((b->x + b->d) < j->x + j->w)) {
-		printf("foi aqui2!\r\n");
-		b->dx = -b->dx;
-		// 	// }
+	if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
+		if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
+			b->x = j->x + j->w;
+			b->dx = -b->dx;
+		}
 	}
 }
 
