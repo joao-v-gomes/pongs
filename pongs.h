@@ -3,16 +3,18 @@
 
 #include "jogadores.h"
 
-#define FPS			30
-#define SCREEN_INIT 1
-#define JOGO_H		440
-#define JOGO_W		960
+#define FPS			   30
+#define SCREEN_INIT	   1
+#define JOGO_H		   440
+#define JOGO_W		   960
+#define PONTOS_VITORIA 2
 
 typedef enum {
 	INIT_MENU,
 	MENU,
 	UM_JOGADOR,
 	DOIS_JOGADORES,
+	FINAL_JOGO,
 	SAIR,
 
 	ESCOLHE_UM_JOGADOR,

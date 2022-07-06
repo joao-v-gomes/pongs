@@ -72,15 +72,15 @@ void verifica_fundo_direito_bola(Bola *b) {
 void verifica_contato_jogador(Bola *b, Jogador *j) {
 
 	if (j->id == 1) {
-		if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
-			if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
+		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
+			if ((b->x + b->d >= j->x) && (b->x + b->d <= j->x + j->w)) {
 				b->x = j->x + j->w;
 				b->dx = -b->dx;
 			}
 		}
 	} else if (j->id == 2) {
-		if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
-			if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
+		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
+			if ((b->x + b->d >= j->x) && (b->x + b->d <= j->x + j->w)) {
 				b->x = j->x;
 				b->dx = -b->dx;
 			}
@@ -108,10 +108,19 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 	}
 
 	if (*contador_bolas < MAX_BOLAS) {
+
+		int diametro_bola = 0;
+
+		bolas[indice_bolas].d = DIAMETRO_BOLA_MIN + rand() % DIAMETRO_BOLA_MAX;
+		bolas[indice_bolas].id = indice_bolas;
+		bolas[indice_bolas].bola_valida = 1;
+
+		diametro_bola = bolas[indice_bolas].d;
+
 		switch (posicao_nova_bola) {
 			case CANTO_SUP_DIR:
-				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
-				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
+				x = JOGO_W - diametro_bola - DIST_FUNDO_LIMITE;
+				y = 0 + diametro_bola + DIST_FUNDO_LIMITE;
 				dx = -valor_dx;
 				dy = valor_dy;
 
@@ -119,8 +128,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 				break;
 
 			case CANTO_INF_DIR:
-				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
-				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
+				x = JOGO_W - diametro_bola - DIST_FUNDO_LIMITE;
+				y = JOGO_H - diametro_bola - DIST_FUNDO_LIMITE;
 				dx = -valor_dx;
 				dy = -valor_dy;
 
@@ -128,8 +137,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 				break;
 
 			case CANTO_INF_ESQ:
-				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
-				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
+				x = 0 + diametro_bola + DIST_FUNDO_LIMITE;
+				y = JOGO_H - diametro_bola - DIST_FUNDO_LIMITE;
 				dx = valor_dx;
 				dy = -valor_dy;
 
@@ -137,8 +146,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 				break;
 
 			case CANTO_SUP_ESQ:
-				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
-				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
+				x = 0 + diametro_bola + DIST_FUNDO_LIMITE;
+				y = 0 + diametro_bola + DIST_FUNDO_LIMITE;
 				dx = valor_dx;
 				dy = valor_dy;
 
@@ -154,9 +163,6 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 		bolas[indice_bolas].y = y;
 		bolas[indice_bolas].dx = dx;
 		bolas[indice_bolas].dy = dy;
-		bolas[indice_bolas].d = DIAMETRO_BOLA;
-		bolas[indice_bolas].id = indice_bolas;
-		bolas[indice_bolas].bola_valida = 1;
 
 		*contador_bolas = *contador_bolas + 1;
 

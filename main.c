@@ -228,6 +228,10 @@ int main(int argc, char **argv) {
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
 
+					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
+						state = FINAL_JOGO;
+					}
+
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
@@ -250,6 +254,16 @@ int main(int argc, char **argv) {
 					verifica_posicoes_jogadores(&p1, &p2);
 					desenha_jogadores(p1, p2);
 					atualiza_jogadores(&p1, &p2);
+
+					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
+						state = FINAL_JOGO;
+					}
+
+					break;
+				case FINAL_JOGO:
+					al_resize_display(display, MENU_W, MENU_H);
+
+					printf("FINAL DO JOGO!\r\n");
 
 					break;
 				case SAIR:
