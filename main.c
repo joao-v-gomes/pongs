@@ -211,9 +211,12 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 					// printf("Vai verificar\r\n");
-					verifica_posicao_bola(&bolas, &p1, &contador_bolas);
+					// verifica_posicao_bola(&bolas, &p1, &contador_bolas);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
+					verifica_posicao_bola_jogador(&bolas, &p1);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
+
 					verifica_posicao(&p1);
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
@@ -224,6 +227,20 @@ int main(int argc, char **argv) {
 					// // Abre o jogo para 2 jogadores
 					// printf("Foi jogo 2 jogador\r\n");
 					desenha_quadra();
+
+					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
+						// printf("e\r\n");
+						cria_bola(&bolas, &contador_bolas);
+						al_set_timer_count(timer_bola, 0);
+					}
+
+					// verifica_posicao_bola(&bolas, &p1, &contador_bolas);
+					// verifica_posicao_bola(&bolas, &p2, &contador_bolas);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
+					verifica_posicao_bola_jogadores(&bolas, &p1, &p2);
+					desenha_bola(bolas);
+					atualiza_bolas(&bolas);
+
 					verifica_posicoes_jogadores(&p1, &p2);
 					desenha_jogadores(p1, p2);
 					atualiza_jogadores(&p1, &p2);

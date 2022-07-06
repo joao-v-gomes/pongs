@@ -66,10 +66,19 @@ void verifica_fundo_direito_bola(Bola *b) {
 
 void verifica_contato_jogador(Bola *b, Jogador *j) {
 
-	if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
-		if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
-			b->x = j->x + j->w;
-			b->dx = -b->dx;
+	if (j->id == 1) {
+		if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
+			if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
+				b->x = j->x + j->w;
+				b->dx = -b->dx;
+			}
+		}
+	} else if (j->id == 2) {
+		if (((b->x + DIAMETRO_BOLA) >= j->x) && ((b->x + DIAMETRO_BOLA) <= (j->x + j->w)) && ((b->y + DIAMETRO_BOLA) >= j->y) && ((b->y + DIAMETRO_BOLA) <= (j->y + j->h))) {
+			if ((b->x + DIAMETRO_BOLA >= j->x) && (b->x + DIAMETRO_BOLA <= j->x + j->w)) {
+				b->x = j->x;
+				b->dx = -b->dx;
+			}
 		}
 	}
 }
@@ -174,21 +183,31 @@ void desenha_bola(Bola bolas[]) {
 	}
 }
 
-void verifica_posicao_bola(Bola bola[], Jogador *j, int *contador_bolas) {
+void verifica_posicao_bola_quadra(Bola bola[], int *contador_bolas) {
 	int i = 0;
 	// printf("Foi verificar2!\r\n");
 	for (i; i < MAX_BOLAS; i++) {
 		if (bola[i].bola_valida) {
 			verifica_fundo_esquerdo_bola(&bola[i]);
-			// printf("Foi verificar3!\r\n");
 			verifica_fundo_direito_bola(&bola[i]);
-			// printf("Foi verificar4!\r\n");
 			verifica_fundo_alto_bola(&bola[i], contador_bolas);
-			// printf("Foi verificar5!\r\n");
 			verifica_fundo_baixo_bola(&bola[i], contador_bolas);
-			// printf("Foi verificar6!\r\n");
-			verifica_contato_jogador(&bola[i], j);
-			// printf("Foi verificar7!\r\n");
+			// verifica_contato_jogador(&bola[i], j);
 		}
 	}
+}
+
+void verifica_posicao_bola_jogador(Bola bola[], Jogador *j) {
+	int i = 0;
+	// printf("Foi verificar2!\r\n");
+	for (i; i < MAX_BOLAS; i++) {
+		if (bola[i].bola_valida) {
+			verifica_contato_jogador(&bola[i], j);
+		}
+	}
+}
+
+void verifica_posicao_bola_jogadores(Bola bola[], Jogador *j1, Jogador *j2) {
+	verifica_posicao_bola_jogador(bola, j1);
+	verifica_posicao_bola_jogador(bola, j2);
 }
