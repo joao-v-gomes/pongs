@@ -10,6 +10,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 //
 #include "jogadores.h"
 
@@ -243,6 +245,97 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm
 }
 
 void prepara_final_jogo(int pontos_p1, int pontos_p2) {
+	FILE *partidas;
+	partidas = fopen("teste.txt", "a");
+
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	// printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+	char linha_salva[200];
+	char pontos[3];
+	char data[50];
+
+	strcpy(data, "");
+
+	strcpy(linha_salva, "");
+
+	// Pega j1
+	char j1[] = "Jogador 1";
+
+	strcat(linha_salva, j1);
+
+	strcat(linha_salva, ",");
+
+	sprintf(pontos, "%d", pontos_p1);
+
+	strcat(linha_salva, pontos);
+
+	strcat(linha_salva, ",");
+
+	// Pega j2
+
+	char j2[] = "Jogador 2";
+
+	strcat(linha_salva, j2);
+
+	strcat(linha_salva, ",");
+
+	strcpy(pontos, "");
+
+	sprintf(pontos, "%d", pontos_p2);
+
+	strcat(linha_salva, pontos);
+
+	strcat(linha_salva, ",");
+
+	// Pega data
+
+	sprintf(data, "%02d", tm.tm_mday);
+	strcat(linha_salva, data);
+	strcat(linha_salva, "/");
+
+	strcpy(data, "");
+
+	sprintf(data, "%02d", tm.tm_mon + 1);
+	strcat(linha_salva, data);
+	strcat(linha_salva, "/");
+
+	strcpy(data, "");
+
+	sprintf(data, "%d", tm.tm_year + 1900);
+	strcat(linha_salva, data);
+	strcat(linha_salva, " - ");
+
+	strcpy(data, "");
+
+	sprintf(data, "%02d", tm.tm_hour);
+	strcat(linha_salva, data);
+	strcat(linha_salva, ":");
+
+	strcpy(data, "");
+
+	sprintf(data, "%02d", tm.tm_min);
+	strcat(linha_salva, data);
+	strcat(linha_salva, ":");
+
+	strcpy(data, "");
+
+	sprintf(data, "%02d", tm.tm_sec);
+	strcat(linha_salva, data);
+
+	strcat(linha_salva, ",");
+
+	// Finaliza string
+
+	strcat(linha_salva, "\0");
+	strcat(linha_salva, "\n");
+
+	fprintf(partidas, "%s", linha_salva);
+
+	fclose(partidas);
+
+	// printf("Linha: %s\r\n", linha_salva);
 }
 
 void limpa_pongs() {

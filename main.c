@@ -244,10 +244,6 @@ int main(int argc, char **argv) {
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
 
-					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
-						state = FINAL_JOGO;
-					}
-
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
@@ -280,6 +276,9 @@ int main(int argc, char **argv) {
 					printf("Pega os pontos, escreve no arquivo");
 
 					prepara_final_jogo(pontos_p1, pontos_p2);
+					al_resize_display(display, MENU_W, MENU_H);
+
+					state = FINAL_JOGO;
 
 					break;
 

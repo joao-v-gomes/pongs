@@ -427,6 +427,7 @@ void desenha_placar(int pontos_p1, int pontos_p2) {
 }
 
 void desenha_final_jogo() {
+	al_draw_bitmap(bg_menu, 0, 0, 0);
 }
 void limpa_menu() {
 	al_destroy_bitmap(seletor);
