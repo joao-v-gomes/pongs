@@ -400,6 +400,32 @@ void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
 	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, COR_BRANCA);
 }
 
+void desenha_placar(int pontos_p1, int pontos_p2) {
+
+	char aux[100];
+	char pontos1[1000];
+	char pontos2[1000];
+
+	sprintf(aux, "%d", pontos_p1);
+
+	strcpy(pontos1, aux);
+
+	strcpy(aux, "");
+
+	sprintf(aux, "%d", pontos_p2);
+
+	strcpy(pontos2, aux);
+
+	int posicao_w_texto = 400;
+	int posicao_h_texto = 20;
+
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos1);
+
+	posicao_w_texto = 540;
+
+	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos2);
+}
+
 void limpa_menu() {
 	al_destroy_bitmap(seletor);
 	al_destroy_bitmap(bg_menu);

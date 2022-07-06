@@ -29,10 +29,13 @@ void init_bolas(Bola bola[], int *contador_bolas) {
 	}
 }
 
-void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas) {
+void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas, int *pontos2) {
 	if ((b->x) < DIST_FUNDO_LIMITE) {
 		// b->dx = -b->dx;
+
 		b->bola_valida = 0;
+
+		*pontos2 = *pontos2 + 1;
 
 		*contador_bolas = *contador_bolas - 1;
 
@@ -40,11 +43,13 @@ void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas) {
 	}
 }
 
-void verifica_fundo_alto_bola(Bola *b, int *contador_bolas) {
+void verifica_fundo_alto_bola(Bola *b, int *contador_bolas, int *pontos1) {
 	if ((b->x) > JOGO_W - b->d - DIST_FUNDO_LIMITE) {
 		// b->dx = -b->dx;
 
 		b->bola_valida = 0;
+
+		*pontos1 = *pontos1 + 1;
 
 		*contador_bolas = *contador_bolas - 1;
 
@@ -186,15 +191,15 @@ void desenha_bola(Bola bolas[]) {
 	}
 }
 
-void verifica_posicao_bola_quadra(Bola bola[], int *contador_bolas) {
+void verifica_posicao_bola_quadra(Bola bola[], int *contador_bolas, int *pontos1, int *pontos2) {
 	int i = 0;
 	// printf("Foi verificar2!\r\n");
 	for (i; i < MAX_BOLAS; i++) {
 		if (bola[i].bola_valida) {
 			verifica_fundo_esquerdo_bola(&bola[i]);
 			verifica_fundo_direito_bola(&bola[i]);
-			verifica_fundo_alto_bola(&bola[i], contador_bolas);
-			verifica_fundo_baixo_bola(&bola[i], contador_bolas);
+			verifica_fundo_alto_bola(&bola[i], contador_bolas, pontos1);
+			verifica_fundo_baixo_bola(&bola[i], contador_bolas, pontos2);
 			// verifica_contato_jogador(&bola[i], j);
 		}
 	}

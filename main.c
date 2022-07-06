@@ -22,7 +22,7 @@
 
 int main(int argc, char **argv) {
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
@@ -118,6 +118,10 @@ int main(int argc, char **argv) {
 	Jogador p1, p2;
 	Bola bolas[MAX_BOLAS];
 	int contador_bolas = 0;
+
+	int pontos_p1 = 0;
+	int pontos_p2 = 0;
+
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
 	al_set_window_title(display, "PongS");
@@ -207,6 +211,7 @@ int main(int argc, char **argv) {
 					// printf("Foi jogo 1 jogador\r\n");
 
 					desenha_quadra();
+					desenha_placar(pontos_p1, pontos_p2);
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
@@ -214,7 +219,7 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 					// printf("Vai verificar\r\n");
-					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2);
 					verifica_posicao_bola_jogador(&bolas, &p1);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
@@ -229,6 +234,7 @@ int main(int argc, char **argv) {
 					// // Abre o jogo para 2 jogadores
 					// printf("Foi jogo 2 jogador\r\n");
 					desenha_quadra();
+					desenha_placar(pontos_p1, pontos_p2);
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
@@ -236,7 +242,7 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 
-					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2);
 					verifica_posicao_bola_jogadores(&bolas, &p1, &p2);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
