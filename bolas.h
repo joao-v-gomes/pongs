@@ -18,6 +18,10 @@
 //
 #include "bolas.h"
 
+#define MIN_DX_BOLA		 1
+#define MAX_DX_BOLA		 12
+#define MIN_DY_BOLA		 1
+#define MAX_DY_BOLA		 20
 #define DIAMETRO_BOLA	 5
 #define MAX_BOLAS		 5
 #define TEMPO_SOLTA_BOLA 2

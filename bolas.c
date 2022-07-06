@@ -92,6 +92,9 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 
 	int i = 0;
 
+	int valor_dx = MIN_DX_BOLA + rand() % MAX_DX_BOLA;
+	int valor_dy = MIN_DY_BOLA + rand() % MAX_DY_BOLA;
+
 	for (i; i < MAX_BOLAS; i++) {
 		if (bolas[i].bola_valida == 0) {
 			indice_bolas = i;
@@ -104,8 +107,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 			case CANTO_SUP_DIR:
 				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
 				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
-				dx = -5;
-				dy = 12;
+				dx = -valor_dx;
+				dy = valor_dy;
 
 				posicao_nova_bola = CANTO_INF_DIR;
 				break;
@@ -113,8 +116,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 			case CANTO_INF_DIR:
 				x = JOGO_W - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
 				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
-				dx = -2;
-				dy = -16;
+				dx = -valor_dx;
+				dy = -valor_dy;
 
 				posicao_nova_bola = CANTO_INF_ESQ;
 				break;
@@ -122,8 +125,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 			case CANTO_INF_ESQ:
 				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
 				y = JOGO_H - DIAMETRO_BOLA - DIST_FUNDO_LIMITE;
-				dx = 8;
-				dy = -19;
+				dx = valor_dx;
+				dy = -valor_dy;
 
 				posicao_nova_bola = CANTO_SUP_ESQ;
 				break;
@@ -131,8 +134,8 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 			case CANTO_SUP_ESQ:
 				x = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
 				y = 0 + DIAMETRO_BOLA + DIST_FUNDO_LIMITE;
-				dx = 15;
-				dy = 3;
+				dx = valor_dx;
+				dy = valor_dy;
 
 				posicao_nova_bola = CANTO_SUP_DIR;
 				break;

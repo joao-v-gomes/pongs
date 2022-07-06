@@ -10,6 +10,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 //
 #include "graficos.h"
 //
@@ -20,6 +21,8 @@
 #include "bolas.h"
 
 int main(int argc, char **argv) {
+
+	srand(time(NULL));
 
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
@@ -211,7 +214,6 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 					// printf("Vai verificar\r\n");
-					// verifica_posicao_bola(&bolas, &p1, &contador_bolas);
 					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
 					verifica_posicao_bola_jogador(&bolas, &p1);
 					desenha_bola(bolas);
@@ -234,8 +236,6 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 
-					// verifica_posicao_bola(&bolas, &p1, &contador_bolas);
-					// verifica_posicao_bola(&bolas, &p2, &contador_bolas);
 					verifica_posicao_bola_quadra(&bolas, &contador_bolas);
 					verifica_posicao_bola_jogadores(&bolas, &p1, &p2);
 					desenha_bola(bolas);
