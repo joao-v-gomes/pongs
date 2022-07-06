@@ -15,6 +15,7 @@
 
 ALLEGRO_SAMPLE *move_menu = NULL;
 ALLEGRO_SAMPLE *intro = NULL;
+ALLEGRO_SAMPLE *vencedor = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
@@ -239,6 +240,9 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm
 		p2->esq = 0;
 		p2->dir = 0;
 	}
+}
+
+void prepara_final_jogo(int pontos_p1, int pontos_p2) {
 }
 
 void limpa_pongs() {

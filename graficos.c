@@ -426,6 +426,8 @@ void desenha_placar(int pontos_p1, int pontos_p2) {
 	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos2);
 }
 
+void desenha_final_jogo() {
+}
 void limpa_menu() {
 	al_destroy_bitmap(seletor);
 	al_destroy_bitmap(bg_menu);

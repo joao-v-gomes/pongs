@@ -115,12 +115,7 @@ int main(int argc, char **argv) {
 	// inicia o temporizador
 	al_start_timer(timer);
 
-	Jogador p1, p2;
-	Bola bolas[MAX_BOLAS];
-	int contador_bolas = 0;
-
-	int pontos_p1 = 0;
-	int pontos_p2 = 0;
+	int playing = 1;
 
 	// Icone da janela
 	ALLEGRO_BITMAP *icone_pong = al_load_bitmap("data/img/pong2.bmp");
@@ -129,31 +124,31 @@ int main(int argc, char **argv) {
 
 	al_resize_display(display, MENU_W, MENU_H);
 
-	int counter = 0;
-	int counter2 = -1;
-
-	fsm_menu state = INIT_MENU;
-	// fsm_menu opcao_menu = INIT_MENU;
-	fsm_escolha_jogadores opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
-	fsm_escolha_jogadores opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
-
 	ALLEGRO_TIMER *timer_bola = NULL;
 
-	timer_bola = al_create_timer(1);
+	Jogador p1, p2;
+	Bola bolas[MAX_BOLAS];
+	int contador_bolas;
 
-	al_start_timer(timer_bola);
+	int pontos_p1;
+	int pontos_p2;
 
-	int playing = 1;
+	int counter;
+	int counter2;
 
-	// state = JOGO_UM_JOGADOR;
-	// al_resize_display(display, JOGO_W, JOGO_H);
-	// opcao_jogador1 = TIPO_JOGADOR1;
+	fsm_menu state = INIT_MENU;
 
-	init_bolas(&bolas, &contador_bolas);
+	fsm_escolha_jogadores opcao_jogador1;
+	fsm_escolha_jogadores opcao_jogador2;
 
-	init_pongs();
-	init_graficos();
-	int i = 0;
+	// timer_bola = al_create_timer(1);
+
+	// al_start_timer(timer_bola);
+
+	// init_bolas(&bolas, &contador_bolas);
+
+	// init_pongs();
+	// init_graficos();
 
 	while (playing) {
 		ALLEGRO_EVENT ev;
@@ -166,6 +161,27 @@ int main(int argc, char **argv) {
 			switch (state) {
 				case INIT_MENU:
 					state = MENU;
+
+					contador_bolas = 0;
+
+					pontos_p1 = 0;
+					pontos_p2 = 0;
+
+					counter = 0;
+					counter2 = -1;
+
+					opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
+					opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
+
+					timer_bola = al_create_timer(1);
+
+					al_start_timer(timer_bola);
+
+					init_bolas(&bolas, &contador_bolas);
+
+					init_pongs();
+					init_graficos();
+
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
@@ -256,13 +272,21 @@ int main(int argc, char **argv) {
 					atualiza_jogadores(&p1, &p2);
 
 					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
-						state = FINAL_JOGO;
+						state = CARREGA_FINAL_JOGO;
 					}
 
 					break;
-				case FINAL_JOGO:
-					al_resize_display(display, MENU_W, MENU_H);
+				case CARREGA_FINAL_JOGO:
+					printf("Pega os pontos, escreve no arquivo");
 
+					prepara_final_jogo(pontos_p1, pontos_p2);
+
+					break;
+
+				case FINAL_JOGO:
+					// al_resize_display(display, MENU_W, MENU_H);
+
+					desenha_final_jogo();
 					printf("FINAL DO JOGO!\r\n");
 
 					break;

@@ -14,7 +14,6 @@ typedef enum {
 	MENU,
 	UM_JOGADOR,
 	DOIS_JOGADORES,
-	FINAL_JOGO,
 	SAIR,
 
 	ESCOLHE_UM_JOGADOR,
@@ -25,6 +24,9 @@ typedef enum {
 
 	JOGO_UM_JOGADOR,
 	JOGO_DOIS_JOGADORES,
+
+	CARREGA_FINAL_JOGO,
+	FINAL_JOGO,
 } fsm_menu;
 
 void init_pongs();
