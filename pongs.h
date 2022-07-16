@@ -8,6 +8,11 @@
 #define JOGO_H		   440
 #define JOGO_W		   960
 #define PONTOS_VITORIA 2
+#define UM_JOG		   1
+#define DOIS_JOG	   2
+
+#define MAX_LINHAS_LIDAS   8
+#define MIN_ESCRITA_LINHAS 350
 
 typedef enum {
 	INIT_MENU,

@@ -18,12 +18,17 @@ ALLEGRO_FONT *fonte_texto_pequeno = NULL;
 ALLEGRO_FONT *fonte_texto_grande = NULL;
 ALLEGRO_BITMAP *bg_menu;
 ALLEGRO_BITMAP *seletor = NULL;
+ALLEGRO_SAMPLE *vencedor = NULL;
+
+int i = 0;
+int altura = 300;
 
 void init_graficos() {
-	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 20, 1);
+	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 23, 1);
 	fonte_texto_grande = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
 	seletor = al_load_bitmap("data/img/barra-menu.bmp");
 	bg_menu = al_load_bitmap("data/img/menu-grande.bmp");
+	vencedor = al_load_sample("data/audio/top-gear-fim.wav");
 }
 
 void desenha_quadra() {
@@ -400,35 +405,271 @@ void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display) {
 	al_draw_filled_circle(posicao_w_bolinha + 40, posicao_h_bolinha, 5, COR_BRANCA);
 }
 
-void desenha_placar(int pontos_p1, int pontos_p2) {
+void desenha_placar(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo) {
 
-	char aux[100];
-	char pontos1[1000];
-	char pontos2[1000];
+	if (tipo_jogo == UM_JOG) {
+		char aux[100];
+		char pontos2[1000];
+		char tempo[1000];
 
-	sprintf(aux, "%d", pontos_p1);
+		sprintf(aux, "%d", pontos_p2);
 
-	strcpy(pontos1, aux);
+		strcpy(pontos2, aux);
 
-	strcpy(aux, "");
+		strcpy(aux, "");
 
-	sprintf(aux, "%d", pontos_p2);
+		int posicao_w_texto = 400;
+		int posicao_h_texto = 20;
 
-	strcpy(pontos2, aux);
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos2);
 
-	int posicao_w_texto = 400;
-	int posicao_h_texto = 20;
+		sprintf(aux, "%d", tempo_jogo);
 
-	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos1);
+		strcpy(tempo, aux);
 
-	posicao_w_texto = 540;
+		strcpy(aux, "");
 
-	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos2);
+		posicao_w_texto = 540;
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, tempo);
+
+	} else if (tipo_jogo == DOIS_JOG) {
+
+		char aux[100];
+		char pontos1[1000];
+		char pontos2[1000];
+
+		sprintf(aux, "%d", pontos_p1);
+
+		strcpy(pontos1, aux);
+
+		strcpy(aux, "");
+
+		sprintf(aux, "%d", pontos_p2);
+
+		strcpy(pontos2, aux);
+
+		int posicao_w_texto = 400;
+		int posicao_h_texto = 20;
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos1);
+
+		posicao_w_texto = 540;
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, pontos2);
+	}
 }
 
-void desenha_final_jogo() {
+void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_jogo) {
 	al_draw_bitmap(bg_menu, 0, 0, 0);
+
+	al_play_sample(vencedor, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+
+	// char linha[] = "teeste";
+
+	// al_draw_text(fonte_texto_pequeno, COR_BRANCA, 200, 200, 0, linha);
+	if (tipo_jogo == UM_JOG) {
+
+		FILE *ler_partidas;
+		char linha[1000];
+		char c;
+		int i = 0;
+		int counter = 0;
+
+		int posicao_h_texto = 0;
+		int posicao_w_texto = 0;
+
+		ler_partidas = fopen("partidas-um-jogador.txt", "r");
+		printf("Leu arq\r\n");
+
+		if (ler_partidas == NULL) {
+			printf("Deu ruim\r\n");
+		}
+
+		// while (fgets(linha, 1000, ler_partidas)) {
+		// 	printf("Linha lida: %s\r\n");
+		// }
+		int qtde_linhas_total = 0;
+		int qtde_linhas_parcial = 0;
+
+		while (c != EOF) {
+			c = fgetc(ler_partidas);
+
+			if (c == '\n') {
+				qtde_linhas_total++;
+			}
+		}
+
+		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
+
+		rewind(ler_partidas);
+		c = " ";
+		// fseek(ler_partidas, 0, SEEK_SET);
+
+		// fclose(ler_partidas);
+
+		// ler_partidas = fopen("partidas-um-jogador.txt", "r");
+
+		// if (ler_partidas == NULL) {
+		// 	printf("Deu ruim\r\n");
+		// }
+
+		posicao_h_texto = 180;
+
+		int text_w = 0;
+
+		char texto_final[100];
+
+		strcpy(texto_final, "Fim de Partida!");
+
+		text_w = al_get_text_width(fonte_texto_grande, texto_final);
+		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
+
+		posicao_h_texto = 240;
+
+		strcpy(texto_final, "Voce sobreviveu por: ");
+
+		text_w = al_get_text_width(fonte_texto_pequeno, texto_final);
+		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
+
+		al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
+
+		char tempo[1000];
+
+		sprintf(tempo, "%d", tempo_jogo);
+
+		strcpy(texto_final, tempo);
+
+		strcat(texto_final, " segundos!");
+
+		posicao_h_texto = 270;
+
+		text_w = al_get_text_width(fonte_texto_grande, texto_final);
+		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
+
+		posicao_w_texto = 25;
+
+		if (qtde_linhas_total == 1) {
+			posicao_h_texto = MIN_ESCRITA_LINHAS;
+		} else if (qtde_linhas_total > 1 && qtde_linhas_total < 10) {
+			posicao_h_texto = MIN_ESCRITA_LINHAS + (qtde_linhas_total * 30);
+		} else if (qtde_linhas_total >= 10) {
+			posicao_h_texto = 550;
+		}
+
+		while ((c != EOF) && (counter < MAX_LINHAS_LIDAS)) {
+			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS) {
+				c = fgetc(ler_partidas);
+
+				if (c == '\n') {
+					qtde_linhas_parcial++;
+				}
+			}
+
+			// printf("Qtde linhas parcial: %d\r\n", qtde_linhas_parcial);
+			// counter = 10;
+
+			// printf("Esta na linha certa!\r\n");
+
+			c = fgetc(ler_partidas);
+
+			if (c != '\n') {
+				linha[i] = c;
+				i++;
+			} else {
+				linha[i] = ' ';
+				// printf("Leu newline\r\n");
+				// fgetc(ler_partidas);
+				// printf("Linha %d lida: %s\r\n", counter, linha);
+
+				al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, linha);
+
+				posicao_h_texto = posicao_h_texto - 30;
+
+				strcpy(linha, "");
+				i = 0;
+				counter++;
+			}
+		}
+
+		fclose(ler_partidas);
+	} else if (tipo_jogo = DOIS_JOG) {
+	}
+
+	/*FILE *arquivo_partidas;
+	arquivo_partidas = fopen("teste.txt", "r");
+
+	char linha[200];
+	char aux[100];
+
+	int i = 0;
+	int j = 0;
+	char aux2;
+
+	for (j; j < 5; j++) {
+		for (i; i < 100; i++) {
+
+			aux2 = (char)fgetc(arquivo_partidas);
+
+			if (aux2 == EOF) {
+				break;
+			}
+
+			if (aux2 == "#") {
+				aux[i] = "\0";
+				i = 200;
+			} else {
+				aux[i] = aux2;
+			}
+		}
+		i = 0;
+		printf("Aux[%d]: %s\r\n", j, aux);
+		strcpy(aux, "");
+	}
+
+	// printf("Aux: %s", aux);
+
+	// for (i; i < 5; i++) {
+	// 	strcpy(linha, "");
+	// 	strcpy(aux, "");
+
+	// 	fgets(aux, 10, arquivo_partidas);
+
+	// 	strcat(linha, aux);
+	// 	strcat(linha, ": ");
+
+	// 	strcpy(aux, "");
+
+	// 	fgets(aux, 100, arquivo_partidas);
+	// 	strcat(linha, aux);
+	// 	strcat(linha, " x ");
+
+	// 	strcpy(aux, "");
+
+	// 	fgets(aux, 10, arquivo_partidas);
+
+	// 	strcat(linha, aux);
+	// 	strcat(linha, ": ");
+
+	// 	strcpy(aux, "");
+
+	// 	strcat(linha, "\0");
+
+	// 	printf("\r\nLinha: %s\r\n", linha);
+
+	// 	al_draw_text(fonte_texto_pequeno, COR_BRANCA, 200, 200, 0, linha);
+
+	// 	altura = altura + 20;
+	// }
+
+	fclose(arquivo_partidas);
+	*/
 }
+
 void limpa_menu() {
 	al_destroy_bitmap(seletor);
 	al_destroy_bitmap(bg_menu);

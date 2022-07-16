@@ -17,7 +17,6 @@
 
 ALLEGRO_SAMPLE *move_menu = NULL;
 ALLEGRO_SAMPLE *intro = NULL;
-ALLEGRO_SAMPLE *vencedor = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
@@ -244,98 +243,186 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm
 	}
 }
 
-void prepara_final_jogo(int pontos_p1, int pontos_p2) {
-	FILE *partidas;
-	partidas = fopen("teste.txt", "a");
+void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo) {
 
-	time_t t = time(NULL);
-	struct tm tm = *localtime(&t);
-	// printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+	if (tipo_jogo == UM_JOG) {
+		printf("FIM 1 JOGADOR\r\n");
 
-	char linha_salva[200];
-	char pontos[3];
-	char data[50];
+		FILE *partidas;
 
-	strcpy(data, "");
+		partidas = fopen("partidas-um-jogador.txt", "a");
 
-	strcpy(linha_salva, "");
+		time_t t = time(NULL);
+		struct tm tm = *localtime(&t);
+		// printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-	// Pega j1
-	char j1[] = "Jogador 1";
+		char linha_salva[200];
+		// char pontos[3];
+		char tempo[1000];
+		char data[50];
 
-	strcat(linha_salva, j1);
+		strcpy(data, "");
 
-	strcat(linha_salva, ",");
+		strcpy(linha_salva, "");
 
-	sprintf(pontos, "%d", pontos_p1);
+		// Pega j1
+		char j1[] = "Jogador 1";
 
-	strcat(linha_salva, pontos);
+		strcat(linha_salva, j1);
 
-	strcat(linha_salva, ",");
+		strcat(linha_salva, ": ");
 
-	// Pega j2
+		sprintf(tempo, "%d", tempo_jogo);
 
-	char j2[] = "Jogador 2";
+		strcat(linha_salva, tempo);
+		// strcat(linha_salva, " ");
 
-	strcat(linha_salva, j2);
+		strcat(linha_salva, " segundos");
 
-	strcat(linha_salva, ",");
+		strcat(linha_salva, " - ");
 
-	strcpy(pontos, "");
+		// Pega data
+		sprintf(data, "%02d", tm.tm_mday);
+		strcat(linha_salva, data);
+		strcat(linha_salva, "/");
 
-	sprintf(pontos, "%d", pontos_p2);
+		strcpy(data, "");
 
-	strcat(linha_salva, pontos);
+		sprintf(data, "%02d", tm.tm_mon + 1);
+		strcat(linha_salva, data);
+		strcat(linha_salva, "/");
 
-	strcat(linha_salva, ",");
+		strcpy(data, "");
 
-	// Pega data
+		sprintf(data, "%d", tm.tm_year + 1900);
+		strcat(linha_salva, data);
+		strcat(linha_salva, " - ");
 
-	sprintf(data, "%02d", tm.tm_mday);
-	strcat(linha_salva, data);
-	strcat(linha_salva, "/");
+		strcpy(data, "");
 
-	strcpy(data, "");
+		sprintf(data, "%02d", tm.tm_hour);
+		strcat(linha_salva, data);
+		strcat(linha_salva, ":");
 
-	sprintf(data, "%02d", tm.tm_mon + 1);
-	strcat(linha_salva, data);
-	strcat(linha_salva, "/");
+		strcpy(data, "");
 
-	strcpy(data, "");
+		sprintf(data, "%02d", tm.tm_min);
+		strcat(linha_salva, data);
+		strcat(linha_salva, ":");
 
-	sprintf(data, "%d", tm.tm_year + 1900);
-	strcat(linha_salva, data);
-	strcat(linha_salva, " - ");
+		strcpy(data, "");
 
-	strcpy(data, "");
+		sprintf(data, "%02d", tm.tm_sec);
+		strcat(linha_salva, data);
 
-	sprintf(data, "%02d", tm.tm_hour);
-	strcat(linha_salva, data);
-	strcat(linha_salva, ":");
+		strcat(linha_salva, "\n");
 
-	strcpy(data, "");
+		printf("Linha: %s", linha_salva);
 
-	sprintf(data, "%02d", tm.tm_min);
-	strcat(linha_salva, data);
-	strcat(linha_salva, ":");
+		fprintf(partidas, "%s", linha_salva);
+		// fprintf(partidas, "%s", "\n");
 
-	strcpy(data, "");
+		//
+		strcpy(linha_salva, "");
+		fclose(partidas);
 
-	sprintf(data, "%02d", tm.tm_sec);
-	strcat(linha_salva, data);
+	} else if (tipo_jogo == DOIS_JOG) {
 
-	strcat(linha_salva, ",");
+		printf("FIM 2 JOGADOR\r\n");
+		/*
+		partidas = fopen("teste.txt", "a");
 
-	// Finaliza string
+		time_t t = time(NULL);
+		struct tm tm = *localtime(&t);
+		// printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-	strcat(linha_salva, "\0");
-	strcat(linha_salva, "\n");
+		char linha_salva[200];
+		char pontos[3];
+		char data[50];
 
-	fprintf(partidas, "%s", linha_salva);
+		strcpy(data, "");
 
-	fclose(partidas);
+		strcpy(linha_salva, "");
 
-	// printf("Linha: %s\r\n", linha_salva);
+		// Pega j1
+		char j1[] = "Jogador 1";
+
+		strcat(linha_salva, j1);
+
+		strcat(linha_salva, ": ");
+
+		sprintf(pontos, "%d", pontos_p1);
+
+		strcat(linha_salva, pontos);
+		// strcat(linha_salva, " ");
+
+		strcat(linha_salva, " - ");
+
+		// Pega j2
+
+		char j2[] = "Jogador 2";
+
+		strcat(linha_salva, j2);
+
+		strcat(linha_salva, ": ");
+
+		strcpy(pontos, "");
+
+		sprintf(pontos, "%d", pontos_p2);
+
+		// strcat(linha_salva, " ");
+
+		strcat(linha_salva, pontos);
+		strcat(linha_salva, " - ");
+
+		// Pega data
+
+		sprintf(data, "%02d", tm.tm_mday);
+		strcat(linha_salva, data);
+		strcat(linha_salva, "/");
+
+		strcpy(data, "");
+
+		sprintf(data, "%02d", tm.tm_mon + 1);
+		strcat(linha_salva, data);
+		strcat(linha_salva, "/");
+
+		strcpy(data, "");
+
+		sprintf(data, "%d", tm.tm_year + 1900);
+		strcat(linha_salva, data);
+		strcat(linha_salva, " - ");
+
+		strcpy(data, "");
+
+		sprintf(data, "%02d", tm.tm_hour);
+		strcat(linha_salva, data);
+		strcat(linha_salva, ":");
+
+		strcpy(data, "");
+
+		sprintf(data, "%02d", tm.tm_min);
+		strcat(linha_salva, data);
+		strcat(linha_salva, ":");
+
+		strcpy(data, "");
+
+		sprintf(data, "%02d", tm.tm_sec);
+		strcat(linha_salva, data);
+
+		// Finaliza string
+
+		strcat(linha_salva, "#");
+		// strcat(linha_salva, "\n");
+		// strcat(linha_salva, " ");
+
+		fprintf(partidas, "%s", linha_salva);
+
+		fclose(partidas);
+
+		// printf("Linha: %s\r\n", linha_salva);}
+		*/
+	}
 }
 
 void limpa_pongs() {

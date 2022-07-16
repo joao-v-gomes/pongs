@@ -125,6 +125,7 @@ int main(int argc, char **argv) {
 	al_resize_display(display, MENU_W, MENU_H);
 
 	ALLEGRO_TIMER *timer_bola = NULL;
+	ALLEGRO_TIMER *timer_jogo_um_jog = NULL;
 
 	Jogador p1, p2;
 	Bola bolas[MAX_BOLAS];
@@ -135,6 +136,9 @@ int main(int argc, char **argv) {
 
 	int counter;
 	int counter2;
+
+	int tempo_jogo = 0;
+	int tipo_jogo = 0;
 
 	fsm_menu state = INIT_MENU;
 
@@ -174,8 +178,10 @@ int main(int argc, char **argv) {
 					opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
 
 					timer_bola = al_create_timer(1);
+					timer_jogo_um_jog = al_create_timer(1);
 
 					al_start_timer(timer_bola);
+					al_start_timer(timer_jogo_um_jog);
 
 					init_bolas(&bolas, &contador_bolas);
 
@@ -203,11 +209,15 @@ int main(int argc, char **argv) {
 					// Faz o init do jogador1 utilizando o tipo de jogador escolhido
 					printf("Foi carrega 1 jogador1\r\n");
 					// carrega_jogador_1(&opcao_jogador1);
+
+					tipo_jogo = UM_JOG;
+
 					init_jogador1(&p1, opcao_jogador1);
 
 					// printa_info_jogador(p1);
 					al_resize_display(display, JOGO_W, JOGO_H);
 
+					al_set_timer_count(timer_jogo_um_jog, 0);
 					// desenha_jogador(p1);
 
 					state = JOGO_UM_JOGADOR;
@@ -216,18 +226,23 @@ int main(int argc, char **argv) {
 					// Faz o init do jogador1 e jogador2 utilizando o tipo de jogador escolhido
 					printf("Foi carrega 2 jogadores\r\n");
 
+					tipo_jogo = DOIS_JOG;
+
 					init_jogador1(&p1, opcao_jogador1);
 					init_jogador2(&p2, opcao_jogador2);
 
 					al_resize_display(display, JOGO_W, JOGO_H);
+
 					al_set_timer_count(timer_bola, 0);
+
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:
 					// printf("Foi jogo 1 jogador\r\n");
+					tempo_jogo = al_get_timer_count(timer_jogo_um_jog);
 
 					desenha_quadra();
-					desenha_placar(pontos_p1, pontos_p2);
+					desenha_placar(pontos_p1, pontos_p2, UM_JOG, tempo_jogo);
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
@@ -235,7 +250,7 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 					// printf("Vai verificar\r\n");
-					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2, tipo_jogo);
 					verifica_posicao_bola_jogador(&bolas, &p1);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
@@ -244,13 +259,17 @@ int main(int argc, char **argv) {
 					desenha_jogador(p1);
 					atualiza_jogador(&p1);
 
+					if (pontos_p2 >= PONTOS_VITORIA) {
+						state = CARREGA_FINAL_JOGO;
+					}
+
 					// Abre o jogo para 1 jogador
 					break;
 				case JOGO_DOIS_JOGADORES:
 					// // Abre o jogo para 2 jogadores
 					// printf("Foi jogo 2 jogador\r\n");
 					desenha_quadra();
-					desenha_placar(pontos_p1, pontos_p2);
+					desenha_placar(pontos_p1, pontos_p2, DOIS_JOG);
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
@@ -258,7 +277,7 @@ int main(int argc, char **argv) {
 						al_set_timer_count(timer_bola, 0);
 					}
 
-					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2);
+					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2, tipo_jogo);
 					verifica_posicao_bola_jogadores(&bolas, &p1, &p2);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
@@ -275,7 +294,7 @@ int main(int argc, char **argv) {
 				case CARREGA_FINAL_JOGO:
 					printf("Pega os pontos, escreve no arquivo");
 
-					prepara_final_jogo(pontos_p1, pontos_p2);
+					prepara_final_jogo(pontos_p1, pontos_p2, tipo_jogo, tempo_jogo);
 					al_resize_display(display, MENU_W, MENU_H);
 
 					state = FINAL_JOGO;
@@ -283,10 +302,10 @@ int main(int argc, char **argv) {
 					break;
 
 				case FINAL_JOGO:
+					printf("\nFINAL DO JOGO!\r\n");
 					// al_resize_display(display, MENU_W, MENU_H);
 
-					desenha_final_jogo();
-					printf("FINAL DO JOGO!\r\n");
+					desenha_final_jogo(tipo_jogo, pontos_p1, pontos_p2, tempo_jogo);
 
 					break;
 				case SAIR:
