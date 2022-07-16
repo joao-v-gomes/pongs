@@ -568,7 +568,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 		// Escreve vai pra primeira linha do historico valido
 		while ((c != EOF) && (counter < MAX_LINHAS_LIDAS)) {
-			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS) {
+			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS + 1) {
 				c = fgetc(ler_partidas);
 
 				if (c == '\n') {

@@ -284,7 +284,7 @@ int main(int argc, char **argv) {
 					}
 
 					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2, tipo_jogo);
-					verifica_posicao_bola_jogadores(&bolas, &p1, &p2);
+					verifica_posicao_bola_jogadores(&bolas, &p1, &p2, pode_rebater_j1, pode_rebater_j2);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
 
