@@ -343,8 +343,9 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 	} else if (tipo_jogo == DOIS_JOG) {
 
 		printf("FIM 2 JOGADOR\r\n");
-		/*
-		partidas = fopen("teste.txt", "a");
+		FILE *partidas;
+
+		partidas = fopen("partidas-dois-jogadores.txt", "a");
 
 		time_t t = time(NULL);
 		struct tm tm = *localtime(&t);
@@ -368,12 +369,10 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 		sprintf(pontos, "%d", pontos_p1);
 
 		strcat(linha_salva, pontos);
-		// strcat(linha_salva, " ");
 
 		strcat(linha_salva, " - ");
 
 		// Pega j2
-
 		char j2[] = "Jogador 2";
 
 		strcat(linha_salva, j2);
@@ -384,13 +383,11 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 
 		sprintf(pontos, "%d", pontos_p2);
 
-		// strcat(linha_salva, " ");
-
 		strcat(linha_salva, pontos);
+
 		strcat(linha_salva, " - ");
 
 		// Pega data
-
 		sprintf(data, "%02d", tm.tm_mday);
 		strcat(linha_salva, data);
 		strcat(linha_salva, "/");
@@ -424,18 +421,16 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 		sprintf(data, "%02d", tm.tm_sec);
 		strcat(linha_salva, data);
 
-		// Finaliza string
+		strcat(linha_salva, "\n");
 
-		strcat(linha_salva, "#");
-		// strcat(linha_salva, "\n");
-		// strcat(linha_salva, " ");
+		printf("Linha: %s", linha_salva);
 
 		fprintf(partidas, "%s", linha_salva);
+		// fprintf(partidas, "%s", "\n");
 
+		//
+		strcpy(linha_salva, "");
 		fclose(partidas);
-
-		// printf("Linha: %s\r\n", linha_salva);}
-		*/
 	}
 }
 

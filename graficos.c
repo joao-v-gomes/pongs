@@ -664,7 +664,6 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 	fclose(arquivo_partidas);
 	*/
 }
-
 void limpa_menu() {
 	al_destroy_bitmap(seletor);
 	al_destroy_bitmap(bg_menu);

@@ -218,6 +218,7 @@ int main(int argc, char **argv) {
 					al_resize_display(display, JOGO_W, JOGO_H);
 
 					al_set_timer_count(timer_jogo_um_jog, 0);
+					al_set_timer_count(timer_bola, 0);
 					// desenha_jogador(p1);
 
 					toca_musica_jogo();
@@ -314,7 +315,7 @@ int main(int argc, char **argv) {
 					break;
 
 				case AGUARDA_SAIR:
-					printf("\nAGUARDA SAIR DO JOGO!\r\n");
+					// printf("\nAGUARDA SAIR DO JOGO!\r\n");
 
 					break;
 				case SAIR:
