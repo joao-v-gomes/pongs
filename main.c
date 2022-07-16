@@ -307,6 +307,13 @@ int main(int argc, char **argv) {
 
 					desenha_final_jogo(tipo_jogo, pontos_p1, pontos_p2, tempo_jogo);
 
+					state = AGUARDA_SAIR;
+
+					break;
+
+				case AGUARDA_SAIR:
+					printf("\nAGUARDA SAIR DO JOGO!\r\n");
+
 					break;
 				case SAIR:
 					printf("Foi sair\r\n");

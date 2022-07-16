@@ -500,19 +500,10 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 			}
 		}
 
-		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
-
 		rewind(ler_partidas);
 		c = " ";
-		// fseek(ler_partidas, 0, SEEK_SET);
 
-		// fclose(ler_partidas);
-
-		// ler_partidas = fopen("partidas-um-jogador.txt", "r");
-
-		// if (ler_partidas == NULL) {
-		// 	printf("Deu ruim\r\n");
-		// }
+		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
 
 		posicao_h_texto = 180;
 
@@ -582,15 +573,16 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				i++;
 			} else {
 				linha[i] = ' ';
-				// printf("Leu newline\r\n");
+				printf("Leu newline\r\n");
 				// fgetc(ler_partidas);
-				// printf("Linha %d lida: %s\r\n", counter, linha);
+				printf("Linha %d lida: %s\r\n", counter, linha);
 
 				al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, linha);
 
 				posicao_h_texto = posicao_h_texto - 30;
 
-				strcpy(linha, "");
+				strcpy(linha, " ");
+
 				i = 0;
 				counter++;
 			}
