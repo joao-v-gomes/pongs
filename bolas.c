@@ -74,36 +74,38 @@ void verifica_fundo_direito_bola(Bola *b) {
 	}
 }
 
-void verifica_contato_jogador(Bola *b, Jogador *j) {
+void verifica_contato_jogador(Bola *b, Jogador *j, bool pode_rebater) {
 
-	if (j->id == 1) {
-		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
-			if ((b->x + b->d - b->dx) >= j->x + j->w) {
-				b->x = j->x + j->w + b->d;
-				b->dx = -b->dx;
+	if (pode_rebater == true) {
+		if (j->id == 1) {
+			if (((b->x + b->d) >= j->x - b->d) && ((b->x + b->d) <= (j->x + j->w + b->d)) && ((b->y + b->d) >= j->y - b->d) && ((b->y + b->d) <= (j->y + j->h + b->d))) {
+				if ((b->x + b->d - b->dx) >= j->x + j->w) {
+					b->x = j->x + j->w + b->d;
+					b->dx = -b->dx;
+				}
+				if ((b->y + b->d - b->dy) <= j->y) {
+					b->y = j->y + b->d;
+					b->dy = -b->dy;
+				}
+				if ((b->y + b->d - b->dy) >= j->y + j->h) {
+					b->y = j->y + j->h + b->d;
+					b->dy = -b->dy;
+				}
 			}
-			if ((b->y + b->d - b->dy) <= j->y) {
-				b->y = j->y + b->d;
-				b->dy = -b->dy;
-			}
-			if ((b->y + b->d - b->dy) >= j->y + j->h) {
-				b->y = j->y + j->h + b->d;
-				b->dy = -b->dy;
-			}
-		}
-	} else if (j->id == 2) {
-		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
-			if (((b->x + b->d - b->dx) <= j->x)) {
-				b->x = j->x - b->d;
-				b->dx = -b->dx;
-			}
-			if ((b->y + b->d - b->dy) <= j->y) {
-				b->y = j->y + b->d;
-				b->dy = -b->dy;
-			}
-			if ((b->y + b->d - b->dy) >= j->y + j->h) {
-				b->y = j->y + j->h + b->d;
-				b->dy = -b->dy;
+		} else if (j->id == 2) {
+			if (((b->x + b->d) >= j->x - b->d) && ((b->x + b->d) <= (j->x + j->w + b->d)) && ((b->y + b->d) >= j->y - b->d) && ((b->y + b->d) <= (j->y + j->h + b->d))) {
+				if (((b->x + b->d - b->dx) <= j->x - b->d)) {
+					b->x = j->x - b->d;
+					b->dx = -b->dx;
+				}
+				if ((b->y + b->d - b->dy) <= j->y) {
+					b->y = j->y + b->d;
+					b->dy = -b->dy;
+				}
+				if ((b->y + b->d - b->dy) >= j->y + j->h) {
+					b->y = j->y + j->h + b->d;
+					b->dy = -b->dy;
+				}
 			}
 		}
 	}
@@ -232,17 +234,17 @@ void verifica_posicao_bola_quadra(Bola bola[], int *contador_bolas, int *pontos1
 	}
 }
 
-void verifica_posicao_bola_jogador(Bola bola[], Jogador *j) {
+void verifica_posicao_bola_jogador(Bola bola[], Jogador *j, bool pode_rebater) {
 	int i = 0;
 	// printf("Foi verificar2!\r\n");
 	for (i; i < MAX_BOLAS; i++) {
 		if (bola[i].bola_valida) {
-			verifica_contato_jogador(&bola[i], j);
+			verifica_contato_jogador(&bola[i], j, pode_rebater);
 		}
 	}
 }
 
-void verifica_posicao_bola_jogadores(Bola bola[], Jogador *j1, Jogador *j2) {
-	verifica_posicao_bola_jogador(bola, j1);
-	verifica_posicao_bola_jogador(bola, j2);
+void verifica_posicao_bola_jogadores(Bola bola[], Jogador *j1, Jogador *j2, bool pode_rebater_j1, bool pode_rebater_j2) {
+	verifica_posicao_bola_jogador(bola, j1, pode_rebater_j1);
+	verifica_posicao_bola_jogador(bola, j2, pode_rebater_j2);
 }

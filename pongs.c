@@ -257,6 +257,32 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm
 	}
 }
 
+void verifica_tecla_rebatida(ALLEGRO_EVENT ev, fsm_menu state, bool *pode_rebater_j1, bool *pode_rebater_j2) {
+	if (state == JOGO_UM_JOGADOR || state == JOGO_DOIS_JOGADORES) {
+		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+				*pode_rebater_j1 = true;
+				printf("Pode rebater 1\r\n");
+			}
+
+			if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+				*pode_rebater_j2 = true;
+				printf("Pode rebater 2\r\n");
+			}
+		} else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+			if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+				*pode_rebater_j1 = false;
+				printf("Nao rebater 1\r\n");
+			}
+
+			if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+				*pode_rebater_j2 = false;
+				printf("Nao rebater 2\r\n");
+			}
+		}
+	}
+}
+
 void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo) {
 
 	if (tipo_jogo == UM_JOG) {

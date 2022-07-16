@@ -101,7 +101,7 @@ int main(int argc, char **argv) {
 	al_install_audio();
 	al_init_acodec_addon();
 
-	al_reserve_samples(2);
+	al_reserve_samples(4);
 
 	// registra na fila os eventos de tela (ex: clicar no X na janela)
 	al_register_event_source(event_queue, al_get_display_event_source(display));
@@ -133,6 +133,9 @@ int main(int argc, char **argv) {
 
 	int pontos_p1;
 	int pontos_p2;
+
+	bool pode_rebater_j1 = false;
+	bool pode_rebater_j2 = false;
 
 	int counter;
 	int counter2;
@@ -254,7 +257,7 @@ int main(int argc, char **argv) {
 					}
 					// printf("Vai verificar\r\n");
 					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2, tipo_jogo);
-					verifica_posicao_bola_jogador(&bolas, &p1);
+					verifica_posicao_bola_jogador(&bolas, &p1, pode_rebater_j1);
 					desenha_bola(bolas);
 					atualiza_bolas(&bolas);
 
@@ -351,6 +354,7 @@ int main(int argc, char **argv) {
 				verifica_movimentacao_menus(ev, &counter, &counter2);
 			} else if (state == JOGO_UM_JOGADOR || state == JOGO_DOIS_JOGADORES) {
 				verifica_tecla_movimentacao(ev, &p1, &p2, state);
+				verifica_tecla_rebatida(ev, state, &pode_rebater_j1, &pode_rebater_j2);
 			}
 
 			verifica_esc(ev, &playing);
