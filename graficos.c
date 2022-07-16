@@ -24,7 +24,7 @@ int i = 0;
 int altura = 300;
 
 void init_graficos() {
-	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 23, 1);
+	fonte_texto_pequeno = al_load_font("data/font/UbuntuMono-RI.ttf", 22, 1);
 	fonte_texto_grande = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
 	seletor = al_load_bitmap("data/img/barra-menu.bmp");
 	bg_menu = al_load_bitmap("data/img/menu-grande.bmp");
@@ -463,7 +463,10 @@ void desenha_placar(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo)
 void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_jogo) {
 	al_draw_bitmap(bg_menu, 0, 0, 0);
 
-	al_play_sample(vencedor, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_stop_samples();
+	if (COM_SOM) {
+		al_play_sample(vencedor, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	}
 
 	// char linha[] = "teeste";
 

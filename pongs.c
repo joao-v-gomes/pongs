@@ -17,12 +17,26 @@
 
 ALLEGRO_SAMPLE *move_menu = NULL;
 ALLEGRO_SAMPLE *intro = NULL;
+ALLEGRO_SAMPLE *jogo = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
-	intro = al_load_sample("data/audio/top-gear-3.wav");
+	intro = al_load_sample("data/audio/top-gear-intro.wav");
+	jogo = al_load_sample("data/audio/top-gear-3.wav");
 
-	// al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	if (COM_SOM) {
+		al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	}
+}
+
+void toca_musica_jogo() {
+
+	// al_stop_sample(intro);
+	al_stop_samples();
+
+	if (COM_SOM) {
+		al_play_sample(jogo, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	}
 }
 
 void verifica_esc(ALLEGRO_EVENT ev, int *playing) {

@@ -220,6 +220,8 @@ int main(int argc, char **argv) {
 					al_set_timer_count(timer_jogo_um_jog, 0);
 					// desenha_jogador(p1);
 
+					toca_musica_jogo();
+
 					state = JOGO_UM_JOGADOR;
 					break;
 				case CARREGA_DOIS_JOGADORES:
