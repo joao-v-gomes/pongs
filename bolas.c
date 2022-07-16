@@ -73,15 +73,15 @@ void verifica_contato_jogador(Bola *b, Jogador *j) {
 
 	if (j->id == 1) {
 		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
-			if ((b->x + b->d >= j->x) && (b->x + b->d <= j->x + j->w)) {
-				b->x = j->x + j->w;
+			if ((b->x + b->d - b->dx) >= j->x + j->w) {
+				b->x = j->x + j->w + b->d;
 				b->dx = -b->dx;
 			}
 		}
 	} else if (j->id == 2) {
 		if (((b->x + b->d) >= j->x) && ((b->x + b->d) <= (j->x + j->w)) && ((b->y + b->d) >= j->y) && ((b->y + b->d) <= (j->y + j->h))) {
-			if ((b->x + b->d >= j->x) && (b->x + b->d <= j->x + j->w)) {
-				b->x = j->x;
+			if (((b->x + b->d - b->dx) <= j->x)) {
+				b->x = j->x - b->d;
 				b->dx = -b->dx;
 			}
 		}

@@ -88,6 +88,10 @@ void desenha_jogador(Jogador p) {
 	// if (p.id == 2) {
 	// 	printf("pos x: %.1f \n pos y: %.1f", p.x, p.y);
 	// }
+
+	// if (p.x > 800) {
+	// 	printf("teste\r\n");
+	// }
 }
 
 void init_jogador(Jogador *p, fsm_escolha_jogadores opcao_jogador) {
