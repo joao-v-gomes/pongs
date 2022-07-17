@@ -7,8 +7,8 @@ LIBS = `pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 al
 
 all: clean $(TARGET)
 
-teste-allegro-lab: teste-allegro-lab.o
-	$(CC) -o teste-allegro-lab teste-allegro-lab.o $(LIBS) $(LDLAGS)
+#teste-allegro-lab: teste-allegro-lab.o
+#	$(CC) -o teste-allegro-lab teste-allegro-lab.o $(LIBS) $(LDLAGS)
 
 $(TARGET): clean $(OBJFILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
