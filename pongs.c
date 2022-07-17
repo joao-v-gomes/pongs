@@ -29,6 +29,23 @@ void init_pongs() {
 	}
 }
 
+void init_var_pongs(int *contador_bolas, int *pontos_p1, int *pontos_p2, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, int *tipo_jogo, int *tempo_jogo) {
+
+	*contador_bolas = 0;
+
+	*pontos_p1 = 0;
+	*pontos_p2 = 0;
+
+	*counter = 0;
+	*counter2 = -1;
+
+	*opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
+	*opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
+
+	*tipo_jogo = 0;
+	*tempo_jogo = 0;
+}
+
 void toca_musica_jogo() {
 
 	// al_stop_sample(intro);
@@ -42,11 +59,23 @@ void toca_musica_jogo() {
 void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing) {
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-			if (*state == AJUDA) {
-				*state = MENU;
-			} else {
-				*playing = 0;
+			switch (*state) {
+				case AJUDA:
+				case ESCOLHE_UM_JOGADOR:
+				case ESCOLHE_DOIS_JOGADORES:
+					*state = INIT_VAR_PONGS;
+					break;
+
+				default:
+					*playing = 0;
+					break;
 			}
+			// if (*state == AJUDA) {
+			// 	*state = MENU;
+			// }else if ( *)
+			//  else {
+			// 	*playing = 0;
+			// }
 		}
 	}
 }
@@ -576,12 +605,6 @@ void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
 				*state = AJUDA;
 			}
 		}
-		// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
-		// 	if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
-		// 		// printf("Soltou H\r\n");
-		// 		*state = MENU;
-		// 	}
-		// }
 	}
 }
 

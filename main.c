@@ -127,9 +127,10 @@ int main(int argc, char **argv) {
 	ALLEGRO_TIMER *timer_bola = NULL;
 	ALLEGRO_TIMER *timer_jogo_um_jog = NULL;
 
+	// Sobre os jogadores
 	Jogador p1, p2;
-	Bola bolas[MAX_BOLAS];
-	int contador_bolas;
+	fsm_escolha_jogadores opcao_jogador1;
+	fsm_escolha_jogadores opcao_jogador2;
 
 	int pontos_p1;
 	int pontos_p2;
@@ -137,25 +138,19 @@ int main(int argc, char **argv) {
 	bool pode_rebater_j1 = false;
 	bool pode_rebater_j2 = false;
 
+	// Sobre as bolas
+	Bola bolas[MAX_BOLAS];
+
+	int contador_bolas;
+
+	// Sobre o menu e jogo
+	fsm_menu state = INIT_MENU;
+
 	int counter;
 	int counter2;
 
 	int tempo_jogo = 0;
 	int tipo_jogo = 0;
-
-	fsm_menu state = INIT_MENU;
-
-	fsm_escolha_jogadores opcao_jogador1;
-	fsm_escolha_jogadores opcao_jogador2;
-
-	// timer_bola = al_create_timer(1);
-
-	// al_start_timer(timer_bola);
-
-	// init_bolas(&bolas, &contador_bolas);
-
-	// init_pongs();
-	// init_graficos();
 
 	while (playing) {
 		ALLEGRO_EVENT ev;
@@ -167,18 +162,8 @@ int main(int argc, char **argv) {
 
 			switch (state) {
 				case INIT_MENU:
-					state = MENU;
 
-					contador_bolas = 0;
-
-					pontos_p1 = 0;
-					pontos_p2 = 0;
-
-					counter = 0;
-					counter2 = -1;
-
-					opcao_jogador1 = INIT_ESCOLHA_JOGADOR;
-					opcao_jogador2 = INIT_ESCOLHA_JOGADOR;
+					// init_var_pongs(&contador_bolas, &pontos_p1, &pontos_p2, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &tempo_jogo, &tipo_jogo);
 
 					timer_bola = al_create_timer(1);
 					timer_jogo_um_jog = al_create_timer(1);
@@ -191,15 +176,21 @@ int main(int argc, char **argv) {
 					init_pongs();
 					init_graficos();
 
+					state = INIT_VAR_PONGS;
+					printf("Foi init var\r\n");
+					break;
+				case INIT_VAR_PONGS:
+					init_var_pongs(&contador_bolas, &pontos_p1, &pontos_p2, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &tempo_jogo, &tipo_jogo);
+					state = MENU;
 					printf("Foi menu\r\n");
 					break;
 				case MENU:
 					// Printa e atualiza a movimentacao no menu inicial
-					printf("Foi menu\r\n");
+					// printf("Foi menu\r\n");
 					desenha_menu(display, &counter);
 					break;
 				case AJUDA:
-					printf("Foi ajuda\r\n");
+					// printf("Foi ajuda\r\n");
 					desenha_ajuda();
 					break;
 				case ESCOLHE_UM_JOGADOR:
@@ -232,6 +223,7 @@ int main(int argc, char **argv) {
 					toca_musica_jogo();
 
 					state = JOGO_UM_JOGADOR;
+					printf("Foi jogo um jogador\r\n");
 					break;
 				case CARREGA_DOIS_JOGADORES:
 					// Faz o init do jogador1 e jogador2 utilizando o tipo de jogador escolhido
@@ -249,6 +241,7 @@ int main(int argc, char **argv) {
 					toca_musica_jogo();
 
 					state = JOGO_DOIS_JOGADORES;
+					printf("Foi jogo dois jogadores\r\n");
 					break;
 				case JOGO_UM_JOGADOR:
 					// printf("Foi jogo 1 jogador\r\n");
@@ -274,6 +267,7 @@ int main(int argc, char **argv) {
 
 					if (pontos_p2 >= PONTOS_VITORIA) {
 						state = CARREGA_FINAL_JOGO;
+						printf("Foi carrega final um jogador\r\n");
 					}
 
 					// Abre o jogo para 1 jogador
@@ -301,6 +295,7 @@ int main(int argc, char **argv) {
 
 					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
 						state = CARREGA_FINAL_JOGO;
+						printf("Foi carrega final dois jogadors\r\n");
 					}
 
 					break;
@@ -311,7 +306,7 @@ int main(int argc, char **argv) {
 					al_resize_display(display, MENU_W, MENU_H);
 
 					state = FINAL_JOGO;
-
+					printf("Foi carrega final jogo\r\n");
 					break;
 
 				case FINAL_JOGO:
@@ -321,19 +316,19 @@ int main(int argc, char **argv) {
 					desenha_final_jogo(tipo_jogo, pontos_p1, pontos_p2, tempo_jogo);
 
 					state = AGUARDA_SAIR;
+					printf("Foi aguarda sair\r\n");
 
 					break;
 
 				case AGUARDA_SAIR:
 					// printf("\nAGUARDA SAIR DO JOGO!\r\n");
-
 					break;
 				case SAIR:
-					printf("Foi sair\r\n");
 					// limpa_menu(bg_menu);
 					limpa_menu();
 					limpa_pongs();
 					playing = 0;
+					printf("Foi sair\r\n");
 					break;
 
 				default:
