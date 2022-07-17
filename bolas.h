@@ -24,8 +24,8 @@
 #define MAX_DY_BOLA		  20
 #define DIAMETRO_BOLA_MIN 3
 #define DIAMETRO_BOLA_MAX 8
-#define MAX_BOLAS		  5
-#define TEMPO_SOLTA_BOLA  2
+#define MAX_BOLAS		  20
+#define TEMPO_SOLTA_BOLA  5
 
 typedef enum {
 	CANTO_SUP_DIR,
