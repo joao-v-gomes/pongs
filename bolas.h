@@ -43,5 +43,18 @@ typedef struct Bola {
 	uint8_t bola_valida;
 
 } Bola;
+void init_bolas(Bola bola[], int *contador_bolas);
+void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas, int *pontos2);
+void verifica_fundo_alto_bola(Bola *b, int *contador_bolas, int *pontos1, int tipo_jogo);
+void verifica_fundo_esquerdo_bola(Bola *b);
+void verifica_fundo_direito_bola(Bola *b);
+void verifica_contato_jogador(Bola *b, Jogador *j, bool pode_rebater);
+void cria_bola(Bola bolas[], int *contador_bolas);
+void atualiza_posicao_bola(Bola *bola);
+void atualiza_bolas(Bola bolas[]);
+void desenha_bola(Bola bolas[]);
+void verifica_posicao_bola_quadra(Bola bola[], int *contador_bolas, int *pontos1, int *pontos2, int tipo_jogo);
+void verifica_posicao_bola_jogador(Bola bola[], Jogador *j, bool pode_rebater);
+void verifica_posicao_bola_jogadores(Bola bola[], Jogador *j1, Jogador *j2, bool pode_rebater_j1, bool pode_rebater_j2);
 
 #endif

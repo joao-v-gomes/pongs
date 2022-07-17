@@ -29,13 +29,16 @@
 #define DIST_FUNDO_LIMITE	   (ESPESSURA_LINHA_QUADRA * 2)
 
 void init_graficos();
-void desenha_menu(ALLEGRO_DISPLAY *display, int *counter);
 void desenha_quadra();
+void desenha_menu(ALLEGRO_DISPLAY *display, int *counter);
 void desenha_escolha_jogador(ALLEGRO_DISPLAY *display);
 void desenha_escolha_jogador_um(ALLEGRO_DISPLAY *display, int *counter);
 void desenha_escolha_jogador_dois(ALLEGRO_DISPLAY *display, int *counter2);
 void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display);
 void desenha_tipo_jogador2(ALLEGRO_DISPLAY *display);
 void desenha_tipo_jogador3(ALLEGRO_DISPLAY *display);
+void desenha_placar(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo);
+void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_jogo);
+void limpa_menu();
 
 #endif

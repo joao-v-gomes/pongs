@@ -566,13 +566,13 @@ void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
 	if (*state == MENU || *state == AJUDA) {
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
-				printf("Apertou H\r\n");
+				// printf("Apertou H\r\n");
 				*state = AJUDA;
 			}
 		}
 		if (ev.type == ALLEGRO_EVENT_KEY_UP) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
-				printf("Soltou H\r\n");
+				// printf("Soltou H\r\n");
 				*state = MENU;
 			}
 		}
@@ -582,4 +582,5 @@ void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
 void limpa_pongs() {
 	al_destroy_sample(intro);
 	al_destroy_sample(move_menu);
+	al_destroy_sample(jogo);
 }

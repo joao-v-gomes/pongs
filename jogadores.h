@@ -50,13 +50,19 @@ typedef enum {
 	INIT_ESCOLHA_JOGADOR
 } fsm_escolha_jogadores;
 
+void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
+void verifica_fundo_baixo(Jogador *p);
+void verifica_fundo_alto(Jogador *p);
+void verifica_fundo_esquerdo(Jogador *p);
+void verifica_fundo_direito(Jogador *p);
+void verifica_meio_quadra(Jogador *p);
+void verifica_posicao(Jogador *p);
+void desenha_jogadores(Jogador p1, Jogador p2);
+void desenha_jogador(Jogador p);
+void init_jogador(Jogador *p, fsm_escolha_jogadores opcao_jogador);
 void init_jogador1(Jogador *p1, fsm_escolha_jogadores opcao_jogador);
 void init_jogador2(Jogador *p2, fsm_escolha_jogadores opcao_jogador);
-void desenha_jogador(Jogador p);
-void desenha_jogadores(Jogador p1, Jogador p2);
-void atualiza_jogador(Jogador *p);
 void atualiza_jogadores(Jogador *p1, Jogador *p2);
-void verifica_posicao(Jogador *p);
-void verifica_posicoes_jogadores(Jogador *p1, Jogador *p2);
+void atualiza_jogador(Jogador *p);
 
 #endif

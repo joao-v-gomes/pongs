@@ -280,7 +280,7 @@ int main(int argc, char **argv) {
 					// // Abre o jogo para 2 jogadores
 					// printf("Foi jogo 2 jogador\r\n");
 					desenha_quadra();
-					desenha_placar(pontos_p1, pontos_p2, DOIS_JOG);
+					desenha_placar(pontos_p1, pontos_p2, DOIS_JOG, tempo_jogo);
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
@@ -329,6 +329,8 @@ int main(int argc, char **argv) {
 				case SAIR:
 					printf("Foi sair\r\n");
 					// limpa_menu(bg_menu);
+					limpa_menu();
+					limpa_pongs();
 					playing = 0;
 					break;
 

@@ -846,4 +846,5 @@ void limpa_menu() {
 	al_destroy_bitmap(bg_menu);
 	al_destroy_font(fonte_texto_pequeno);
 	al_destroy_font(fonte_texto_grande);
+	al_destroy_sample(vencedor);
 }
