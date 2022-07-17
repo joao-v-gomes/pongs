@@ -562,6 +562,23 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 	}
 }
 
+void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
+	if (*state == MENU || *state == AJUDA) {
+		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
+				printf("Apertou H\r\n");
+				*state = AJUDA;
+			}
+		}
+		if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
+				printf("Soltou H\r\n");
+				*state = MENU;
+			}
+		}
+	}
+}
+
 void limpa_pongs() {
 	al_destroy_sample(intro);
 	al_destroy_sample(move_menu);

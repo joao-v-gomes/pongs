@@ -19,6 +19,7 @@
 typedef enum {
 	INIT_MENU,
 	MENU,
+	AJUDA,
 	UM_JOGADOR,
 	DOIS_JOGADORES,
 	AGUARDA_SAIR,

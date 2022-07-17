@@ -195,7 +195,12 @@ int main(int argc, char **argv) {
 					break;
 				case MENU:
 					// Printa e atualiza a movimentacao no menu inicial
+					printf("Foi menu\r\n");
 					desenha_menu(display, &counter);
+					break;
+				case AJUDA:
+					printf("Foi ajuda\r\n");
+					desenha_ajuda();
 					break;
 				case ESCOLHE_UM_JOGADOR:
 					// Printa e atualiza a movimentacao no menu de jogadores para um jogador
@@ -355,6 +360,10 @@ int main(int argc, char **argv) {
 			} else if (state == JOGO_UM_JOGADOR || state == JOGO_DOIS_JOGADORES) {
 				verifica_tecla_movimentacao(ev, &p1, &p2, state);
 				verifica_tecla_rebatida(ev, state, &pode_rebater_j1, &pode_rebater_j2);
+			}
+
+			if (state == MENU || state == AJUDA) {
+				verifica_tecla_ajuda(ev, &state);
 			}
 
 			verifica_esc(ev, &playing);

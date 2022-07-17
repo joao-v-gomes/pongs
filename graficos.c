@@ -71,6 +71,7 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	char um_jog[] = "1 Jogador";
 	char dois_jog[] = "2 Jogadores";
 	char sair[] = "Sair";
+	char ajuda[] = "Aperte 'H' para ajuda";
 
 	int screen_w = al_get_display_width(display);
 	int screen_h = al_get_display_height(display);
@@ -98,6 +99,8 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 	posicao_h_texto = posicao_h_texto + 70;
 
 	al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, sair);
+
+	al_draw_text(fonte_texto_pequeno, COR_BRANCA, 10, 560, 0, ajuda);
 
 	switch (*counter) {
 		case 0:
@@ -131,6 +134,14 @@ void desenha_menu(ALLEGRO_DISPLAY *display, int *counter) {
 		default:
 			break;
 	}
+}
+
+void desenha_ajuda() {
+	ALLEGRO_BITMAP *imagem_ajuda = NULL;
+
+	imagem_ajuda = al_load_bitmap("data/img/ajuda.bmp");
+
+	al_draw_bitmap(imagem_ajuda, 0, 0, 0);
 }
 
 void desenha_escolha_jogador(ALLEGRO_DISPLAY *display) {
