@@ -18,11 +18,14 @@
 ALLEGRO_SAMPLE *move_menu = NULL;
 ALLEGRO_SAMPLE *intro = NULL;
 ALLEGRO_SAMPLE *jogo = NULL;
+// ALLEGRO_SAMPLE *sair_jogo = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
-	intro = al_load_sample("data/audio/top-gear-intro.wav");
+	// intro = al_load_sample("data/audio/top-gear-intro.wav");
+	intro = al_load_sample("data/audio/sonic-intro.wav");
 	jogo = al_load_sample("data/audio/top-gear-3.wav");
+	// sair_jogo = al_load_sample("data/audio/sonic-ring.wav");
 }
 
 void init_var_pongs(int *contador_bolas, int *pontos_p1, int *pontos_p2, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, int *tipo_jogo, int *tempo_jogo) {
@@ -56,6 +59,11 @@ void toca_musica_jogo() {
 	}
 }
 
+// void toca_musica_fim_jogo() {
+// 	al_stop_samples();
+// 	al_play_sample(sair_jogo, 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+// }
+
 void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing) {
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
@@ -67,6 +75,7 @@ void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing) {
 					break;
 
 				default:
+					// toca_musica_fim_jogo();
 					*playing = 0;
 					break;
 			}

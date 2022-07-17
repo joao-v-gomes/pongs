@@ -318,6 +318,7 @@ int main(int argc, char **argv) {
 					break;
 				case SAIR:
 					// limpa_menu(bg_menu);
+					// toca_musica_fim_jogo();
 					limpa_menu();
 					limpa_pongs();
 					playing = 0;
