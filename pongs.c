@@ -567,15 +567,19 @@ void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
 				// printf("Apertou H\r\n");
-				*state = AJUDA;
+				if (*state == AJUDA) {
+					*state = MENU;
+				} else if (*state == MENU) {
+					*state = AJUDA;
+				}
 			}
 		}
-		if (ev.type == ALLEGRO_EVENT_KEY_UP) {
-			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
-				// printf("Soltou H\r\n");
-				*state = MENU;
-			}
-		}
+		// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+		// 	if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
+		// 		// printf("Soltou H\r\n");
+		// 		*state = MENU;
+		// 	}
+		// }
 	}
 }
 
