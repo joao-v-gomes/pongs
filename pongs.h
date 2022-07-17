@@ -40,7 +40,7 @@ typedef enum {
 
 void init_pongs();
 void toca_musica_jogo();
-void verifica_esc(ALLEGRO_EVENT ev, int *playing);
+void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing);
 void verifica_selecao_menu(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_menu *state);
 void verifica_selecao_jogador(ALLEGRO_EVENT ev, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, fsm_menu *state);
 void verifica_movimentacao_menus(ALLEGRO_EVENT ev, int *counter, int *counter2);

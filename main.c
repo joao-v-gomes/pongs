@@ -370,7 +370,7 @@ int main(int argc, char **argv) {
 				verifica_tecla_ajuda(ev, &state);
 			}
 
-			verifica_esc(ev, &playing);
+			verifica_esc(ev, &state, &playing);
 		}
 
 	} // fim do while

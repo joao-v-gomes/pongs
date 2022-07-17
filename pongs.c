@@ -39,9 +39,15 @@ void toca_musica_jogo() {
 	}
 }
 
-void verifica_esc(ALLEGRO_EVENT ev, int *playing) {
-	if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-		*playing = 0;
+void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing) {
+	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+			if (*state == AJUDA) {
+				*state = MENU;
+			} else {
+				*playing = 0;
+			}
+		}
 	}
 }
 
@@ -563,15 +569,11 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 }
 
 void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
-	if (*state == MENU || *state == AJUDA) {
+	if (*state == MENU) {
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_H) {
 				// printf("Apertou H\r\n");
-				if (*state == AJUDA) {
-					*state = MENU;
-				} else if (*state == MENU) {
-					*state = AJUDA;
-				}
+				*state = AJUDA;
 			}
 		}
 		// if (ev.type == ALLEGRO_EVENT_KEY_UP) {
