@@ -246,6 +246,8 @@ int main(int argc, char **argv) {
 
 					al_set_timer_count(timer_bola, 0);
 
+					toca_musica_jogo();
+
 					state = JOGO_DOIS_JOGADORES;
 					break;
 				case JOGO_UM_JOGADOR:

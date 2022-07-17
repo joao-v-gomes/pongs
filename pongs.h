@@ -3,7 +3,7 @@
 
 #include "jogadores.h"
 
-#define COM_SOM 0
+#define COM_SOM 1
 
 #define FPS			   30
 #define SCREEN_INIT	   1
