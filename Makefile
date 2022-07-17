@@ -12,13 +12,6 @@ teste-allegro-lab: teste-allegro-lab.o
 
 $(TARGET): clean $(OBJFILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LIBS) $(LDLAGS)
-# $(CC) $(CFLAGS) -c -o main.o main.c
-# $(CC) $(CFLAGS) -c -o jogadores.o jogadores.c
-# $(CC) $(CFLAGS) -c -o pongs.o pongs.c
-# ar cr libpongs.a pongs.o
-# ar cr libjogadores.a jogadores.o
-# $(CC) libpongs.a libjogadores.a main.o -o Pongs $(LIBS) $(LDLAGS)
-
 	
 clean:
 	rm -f $(OBJFILES)

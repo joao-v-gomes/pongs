@@ -165,15 +165,6 @@ void desenha_escolha_jogador(ALLEGRO_DISPLAY *display) {
 	desenha_tipo_jogador1(display);
 	desenha_tipo_jogador2(display);
 	desenha_tipo_jogador3(display);
-
-	// int inicio_largura_box = 50;
-	// int final_largura_box = 480;
-	// int altura_box = 130;
-	// int espessura = 2;
-
-	// al_draw_rectangle(inicio_largura_box, altura_box, final_largura_box, altura_box + 90, COR_BRANCA, espessura);
-	// al_draw_rectangle(inicio_largura_box + 10, (2 * altura_box), final_largura_box, (2 * altura_box) + 90, COR_BRANCA, espessura);
-	// al_draw_rectangle(inicio_largura_box - 20, (3 * altura_box) - 5, final_largura_box, (3 * altura_box) - 5 + 90, COR_BRANCA, espessura);
 }
 
 void desenha_escolha_jogador_um(ALLEGRO_DISPLAY *display, int *counter) {
@@ -199,24 +190,18 @@ void desenha_escolha_jogador_um(ALLEGRO_DISPLAY *display, int *counter) {
 
 			al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 		case 1:
 			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_2 - 40), 0, jogador1);
 
 			al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 		case 2:
 			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_3 - 40), 0, jogador1);
 
 			al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 
 		default:
@@ -225,7 +210,6 @@ void desenha_escolha_jogador_um(ALLEGRO_DISPLAY *display, int *counter) {
 }
 
 void desenha_escolha_jogador_dois(ALLEGRO_DISPLAY *display, int *counter2) {
-	// desenha_escolha_jogador(display);
 
 	int pos_w = MENU_W - 50;
 	int pos_h_1 = 180;
@@ -247,24 +231,18 @@ void desenha_escolha_jogador_dois(ALLEGRO_DISPLAY *display, int *counter2) {
 
 			al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 		case 1:
 			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_2 - 40), 0, jogador1);
 
 			al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 		case 2:
 			al_draw_text(fonte_texto_grande, COR_BRANCA, (pos_w - 10), (pos_h_3 - 40), 0, jogador1);
 
 			al_draw_filled_rectangle(pos_w, pos_h_3, (pos_w + SELETOR_W), (pos_h_3 + SELETOR_H), COR_BRANCA);
 
-			// al_draw_filled_rectangle(pos_w, pos_h_1, (pos_w + SELETOR_W), (pos_h_1 + SELETOR_H), al_map_rgb(0, 0, 0));
-			// al_draw_filled_rectangle(pos_w, pos_h_2, (pos_w + SELETOR_W), (pos_h_2 + SELETOR_H), al_map_rgb(0, 0, 0));
 			break;
 
 		default:
@@ -320,7 +298,6 @@ void desenha_tipo_jogador1(ALLEGRO_DISPLAY *display) {
 }
 
 void desenha_tipo_jogador2(ALLEGRO_DISPLAY *display) {
-	// al_draw_filled_rectangle(p.x, p.y, p.x + p.w, p.y + p.h, COR_JOGADOR_1);
 
 	int screen_w = al_get_display_width(display);
 	int screen_h = al_get_display_height(display);
@@ -479,9 +456,6 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		al_play_sample(vencedor, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 	}
 
-	// char linha[] = "teeste";
-
-	// al_draw_text(fonte_texto_pequeno, COR_BRANCA, 200, 200, 0, linha);
 	if (tipo_jogo == UM_JOG) {
 
 		FILE *ler_partidas;
@@ -502,10 +476,6 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		if (ler_partidas == NULL) {
 			printf("Deu ruim arq um jogador\r\n");
 		}
-
-		// while (fgets(linha, 1000, ler_partidas)) {
-		// 	printf("Linha lida: %s\r\n");
-		// }
 
 		// Conta a qtde de linhas no arquivo
 		int qtde_linhas_total = 0;
@@ -748,45 +718,6 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		strcat(texto_final, aux);
 
 		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
-
-		/*
-		posicao_h_texto = 240;
-
-		strcpy(texto_final, "Jogador 1: ");
-
-		sprintf(aux, "%d", pontos_p1);
-
-		strcat(texto_final, aux);
-
-		strcat(texto_final, " - ");
-
-		strcat(texto_final, "Jogador 2: ");
-
-		strcpy(aux, "");
-
-		sprintf(aux, "%d", pontos_p2);
-
-		strcat(texto_final, aux);
-
-		text_w = al_get_text_width(fonte_texto_grande, texto_final);
-		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
-
-		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
-		*/
-		// char tempo[1000];
-
-		// sprintf(tempo, "%d", tempo_jogo);
-
-		// strcpy(texto_final, tempo);
-
-		// strcat(texto_final, " segundos!");
-
-		// posicao_h_texto = 270;
-
-		// text_w = al_get_text_width(fonte_texto_grande, texto_final);
-		// posicao_w_texto = (MENU_W / 2) - (text_w / 2);
-
-		// al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
 
 		posicao_w_texto = 10;
 

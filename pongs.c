@@ -70,12 +70,6 @@ void verifica_esc(ALLEGRO_EVENT ev, fsm_menu *state, int *playing) {
 					*playing = 0;
 					break;
 			}
-			// if (*state == AJUDA) {
-			// 	*state = MENU;
-			// }else if ( *)
-			//  else {
-			// 	*playing = 0;
-			// }
 		}
 	}
 }

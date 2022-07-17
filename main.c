@@ -84,12 +84,6 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-	// carrega o arquivo arial.ttf da fonte Arial e define que sera usado o tamanho 32 (segundo parametro)
-	// ALLEGRO_FONT *fonte_texto = al_load_font("data/font/UbuntuMono-RI.ttf", 32, 1);
-	// if (fonte_texto == NULL) {
-	// 	fprintf(stderr, "font file does not exist or cannot be accessed!\n");
-	// }
-
 	// cria a fila de eventos
 	event_queue = al_create_event_queue();
 	if (!event_queue) {
@@ -110,7 +104,7 @@ int main(int argc, char **argv) {
 	// registra na fila os eventos de teclado (ex: pressionar uma tecla)
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	// //registra na fila os eventos de mouse (ex: clicar em um botao do mouse)
-	al_register_event_source(event_queue, al_get_mouse_event_source());
+	// al_register_event_source(event_queue, al_get_mouse_event_source());
 
 	// inicia o temporizador
 	al_start_timer(timer);
@@ -338,17 +332,18 @@ int main(int argc, char **argv) {
 			// atualiza a tela (quando houver algo para mostrar)
 			al_flip_display();
 
-			if (al_get_timer_count(timer) % (int)FPS == 0)
-				printf("\n%d segundos se passaram...", (int)(al_get_timer_count(timer) / FPS));
+			// if (al_get_timer_count(timer) % (int)FPS == 0)
+			// 	printf("\n%d segundos se passaram...", (int)(al_get_timer_count(timer) / FPS));
 		}
 		// se o tipo de evento for o fechamento da tela (clique no x da janela)
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			playing = 0;
 		}
 		// se o tipo de evento for um clique de mouse
-		else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-			printf("\nmouse clicado em: %d, %d", ev.mouse.x, ev.mouse.y);
-		} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN || ev.type == ALLEGRO_EVENT_KEY_UP) {
+		// else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+		// 	printf("\nmouse clicado em: %d, %d", ev.mouse.x, ev.mouse.y);
+		// }
+		else if (ev.type == ALLEGRO_EVENT_KEY_DOWN || ev.type == ALLEGRO_EVENT_KEY_UP) {
 
 			if (state == MENU) {
 				verifica_selecao_menu(ev, &counter, &counter2, &state);
