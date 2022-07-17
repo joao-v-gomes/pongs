@@ -457,6 +457,108 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 		//
 		strcpy(linha_salva, "");
 		fclose(partidas);
+
+		int ganhou = 0;
+
+		if (pontos_p1 >= PONTOS_VITORIA) {
+			ganhou = 1;
+		} else if (pontos_p2 >= PONTOS_VITORIA) {
+			ganhou = 2;
+		}
+
+		FILE *pega_historico;
+		pega_historico = fopen("historico.txt", "r");
+		// printf("Leu arq historico\r\n");
+
+		if (pega_historico == NULL) {
+			// printf("Deu ruim arq historico\r\n");
+
+			pega_historico = fopen("historico.txt", "w");
+
+			if (pega_historico == NULL) {
+				// printf("Agora deu ruim de vez arq historico\r\n");
+			} else {
+
+				if (ganhou == 1) {
+					fprintf(pega_historico, "%c", '1');
+					fprintf(pega_historico, "%c", ' ');
+					fprintf(pega_historico, "%c", '0');
+					fprintf(pega_historico, "%c", ' ');
+				} else if (ganhou == 2) {
+					fprintf(pega_historico, "%c", '0');
+					fprintf(pega_historico, "%c", ' ');
+					fprintf(pega_historico, "%c", '1');
+					fprintf(pega_historico, "%c", ' ');
+				}
+
+				fclose(pega_historico);
+			}
+		} else {
+			// printf("Abriu arq hist para leitura\r\n");
+
+			char aux[10];
+			char c1, c2;
+			// int hist[2];
+			int i = 0;
+
+			int jogos_j1 = 0;
+			int jogos_j2 = 0;
+
+			for (i = 0; i < 10; i++) {
+				c1 = fgetc(pega_historico);
+
+				if (c1 != ' ') {
+					aux[i] = c1;
+					// i++;
+				} else {
+					i = 10;
+				}
+			}
+
+			// printf("Hist_j1 pego: %s\r\n", aux);
+
+			jogos_j1 = strtol(aux, NULL, 10);
+
+			strcpy(aux, "          ");
+
+			for (i = 0; i < 10; i++) {
+				c2 = fgetc(pega_historico);
+
+				if (c2 != ' ') {
+					aux[i] = c2;
+					// i++;
+				} else {
+					i = 10;
+				}
+			}
+
+			// printf("Hist_j2 pego: %s\r\n", aux);
+
+			jogos_j2 = strtol(aux, NULL, 10);
+
+			// printf("Jogos j1 antes: %d\r\n", jogos_j1);
+			// printf("Jogos j2 antes: %d\r\n", jogos_j2);
+
+			if (ganhou == 1) {
+				jogos_j1++;
+			} else if (ganhou = 2) {
+				jogos_j2++;
+			}
+
+			// printf("Jogos j1 depois: %d\r\n", jogos_j1);
+			// printf("Jogos j2 depois: %d\r\n", jogos_j2);
+
+			fclose(pega_historico);
+
+			pega_historico = fopen("historico.txt", "w");
+
+			fprintf(pega_historico, "%d", jogos_j1);
+			fprintf(pega_historico, "%c", ' ');
+			fprintf(pega_historico, "%d", jogos_j2);
+			fprintf(pega_historico, "%c", ' ');
+
+			fclose(pega_historico);
+		}
 	}
 }
 

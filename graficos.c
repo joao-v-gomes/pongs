@@ -489,7 +489,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		printf("Leu arq\r\n");
 
 		if (ler_partidas == NULL) {
-			printf("Deu ruim\r\n");
+			printf("Deu ruim arq um jogador\r\n");
 		}
 
 		// while (fgets(linha, 1000, ler_partidas)) {
@@ -568,7 +568,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 		// Escreve vai pra primeira linha do historico valido
 		while ((c != EOF) && (counter < MAX_LINHAS_LIDAS)) {
-			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS + 1) {
+			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS) {
 				c = fgetc(ler_partidas);
 
 				if (c == '\n') {
@@ -607,10 +607,60 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		fclose(ler_partidas);
 	} else if (tipo_jogo = DOIS_JOG) {
 
+		int jogos_j1 = 0;
+		int jogos_j2 = 0;
+
+		FILE *pega_historico;
+		pega_historico = fopen("historico.txt", "r");
+		printf("Leu arq partidas\r\n");
+
+		if (pega_historico == NULL) {
+			printf("Deu ruim arq historico\r\n");
+		} else {
+			char aux[10];
+			char c1, c2;
+			// int hist[2];
+			int i = 0;
+
+			for (i = 0; i < 10; i++) {
+				c1 = fgetc(pega_historico);
+
+				if (c1 != ' ') {
+					aux[i] = c1;
+					// i++;
+				} else {
+					i = 10;
+				}
+			}
+
+			printf("Hist_j1 pego: %s\r\n", aux);
+
+			jogos_j1 = strtol(aux, NULL, 10);
+
+			strcpy(aux, "          ");
+
+			for (i = 0; i < 10; i++) {
+				c2 = fgetc(pega_historico);
+
+				if (c2 != ' ') {
+					aux[i] = c2;
+					// i++;
+				} else {
+					i = 10;
+				}
+			}
+
+			printf("Hist_j2 pego: %s\r\n", aux);
+
+			jogos_j2 = strtol(aux, NULL, 10);
+
+			fclose(pega_historico);
+		}
+
 		FILE *ler_partidas;
 
 		char linha[1000];
-		char aux[3];
+		char aux[10];
 		char c;
 		int i = 0;
 		int counter = 0;
@@ -625,7 +675,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		printf("Leu arq\r\n");
 
 		if (ler_partidas == NULL) {
-			printf("Deu ruim\r\n");
+			printf("Deu ruim arq dois jogadores\r\n");
 		}
 
 		// while (fgets(linha, 1000, ler_partidas)) {
@@ -653,13 +703,42 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 		char texto_final[100];
 
-		strcpy(texto_final, "Fim de Partida!");
+		if (pontos_p1 >= PONTOS_VITORIA) {
+			strcpy(texto_final, "Jogador 1 venceu!");
+		} else if (pontos_p2 >= PONTOS_VITORIA) {
+			strcpy(texto_final, "Jogador 2 venceu!");
+		}
 
 		text_w = al_get_text_width(fonte_texto_grande, texto_final);
 		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
 
 		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
 
+		posicao_h_texto = 240;
+
+		strcpy(texto_final, "Vitorias do J1: ");
+
+		strcpy(aux, "");
+
+		sprintf(aux, "%d", jogos_j1);
+
+		strcat(texto_final, aux);
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
+
+		posicao_h_texto = 280;
+
+		strcpy(texto_final, "Vitorias do J2: ");
+
+		strcpy(aux, "");
+
+		sprintf(aux, "%d", jogos_j2);
+
+		strcat(texto_final, aux);
+
+		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
+
+		/*
 		posicao_h_texto = 240;
 
 		strcpy(texto_final, "Jogador 1: ");
@@ -682,7 +761,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		posicao_w_texto = (MENU_W / 2) - (text_w / 2);
 
 		al_draw_text(fonte_texto_grande, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, texto_final);
-
+		*/
 		// char tempo[1000];
 
 		// sprintf(tempo, "%d", tempo_jogo);
@@ -709,7 +788,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		}
 
 		while ((c != EOF) && (counter < MAX_LINHAS_LIDAS)) {
-			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS + 1) {
+			while (qtde_linhas_parcial < qtde_linhas_total - MAX_LINHAS_LIDAS) {
 				c = fgetc(ler_partidas);
 
 				if (c == '\n') {
@@ -728,7 +807,10 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				linha[i] = c;
 				i++;
 			} else {
-				linha[i] = ' ';
+				int j = i;
+				for (j; j < i + 5; j++) {
+					linha[j] = ' ';
+				}
 				printf("Leu newline\r\n");
 				// fgetc(ler_partidas);
 				printf("Linha %d lida: %s\r\n", counter, linha);

@@ -9,7 +9,7 @@
 #define SCREEN_INIT	   1
 #define JOGO_H		   440
 #define JOGO_W		   960
-#define PONTOS_VITORIA 100
+#define PONTOS_VITORIA 1
 #define UM_JOG		   1
 #define DOIS_JOG	   2
 
