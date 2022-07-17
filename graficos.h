@@ -31,6 +31,7 @@
 void init_graficos();
 void desenha_quadra();
 void desenha_menu(ALLEGRO_DISPLAY *display, int *counter);
+void desenha_ajuda();
 void desenha_escolha_jogador(ALLEGRO_DISPLAY *display);
 void desenha_escolha_jogador_um(ALLEGRO_DISPLAY *display, int *counter);
 void desenha_escolha_jogador_dois(ALLEGRO_DISPLAY *display, int *counter2);

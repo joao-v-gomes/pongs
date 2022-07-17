@@ -548,7 +548,7 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 
 			jogos_j1 = strtol(aux, NULL, 10);
 
-			strcpy(aux, "          ");
+			strcpy(aux, "         ");
 
 			for (i = 0; i < 10; i++) {
 				c2 = fgetc(pega_historico);

@@ -491,7 +491,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 		//"Recarrega" o arquivo
 		rewind(ler_partidas);
-		c = " ";
+		c = ' ';
 
 		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
 
@@ -618,7 +618,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 			jogos_j1 = strtol(aux, NULL, 10);
 
-			strcpy(aux, "          ");
+			strcpy(aux, "         ");
 
 			for (i = 0; i < 10; i++) {
 				c2 = fgetc(pega_historico);
@@ -674,7 +674,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		}
 
 		rewind(ler_partidas);
-		c = " ";
+		c = ' ';
 
 		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
 
