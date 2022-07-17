@@ -50,6 +50,7 @@ void verifica_tecla_movimentacao(ALLEGRO_EVENT ev, Jogador *p1, Jogador *p2, fsm
 void verifica_tecla_rebatida(ALLEGRO_EVENT ev, fsm_menu state, bool *pode_rebater_j1, bool *pode_rebater_j2);
 void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo);
 void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state);
+void verifica_teclas_final_jogo(ALLEGRO_EVENT ev, fsm_menu *state);
 void limpa_pongs();
 
 #endif
