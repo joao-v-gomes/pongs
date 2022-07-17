@@ -157,15 +157,13 @@ int main(int argc, char **argv) {
 			switch (state) {
 				case INIT_MENU:
 
-					// init_var_pongs(&contador_bolas, &pontos_p1, &pontos_p2, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &tempo_jogo, &tipo_jogo);
-
 					timer_bola = al_create_timer(1);
 					timer_jogo_um_jog = al_create_timer(1);
 
 					al_start_timer(timer_bola);
 					al_start_timer(timer_jogo_um_jog);
 
-					init_bolas(&bolas, &contador_bolas);
+					// init_bolas(&bolas, &contador_bolas);
 
 					init_pongs();
 					init_graficos();
@@ -175,6 +173,7 @@ int main(int argc, char **argv) {
 					break;
 				case INIT_VAR_PONGS:
 					init_var_pongs(&contador_bolas, &pontos_p1, &pontos_p2, &counter, &counter2, &opcao_jogador1, &opcao_jogador2, &tempo_jogo, &tipo_jogo);
+					init_bolas(&bolas, &contador_bolas);
 					state = MENU;
 					printf("Foi menu\r\n");
 					break;
@@ -358,6 +357,10 @@ int main(int argc, char **argv) {
 
 			if (state == MENU || state == AJUDA) {
 				verifica_tecla_ajuda(ev, &state);
+			}
+
+			if (state == AGUARDA_SAIR) {
+				verifica_teclas_final_jogo(ev, &state);
 			}
 
 			verifica_esc(ev, &state, &playing);

@@ -21,6 +21,8 @@ void init_bolas(Bola bola[], int *contador_bolas) {
 
 	*contador_bolas = 0;
 
+	posicao_nova_bola = CANTO_SUP_DIR;
+
 	int i = 0;
 
 	for (i; i < MAX_BOLAS; i++) {

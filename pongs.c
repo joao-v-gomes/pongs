@@ -23,10 +23,6 @@ void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
 	intro = al_load_sample("data/audio/top-gear-intro.wav");
 	jogo = al_load_sample("data/audio/top-gear-3.wav");
-
-	if (COM_SOM) {
-		al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
-	}
 }
 
 void init_var_pongs(int *contador_bolas, int *pontos_p1, int *pontos_p2, int *counter, int *counter2, fsm_escolha_jogadores *opcao_jogador1, fsm_escolha_jogadores *opcao_jogador2, int *tipo_jogo, int *tempo_jogo) {
@@ -44,14 +40,18 @@ void init_var_pongs(int *contador_bolas, int *pontos_p1, int *pontos_p2, int *co
 
 	*tipo_jogo = 0;
 	*tempo_jogo = 0;
+
+	if (COM_SOM) {
+		al_stop_samples();
+		al_play_sample(intro, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
+	}
 }
 
 void toca_musica_jogo() {
 
-	// al_stop_sample(intro);
-	al_stop_samples();
-
 	if (COM_SOM) {
+		// al_stop_sample(intro);
+		al_stop_samples();
 		al_play_sample(jogo, 1, 0, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 	}
 }
@@ -598,6 +598,14 @@ void verifica_tecla_ajuda(ALLEGRO_EVENT ev, fsm_menu *state) {
 				// printf("Apertou H\r\n");
 				*state = AJUDA;
 			}
+		}
+	}
+}
+
+void verifica_teclas_final_jogo(ALLEGRO_EVENT ev, fsm_menu *state) {
+	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER || ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+			*state = INIT_VAR_PONGS;
 		}
 	}
 }
