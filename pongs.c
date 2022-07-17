@@ -291,22 +291,22 @@ void verifica_tecla_rebatida(ALLEGRO_EVENT ev, fsm_menu state, bool *pode_rebate
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 				*pode_rebater_j1 = true;
-				printf("Pode rebater 1\r\n");
+				// printf("Pode rebater 1\r\n");
 			}
 
 			if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
 				*pode_rebater_j2 = true;
-				printf("Pode rebater 2\r\n");
+				// printf("Pode rebater 2\r\n");
 			}
 		} else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
 			if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
 				*pode_rebater_j1 = false;
-				printf("Nao rebater 1\r\n");
+				// printf("Nao rebater 1\r\n");
 			}
 
 			if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
 				*pode_rebater_j2 = false;
-				printf("Nao rebater 2\r\n");
+				// printf("Nao rebater 2\r\n");
 			}
 		}
 	}
@@ -315,7 +315,7 @@ void verifica_tecla_rebatida(ALLEGRO_EVENT ev, fsm_menu state, bool *pode_rebate
 void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_jogo) {
 
 	if (tipo_jogo == UM_JOG) {
-		printf("FIM 1 JOGADOR\r\n");
+		// printf("FIM 1 JOGADOR\r\n");
 
 		FILE *partidas;
 
@@ -386,7 +386,7 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 
 		strcat(linha_salva, "\n");
 
-		printf("Linha: %s", linha_salva);
+		// printf("Linha: %s", linha_salva);
 
 		fprintf(partidas, "%s", linha_salva);
 		// fprintf(partidas, "%s", "\n");
@@ -397,7 +397,7 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 
 	} else if (tipo_jogo == DOIS_JOG) {
 
-		printf("FIM 2 JOGADOR\r\n");
+		// printf("FIM 2 JOGADOR\r\n");
 		FILE *partidas;
 
 		partidas = fopen("partidas-dois-jogadores.txt", "a");
@@ -478,7 +478,7 @@ void prepara_final_jogo(int pontos_p1, int pontos_p2, int tipo_jogo, int tempo_j
 
 		strcat(linha_salva, "\n");
 
-		printf("Linha: %s", linha_salva);
+		// printf("Linha: %s", linha_salva);
 
 		fprintf(partidas, "%s", linha_salva);
 		// fprintf(partidas, "%s", "\n");

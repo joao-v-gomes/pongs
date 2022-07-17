@@ -151,8 +151,8 @@ void atualiza_jogador(Jogador *p) {
 	p->y = p->y + p->baixo * p->vel - p->cima * p->vel;
 }
 
-void printa_info_jogador(Jogador p) {
-	printf(" Jogador: %d\r\n", p.id);
-	printf(" Altura: %.2f\r\n", p.w);
-	printf(" Largura: %.2f\r\n", p.h);
-}
+// void printa_info_jogador(Jogador p) {
+// 	printf(" Jogador: %d\r\n", p.id);
+// 	printf(" Altura: %.2f\r\n", p.w);
+// 	printf(" Largura: %.2f\r\n", p.h);
+// }

@@ -293,7 +293,7 @@ int main(int argc, char **argv) {
 
 					break;
 				case CARREGA_FINAL_JOGO:
-					printf("Pega os pontos, escreve no arquivo");
+					// printf("Pega os pontos, escreve no arquivo");
 
 					prepara_final_jogo(pontos_p1, pontos_p2, tipo_jogo, tempo_jogo);
 					al_resize_display(display, MENU_W, MENU_H);

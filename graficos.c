@@ -471,7 +471,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		int posicao_w_texto = 0;
 
 		ler_partidas = fopen("partidas-um-jogador.txt", "r");
-		printf("Leu arq\r\n");
+		// printf("Leu arq\r\n");
 
 		if (ler_partidas == NULL) {
 			printf("Deu ruim arq um jogador\r\n");
@@ -493,7 +493,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		rewind(ler_partidas);
 		c = ' ';
 
-		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
+		// printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
 
 		posicao_h_texto = 180;
 
@@ -570,9 +570,9 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				i++;
 			} else {
 				linha[i] = ' ';
-				printf("Leu newline\r\n");
+				// printf("Leu newline\r\n");
 				// fgetc(ler_partidas);
-				printf("Linha %d lida: %s\r\n", counter, linha);
+				// printf("Linha %d lida: %s\r\n", counter, linha);
 
 				al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, linha);
 
@@ -593,7 +593,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 
 		FILE *pega_historico;
 		pega_historico = fopen("historico.txt", "r");
-		printf("Leu arq partidas\r\n");
+		// printf("Leu arq partidas\r\n");
 
 		if (pega_historico == NULL) {
 			printf("Deu ruim arq historico\r\n");
@@ -614,7 +614,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				}
 			}
 
-			printf("Hist_j1 pego: %s\r\n", aux);
+			// printf("Hist_j1 pego: %s\r\n", aux);
 
 			jogos_j1 = strtol(aux, NULL, 10);
 
@@ -631,7 +631,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				}
 			}
 
-			printf("Hist_j2 pego: %s\r\n", aux);
+			// printf("Hist_j2 pego: %s\r\n", aux);
 
 			jogos_j2 = strtol(aux, NULL, 10);
 
@@ -653,7 +653,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		int posicao_w_texto = 0;
 
 		ler_partidas = fopen("partidas-dois-jogadores.txt", "r");
-		printf("Leu arq\r\n");
+		// printf("Leu arq\r\n");
 
 		if (ler_partidas == NULL) {
 			printf("Deu ruim arq dois jogadores\r\n");
@@ -676,7 +676,7 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 		rewind(ler_partidas);
 		c = ' ';
 
-		printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
+		// printf("Qtde linhas total: %d\r\n", qtde_linhas_total);
 
 		posicao_h_texto = 180;
 
@@ -753,9 +753,9 @@ void desenha_final_jogo(int tipo_jogo, int pontos_p1, int pontos_p2, int tempo_j
 				for (j; j < i + 5; j++) {
 					linha[j] = ' ';
 				}
-				printf("Leu newline\r\n");
+				// printf("Leu newline\r\n");
 				// fgetc(ler_partidas);
-				printf("Linha %d lida: %s\r\n", counter, linha);
+				// printf("Linha %d lida: %s\r\n", counter, linha);
 
 				al_draw_text(fonte_texto_pequeno, COR_BRANCA, posicao_w_texto, posicao_h_texto, 0, linha);
 

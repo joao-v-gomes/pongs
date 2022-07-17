@@ -41,7 +41,7 @@ void verifica_fundo_baixo_bola(Bola *b, int *contador_bolas, int *pontos2) {
 
 		*contador_bolas = *contador_bolas - 1;
 
-		printf("Bola %d invalida\r\n", b->id);
+		// printf("Bola %d invalida\r\n", b->id);
 	}
 }
 
@@ -59,7 +59,7 @@ void verifica_fundo_alto_bola(Bola *b, int *contador_bolas, int *pontos1, int ti
 
 			*contador_bolas = *contador_bolas - 1;
 
-			printf("Bola %d invalida\r\n", b->id);
+			// printf("Bola %d invalida\r\n", b->id);
 		}
 	}
 }
@@ -191,10 +191,10 @@ void cria_bola(Bola bolas[], int *contador_bolas) {
 
 		*contador_bolas = *contador_bolas + 1;
 
-		printf("Bola %d criada\r\n", indice_bolas);
+		// printf("Bola %d criada\r\n", indice_bolas);
 
 	} else {
-		printf("Limite de bolas!\n\r");
+		// printf("Limite de bolas!\n\r");
 	}
 }
 
