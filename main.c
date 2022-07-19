@@ -146,6 +146,8 @@ int main(int argc, char **argv) {
 	int tempo_jogo = 0;
 	int tipo_jogo = 0;
 
+	int pause = 0;
+
 	while (playing) {
 		ALLEGRO_EVENT ev;
 		// espera por um evento e o armazena na variavel de evento ev
@@ -273,18 +275,29 @@ int main(int argc, char **argv) {
 
 					if (al_get_timer_count(timer_bola) == TEMPO_SOLTA_BOLA) {
 						// printf("e\r\n");
-						cria_bola(&bolas, &contador_bolas);
+						if (pause == 0) {
+							cria_bola(&bolas, &contador_bolas);
+						}
+
 						al_set_timer_count(timer_bola, 0);
 					}
 
 					verifica_posicao_bola_quadra(&bolas, &contador_bolas, &pontos_p1, &pontos_p2, tipo_jogo);
 					verifica_posicao_bola_jogadores(&bolas, &p1, &p2, pode_rebater_j1, pode_rebater_j2);
 					desenha_bola(bolas);
-					atualiza_bolas(&bolas);
+
+					if (pause == 0) {
+						atualiza_bolas(&bolas);
+					}
+
+					// atualiza_bolas(&bolas);
 
 					verifica_posicoes_jogadores(&p1, &p2);
 					desenha_jogadores(p1, p2);
-					atualiza_jogadores(&p1, &p2);
+
+					if (pause == 0) {
+						atualiza_jogadores(&p1, &p2);
+					}
 
 					if ((pontos_p1 >= PONTOS_VITORIA) || (pontos_p2 >= PONTOS_VITORIA)) {
 						state = CARREGA_FINAL_JOGO;
@@ -358,6 +371,10 @@ int main(int argc, char **argv) {
 
 			if (state == MENU || state == AJUDA) {
 				verifica_tecla_ajuda(ev, &state);
+			}
+
+			if (state == JOGO_UM_JOGADOR || state == JOGO_DOIS_JOGADORES) {
+				verifica_tecla_pause(ev, &pause);
 			}
 
 			if (state == AGUARDA_SAIR) {

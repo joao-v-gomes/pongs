@@ -22,8 +22,8 @@ ALLEGRO_SAMPLE *jogo = NULL;
 
 void init_pongs() {
 	move_menu = al_load_sample("data/audio/menu-navigate-03.wav");
-	// intro = al_load_sample("data/audio/top-gear-intro.wav");
-	intro = al_load_sample("data/audio/sonic-intro.wav");
+	intro = al_load_sample("data/audio/top-gear-intro.wav");
+	// intro = al_load_sample("data/audio/sonic-intro.wav");
 	jogo = al_load_sample("data/audio/top-gear-3.wav");
 	// sair_jogo = al_load_sample("data/audio/sonic-ring.wav");
 }
@@ -615,6 +615,14 @@ void verifica_teclas_final_jogo(ALLEGRO_EVENT ev, fsm_menu *state) {
 	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER || ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
 			*state = INIT_VAR_PONGS;
+		}
+	}
+}
+
+void verifica_tecla_pause(ALLEGRO_EVENT ev, int *pause) {
+	if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+		if (ev.keyboard.keycode == ALLEGRO_KEY_P) {
+			*pause = !*pause;
 		}
 	}
 }
